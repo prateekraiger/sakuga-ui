@@ -1,0 +1,5 @@
+{
+  "name": "Sakuga UI",
+  "description": "A high-performance, cinematic React animation library featuring smooth scroll interactions, canvas particles, and physics-based UI elements.",
+  "requestFramePermissions": []
+}
