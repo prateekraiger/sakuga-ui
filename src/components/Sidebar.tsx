@@ -1,17 +1,11 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Layers, Zap, MousePointer2, Waves, BoxSelect, Grid3X3, Eye } from 'lucide-react';
+
 
 const Sidebar = () => {
   const links = [
-    { name: 'Velocity Scroll', path: '/components/velocity', icon: Zap },
-    { name: 'Fracture Glass', path: '/components/fracture', icon: Layers },
-    { name: 'Liquid Distortion', path: '/components/liquid', icon: Waves },
-    { name: 'Spotlight Grid', path: '/components/spotlight', icon: Grid3X3 },
-    { name: 'Pixel Wave', path: '/components/pixel', icon: MousePointer2 },
-    { name: 'Voxel Terrain', path: '/components/voxel', icon: BoxSelect },
-    { name: 'Focus Lens', path: '/components/lens', icon: Eye },
+    // Add your components here
   ];
 
   return (
@@ -37,7 +31,13 @@ const Sidebar = () => {
           Components
         </div>
 
-        {links.map((link) => (
+        {links.length === 0 && (
+            <div className="px-4 py-2 text-xs text-neutral-600 italic">
+                No components added.
+            </div>
+        )}
+
+        {links.map((link: any) => (
           <NavLink
             key={link.path}
             to={link.path}
