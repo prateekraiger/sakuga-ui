@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './src/pages/Home';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
-import CodeModal from './components/CodeModal';
 
 // Sections for independent routes
 import VelocityText from './sections/VelocityText';
@@ -26,20 +25,33 @@ const App: React.FC = () => {
       setModalOpen(true);
     };
 
+    const handleCloseCode = () => {
+        setModalOpen(false);
+    };
+
   return (
     <BrowserRouter>
-      <CodeModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        code={modalCode}
-        title={modalTitle}
-      />
+      {/* CodeModal is now ONLY for the Home page or as a fallback.
+          For ShowcaseLayout, we pass the props down.
+          However, Home renders its OWN CodeModal.
+          So this global CodeModal might not be needed?
+          Actually, Home renders its own.
+          But the showcase routes use 'handleShowCode' which updates THIS state.
+          So for Showcase, 'modalOpen' triggers the Sidebar.
+      */}
 
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/components" element={<ShowcaseLayout />}>
-             <Route index element={<div className="text-neutral-500">Select a component from the sidebar to view.</div>} />
+        <Route path="/components" element={
+            <ShowcaseLayout
+                codeString={modalCode}
+                codeTitle={modalTitle}
+                isCodeOpen={modalOpen}
+                onCloseCode={handleCloseCode}
+            />
+        }>
+             <Route index element={<div className="text-neutral-500 h-full flex items-center justify-center">Select a component from the sidebar to view.</div>} />
              <Route path="velocity" element={<VelocityText onShowCode={handleShowCode} />} />
              <Route path="fracture" element={<FractureGlass onShowCode={handleShowCode} />} />
              <Route path="liquid" element={<LiquidDistortion onShowCode={handleShowCode} />} />

@@ -29,7 +29,6 @@ import BentoGrid from '../../sections/BentoGrid';
 import HorizontalScroll from '../../sections/HorizontalScroll';
 import Accordion from '../../sections/Accordion';
 import CanvasNetwork from '../../sections/CanvasNetwork';
-import Repository from '../../sections/Repository';
 import MagneticSection from '../../sections/MagneticSection';
 
 const Home: React.FC = () => {
@@ -87,8 +86,6 @@ const Home: React.FC = () => {
         <Marquee />
         <Accordion />
         <CanvasNetwork />
-
-        <Repository />
       </main>
 
       <Footer />
