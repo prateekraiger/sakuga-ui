@@ -5,6 +5,7 @@ import Landing from './src/pages/Landing';
 import AetherTemplate from './src/pages/AetherTemplate';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 import CodeModal from './src/components/CodeModal';
+import BentoGrid from './src/components/BentoGrid';
 
 const App: React.FC = () => {
     // Shared Modal State for the showcase
@@ -48,10 +49,7 @@ const App: React.FC = () => {
                 onCloseCode={handleCloseCode}
             />
         }>
-             <Route index element={<div className="text-neutral-500 h-full flex flex-col items-center justify-center space-y-4">
-                <p>No components added yet.</p>
-                <p className="text-xs text-neutral-600">Add new components in src/sections and update Sidebar.tsx</p>
-             </div>} />
+<Route index element={<div className="min-h-screen bg-black p-8 flex items-center justify-center"><BentoGrid /></div>} />
         </Route>
 
         {/* Redirect unknown routes to home */}
