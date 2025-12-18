@@ -6,6 +6,7 @@ import AetherTemplate from './src/pages/AetherTemplate';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 import CodeModal from './src/components/CodeModal';
 import BentoGrid from './src/components/BentoGrid';
+import CTA from './src/components/CTA';
 
 const App: React.FC = () => {
     // Shared Modal State for the showcase
@@ -50,6 +51,7 @@ const App: React.FC = () => {
             />
         }>
 <Route index element={<div className="min-h-screen bg-black p-8 flex items-center justify-center"><BentoGrid /></div>} />
+<Route path="cta" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>} />
         </Route>
 
         {/* Redirect unknown routes to home */}

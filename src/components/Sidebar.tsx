@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Zap } from 'lucide-react';
 
 
 const Sidebar = () => {
   const links = [
     // Add your components here
+    { name: 'CTA Section', path: '/components/cta', icon: Zap },
   ];
 
   return (
