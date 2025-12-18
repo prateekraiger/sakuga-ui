@@ -9,6 +9,9 @@ import ComponentsHome from './src/components/BentoGrid'; // Renamed import alias
 import Bento1 from './src/components/Bento1';
 import CTA from './src/components/CTA';
 
+import ComponentView from './src/components/ComponentView';
+import { BENTO1_CODE, CTA_CODE } from './src/data/component-source';
+
 const App: React.FC = () => {
     // Shared Modal State for the showcase
     const [modalOpen, setModalOpen] = useState(false);
@@ -49,11 +52,20 @@ const App: React.FC = () => {
                 codeTitle={modalTitle}
                 isCodeOpen={modalOpen}
                 onCloseCode={handleCloseCode}
+                onShowCode={handleShowCode}
             />
         }>
             <Route index element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><ComponentsHome /></div>} />
-            <Route path="bento-1" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Bento1 /></div>} />
-            <Route path="cta" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>} />
+            <Route path="bento-1" element={
+                <ComponentView title="Bento Grid" sourceCode={BENTO1_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Bento1 /></div>
+                </ComponentView>
+            } />
+            <Route path="cta" element={
+                <ComponentView title="CTA Section" sourceCode={CTA_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>
+                </ComponentView>
+            } />
         </Route>
 
         {/* Redirect unknown routes to home */}

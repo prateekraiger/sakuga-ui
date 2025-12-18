@@ -10,13 +10,15 @@ interface ShowcaseLayoutProps {
   codeTitle: string;
   isCodeOpen: boolean;
   onCloseCode: () => void;
+  onShowCode: (code: string, title: string) => void;
 }
 
 const ShowcaseLayout: React.FC<ShowcaseLayoutProps> = ({
   codeString,
   codeTitle,
   isCodeOpen,
-  onCloseCode
+  onCloseCode,
+  onShowCode
 }) => {
   const [copied, setCopied] = React.useState(false);
 
@@ -35,7 +37,7 @@ const ShowcaseLayout: React.FC<ShowcaseLayoutProps> = ({
 
       <main className={`flex-1 ml-64 relative z-10 w-full min-h-screen overflow-x-hidden transition-all duration-300 ${isCodeOpen ? 'mr-96' : ''}`}>
         <div className="w-full h-full p-8 md:p-12 lg:p-16 max-w-7xl mx-auto">
-          <Outlet />
+          <Outlet context={{ onShowCode }} />
         </div>
       </main>
 
