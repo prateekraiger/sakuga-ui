@@ -5,7 +5,8 @@ import Landing from './src/pages/Landing';
 import AetherTemplate from './src/pages/AetherTemplate';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 import CodeModal from './src/components/CodeModal';
-import BentoGrid from './src/components/BentoGrid';
+import ComponentsHome from './src/components/BentoGrid'; // Renamed import alias for clarity, though file is BentoGrid.tsx
+import Bento1 from './src/components/Bento1';
 import CTA from './src/components/CTA';
 
 const App: React.FC = () => {
@@ -50,8 +51,9 @@ const App: React.FC = () => {
                 onCloseCode={handleCloseCode}
             />
         }>
-<Route index element={<div className="min-h-screen bg-black p-8 flex items-center justify-center"><BentoGrid /></div>} />
-<Route path="cta" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>} />
+            <Route index element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><ComponentsHome /></div>} />
+            <Route path="bento-1" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Bento1 /></div>} />
+            <Route path="cta" element={<div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>} />
         </Route>
 
         {/* Redirect unknown routes to home */}

@@ -1,12 +1,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Zap } from 'lucide-react';
+import { Zap, LayoutGrid } from 'lucide-react';
 
 
 const Sidebar = () => {
   const links = [
     // Add your components here
+    { name: 'Bento Grid', path: '/components/bento-1', icon: LayoutGrid },
     { name: 'CTA Section', path: '/components/cta', icon: Zap },
   ];
 
