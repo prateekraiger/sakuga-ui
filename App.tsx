@@ -10,7 +10,9 @@ import Bento1 from './src/components/Bento1';
 import CTA from './src/components/CTA';
 
 import ComponentView from './src/components/ComponentView';
-import { BENTO1_CODE, CTA_CODE } from './src/data/component-source';
+import { BENTO1_CODE, CTA_CODE, HEADER_CODE } from './src/data/component-source';
+import Header from './src/components/Header';
+
 
 const App: React.FC = () => {
     // Shared Modal State for the showcase
@@ -66,6 +68,12 @@ const App: React.FC = () => {
                     <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CTA /></div>
                 </ComponentView>
             } />
+            <Route path="header" element={
+                <ComponentView title="Glass Header" sourceCode={HEADER_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Header /></div>
+                </ComponentView>
+            } />
+
         </Route>
 
         {/* Redirect unknown routes to home */}

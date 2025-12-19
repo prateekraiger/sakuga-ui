@@ -3,11 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layers, LayoutTemplate, ArrowRight } from 'lucide-react';
 import CustomCursor from '../components/CustomCursor';
+import Header from '../components/Header';
+
 
 const Landing: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white overflow-hidden relative selection:bg-white selection:text-black">
+      <Header />
       <CustomCursor />
+
 
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0">

@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import Header from '../components/Header';
 import Preloader from '../components/Preloader';
+
 import CodeModal from '../components/CodeModal';
 import Footer from '../components/Footer';
 
@@ -56,7 +57,8 @@ const Home: React.FC = () => {
         title={modalTitle}
       />
 
-      <Navbar />
+      <Header />
+
 
       {/* Main Content */}
       <main className="relative z-10 bg-[#050505] shadow-[0_50px_100px_#000] mb-[50vh]">
