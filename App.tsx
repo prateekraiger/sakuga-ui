@@ -10,8 +10,9 @@ import Bento1 from './src/components/Bento1';
 import CTA from './src/components/CTA';
 
 import ComponentView from './src/components/ComponentView';
-import { BENTO1_CODE, CTA_CODE, HEADER_CODE } from './src/data/component-source';
+import { BENTO1_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE } from './src/data/component-source';
 import Header from './src/components/Header';
+import NebulaHero from './src/sections/NebulaHero';
 
 
 const App: React.FC = () => {
@@ -71,6 +72,11 @@ const App: React.FC = () => {
             <Route path="header" element={
                 <ComponentView title="Glass Header" sourceCode={HEADER_CODE}>
                     <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Header /></div>
+                </ComponentView>
+            } />
+            <Route path="hero-1" element={
+                <ComponentView title="Nebula Hero" sourceCode={NEBULA_HERO_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><NebulaHero /></div>
                 </ComponentView>
             } />
 
