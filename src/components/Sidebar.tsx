@@ -88,6 +88,19 @@ const Sidebar = () => {
                     <Zap className="w-4 h-4" />
                     <span>Nebula Hero</span>
                 </NavLink>
+                 <NavLink
+                    to="/components/flux-hero"
+                    className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-all group ${
+                        isActive
+                        ? 'bg-white/10 text-white'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/5'
+                    }`
+                    }
+                >
+                    <Zap className="w-4 h-4" />
+                    <span>Flux Hero</span>
+                </NavLink>
             </div>
         </div>
       </nav>

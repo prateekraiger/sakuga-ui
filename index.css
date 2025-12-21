@@ -75,6 +75,41 @@ body {
   }
 }
 
+/* Flux Hero Animations */
+@keyframes beam-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dots-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 24px 24px;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
 .gradient-blur {
     position: fixed;
     z-index: 10;

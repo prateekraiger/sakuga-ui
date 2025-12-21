@@ -122,6 +122,36 @@ const ComponentsHome = () => {
                         </div>
                     </div>
                 </Link>
+
+                {/* Flux Hero Card */}
+                <Link to="/components/flux-hero" className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors duration-300">
+                    <div className="aspect-video w-full bg-zinc-950 object-cover overflow-hidden relative flex flex-col items-center justify-center">
+                         {/* Mini preview of Flux Hero - 3D Cube & Orange accents */}
+                         <div className="relative">
+                            {/* Rotating Cube Abstract */}
+                            <div className="w-12 h-12 border border-orange-500/50 rounded flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform duration-700">
+                                <div className="w-8 h-8 border border-purple-500/50 rounded transform -rotate-12 group-hover:-rotate-45 transition-transform duration-700"></div>
+                            </div>
+                            {/* Beam effect */}
+                            <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full"></div>
+                         </div>
+                    </div>
+                    <div className="p-6">
+                         <div className="flex items-center justify-between mb-2">
+                             <div className="flex items-center gap-2 text-orange-400">
+                                <LayoutGrid size={18} />
+                                <span className="text-sm font-medium">Hero</span>
+                             </div>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white mb-2">Flux Hero</h3>
+                        <p className="text-zinc-400 text-sm mb-4">
+                            Immersive 3D-style hero with floating glass panels and beam animations.
+                        </p>
+                        <div className="flex items-center text-sm text-white font-medium group-hover:translate-x-1 transition-transform">
+                            View Component <ArrowRight size={16} className="ml-2" />
+                        </div>
+                    </div>
+                </Link>
             </div>
         </div>
     );

@@ -57,9 +57,9 @@ const NebulaHero: React.FC = () => {
 
           <div className="mt-6 flex items-center justify-center gap-3 text-sm text-slate-400">
             <div className="flex -space-x-2">
-              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/9c519027-8b76-493a-ae3c-8cf962ccdf04_320w.jpg" alt="" />
-              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/8d3cb9d4-adbe-41e5-a351-a4a6c22d6037_800w.jpg" alt="" />
-              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/69c45eba-968b-45e3-aff1-ebab9cb7b543_320w.jpg" alt="" />
+              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c519027-8b76-493a-ae3c-8cf962ccdf04_320w.jpg" alt="" />
+              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8d3cb9d4-adbe-41e5-a351-a4a6c22d6037_800w.jpg" alt="" />
+              <img className="h-6 w-6 rounded-full ring-2 ring-black/60 object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/69c45eba-968b-45e3-aff1-ebab9cb7b543_320w.jpg" alt="" />
             </div>
             <span className="">Trusted by modern teams of all sizes</span>
           </div>
@@ -206,13 +206,13 @@ const NebulaHero: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/0950426a-fd01-4dc5-a916-33b7c3a94646_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0950426a-fd01-4dc5-a916-33b7c3a94646_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/859fc099-059b-4ec4-b0f1-06e736a8bdf4_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/859fc099-059b-4ec4-b0f1-06e736a8bdf4_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/f17ac654-630a-4fb6-ae2e-e2c4a8fe9274_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f17ac654-630a-4fb6-ae2e-e2c4a8fe9274_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                   </div>
                 </div>
@@ -242,7 +242,7 @@ const NebulaHero: React.FC = () => {
 
               <div className="sm:p-6 pt-4 pr-4 pb-4 pl-4">
                 <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 ring-1 ring-white/10">
-                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/9fb3eba2-d3b1-4a3c-9feb-29a0b47b70c6_1600w.jpg" className="h-[360px] w-full object-cover sm:h-[460px]" alt="" />
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9fb3eba2-d3b1-4a3c-9feb-29a0b47b70c6_1600w.jpg" className="h-[360px] w-full object-cover sm:h-[460px]" alt="" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6">
                     <div className="max-w-xl rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur">
@@ -268,7 +268,7 @@ const NebulaHero: React.FC = () => {
                   className="pointer-events-none absolute -bottom-6 right-4 hidden w-64 rounded-xl border border-white/10 bg-white/5 p-2 backdrop-blur lg:block">
                   <div className="rounded-lg border border-white/10 bg-black/50 p-2">
                     <div className="aspect-[9/16] overflow-hidden rounded-md">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/e080ec8d-304b-41cc-a8e7-c2b6efc8ab07_800w.jpg" className="h-full w-full object-cover" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e080ec8d-304b-41cc-a8e7-c2b6efc8ab07_800w.jpg" className="h-full w-full object-cover" alt="" />
                     </div>
                     <div className="mt-2 flex items-center justify-between text-[10px] text-slate-400">
                       <span className="inline-flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="smartphone" className="lucide lucide-smartphone h-3 w-3"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" className=""></rect><path d="M12 18h.01" className=""></path></svg> Mobile 390</span>
