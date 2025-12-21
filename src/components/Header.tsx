@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -12,7 +16,7 @@ const Header: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="fixed z-50 w-full top-0 left-0">
+    <header className={className || "fixed z-50 w-full top-0 left-0"}>
       <div className="sm:px-6 lg:px-8 max-w-7xl mx-auto px-4">
         <div className="flex pt-5 pb-5 items-center justify-between animate-[fadeSlideIn_0.5s_ease-out_0.1s_both]">
           <a

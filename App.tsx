@@ -33,13 +33,13 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      {/* Global CodeModal for Templates which don't use the Sidebar layout */}
-      <CodeModal
+      {/* Global CodeModal removed to prevent duplicate view in ShowcaseLayout */}
+      {/* <CodeModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         code={modalCode}
         title={modalTitle}
-      />
+      /> */}
 
       <Routes>
         {/* Landing Page */}
@@ -71,7 +71,10 @@ const App: React.FC = () => {
             } />
             <Route path="header" element={
                 <ComponentView title="Glass Header" sourceCode={HEADER_CODE}>
-                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Header /></div>
+                    {/* Passed absolute position to prevent it from being fixed to viewport top in showcase */}
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full relative overflow-hidden">
+                        <Header className="absolute top-0 left-0 w-full z-10" />
+                    </div>
                 </ComponentView>
             } />
             <Route path="hero-1" element={

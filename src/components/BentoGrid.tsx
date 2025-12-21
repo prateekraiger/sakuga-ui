@@ -67,6 +67,61 @@ const ComponentsHome = () => {
                         </div>
                     </div>
                 </Link>
+
+                 {/* Header Card */}
+                 <Link to="/components/header" className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors duration-300">
+                    <div className="aspect-video w-full bg-zinc-950 object-cover overflow-hidden relative flex flex-col items-center justify-start pt-8">
+                         {/* Mini preview of Header */}
+                         <div className="w-[80%] h-4 rounded-full bg-zinc-800 border border-zinc-700/50 mb-2 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                         <div className="flex gap-2 w-[80%] opacity-40 group-hover:opacity-80 transition-opacity">
+                             <div className="w-1/4 h-2 rounded-full bg-zinc-800"></div>
+                             <div className="w-1/4 h-2 rounded-full bg-zinc-800"></div>
+                             <div className="w-1/4 h-2 rounded-full bg-zinc-800"></div>
+                         </div>
+                    </div>
+                    <div className="p-6">
+                         <div className="flex items-center justify-between mb-2">
+                             <div className="flex items-center gap-2 text-green-400">
+                                <LayoutGrid size={18} />
+                                <span className="text-sm font-medium">Navigation</span>
+                             </div>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white mb-2">Glass Header</h3>
+                        <p className="text-zinc-400 text-sm mb-4">
+                            Frosted glass navigation bar with mobile menu and scroll animations.
+                        </p>
+                        <div className="flex items-center text-sm text-white font-medium group-hover:translate-x-1 transition-transform">
+                            View Component <ArrowRight size={16} className="ml-2" />
+                        </div>
+                    </div>
+                </Link>
+
+                {/* Nebula Hero Card */}
+                <Link to="/components/hero-1" className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors duration-300">
+                    <div className="aspect-video w-full bg-zinc-950 object-cover overflow-hidden relative flex flex-col items-center justify-center">
+                         {/* Mini preview of Hero */}
+                         <div className="text-center px-4">
+                            <div className="w-24 h-6 mx-auto rounded-full bg-sky-500/10 border border-sky-500/20 mb-3 opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="w-48 h-8 mx-auto rounded-lg bg-zinc-800 mb-2 opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="w-32 h-3 mx-auto rounded-full bg-zinc-800/50 opacity-40 group-hover:opacity-70 transition-opacity"></div>
+                         </div>
+                    </div>
+                    <div className="p-6">
+                         <div className="flex items-center justify-between mb-2">
+                             <div className="flex items-center gap-2 text-sky-400">
+                                <LayoutGrid size={18} />
+                                <span className="text-sm font-medium">Hero</span>
+                             </div>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white mb-2">Nebula Hero</h3>
+                        <p className="text-zinc-400 text-sm mb-4">
+                            Modern SaaS hero section with animated buttons and glassmorphism IDE preview.
+                        </p>
+                        <div className="flex items-center text-sm text-white font-medium group-hover:translate-x-1 transition-transform">
+                            View Component <ArrowRight size={16} className="ml-2" />
+                        </div>
+                    </div>
+                </Link>
             </div>
         </div>
     );
