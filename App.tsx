@@ -10,10 +10,12 @@ import Bento1 from './src/components/Bento1';
 import CTA from './src/components/CTA';
 
 import ComponentView from './src/components/ComponentView';
-import { BENTO1_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE } from './src/data/component-source';
+import { BENTO1_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE } from './src/data/component-source';
 import Header from './src/components/Header';
 import NebulaHero from './src/sections/NebulaHero';
 import FluxHero from './src/sections/FluxHero';
+import GrowthHero from './src/sections/GrowthHero';
+
 
 
 const App: React.FC = () => {
@@ -88,6 +90,12 @@ const App: React.FC = () => {
                     <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><FluxHero /></div>
                 </ComponentView>
             } />
+            <Route path="growth-hero" element={
+                <ComponentView title="Growth Hero" sourceCode={GROWTH_HERO_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><GrowthHero /></div>
+                </ComponentView>
+            } />
+
 
         </Route>
 
