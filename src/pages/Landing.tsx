@@ -86,7 +86,7 @@ const Landing: React.FC = () => {
         </div>
 
         <footer className="absolute bottom-8 text-neutral-600 text-[10px] uppercase tracking-widest">
-            Sakuga Design System © 2024
+            Sakuga Design System © 2025
         </footer>
       </div>
     </div>
