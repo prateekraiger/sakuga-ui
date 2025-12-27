@@ -1,4 +1,4 @@
-export const BENTO1_CODE = `import React from 'react';
+﻿export const BENTO1_CODE = `import React from 'react';
 
 const Bento1 = () => {
   return (
@@ -299,7 +299,7 @@ const CTA: React.FC = () => {
 
         {/* Bottom meta */}
         <div className="mt-8 flex items-center justify-between text-xs text-slate-500 flex-wrap gap-4">
-          <span>© 2025 NeuralFlow. All rights reserved.</span>
+          <span>Â© 2025 NeuralFlow. All rights reserved.</span>
           <span>Powered by Advanced AI Technology</span>
         </div>
       </footer>
@@ -441,7 +441,7 @@ const NebulaHero: React.FC = () => {
             Ship websites at lightspeed
           </h1>
           <p className="mt-5 text-base md:text-lg text-slate-300">
-            Nebula is a visual builder that lets you design, collaborate, and publish in one place. No code required—unless
+            Nebula is a visual builder that lets you design, collaborate, and publish in one place. No code requiredâ€”unless
             you want it.
           </p>
 
@@ -503,7 +503,7 @@ const NebulaHero: React.FC = () => {
                   <rect width="7" height="7" x="14" y="3" rx="1" className=""></rect>
                   <rect width="7" height="7" x="14" y="14" rx="1" className=""></rect>
                 </svg>
-                Nebula Studio — Project: Aurora
+                Nebula Studio â€” Project: Aurora
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -545,7 +545,7 @@ const NebulaHero: React.FC = () => {
                           className=""></path>
                         <path d="M20.054 15.987H3.946" className=""></path>
                       </svg>
-                      <span className="text-xs font-medium">Desktop — 1200</span>
+                      <span className="text-xs font-medium">Desktop â€” 1200</span>
                     </div>
                     <span className="rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-400">Primary</span>
                   </div>
@@ -666,7 +666,7 @@ const NebulaHero: React.FC = () => {
                     <div className="max-w-xl rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur">
                       <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight">Orion Canvas</h3>
                       <p className="mt-1 text-sm text-slate-300">A limitless canvas with modern layout, motion, and type
-                        features—ready for production.</p>
+                        featuresâ€”ready for production.</p>
                       <div className="mt-3 flex items-center gap-2">
                         <button className="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-xs font-medium text-black hover:bg-white/90">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="wand-2" className="lucide lucide-wand-2 h-4 w-4"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" className=""></path><path d="m14 7 3 3" className=""></path><path d="M5 6v4" className=""></path><path d="M19 14v4" className=""></path><path d="M10 2v2" className=""></path><path d="M7 8H3" className=""></path><path d="M21 16h-4" className=""></path><path d="M11 3H9" className=""></path></svg>
@@ -902,7 +902,7 @@ const FluxHero: React.FC = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
             </div>
             <div className="mx-auto font-mono text-[10px] text-neutral-500">
-              scene.flux — Edited
+              scene.flux â€” Edited
             </div>
           </div>
           <div className="flex-1 overflow-hidden bg-neutral-950 relative preserve-3d">
@@ -1075,7 +1075,7 @@ const GrowthHero: React.FC = () => {
       </h1>
 
       <p className="max-w-2xl sm:text-lg text-base font-normal text-white/70 font-geist mt-6 mr-auto ml-auto">
-        We engineer profitable acquisition systems for digital brands. If efficient, scalable growth is your goal, you’re in
+        We engineer profitable acquisition systems for digital brands. If efficient, scalable growth is your goal, youâ€™re in
         the right place.
       </p>
 
@@ -1358,7 +1358,7 @@ const HeliosHero: React.FC = () => {
           <div className="lg:w-1/2 grid grid-cols-2 gap-6">
             {[
               { label: '0.02s', sub: 'Reaction Time', dark: false },
-              { label: '360°', sub: 'Active Shield', dark: false },
+              { label: '360Â°', sub: 'Active Shield', dark: false },
               { label: '100%', sub: 'Data Privacy', dark: false },
               { label: '24/7', sub: 'Autonomous Power', dark: true },
             ].map((stat, i) => (
@@ -1410,7 +1410,7 @@ const HeliosHero: React.FC = () => {
             <a href="#" className="hover:text-gray-900">Terms of Service</a>
           </div>
           <div className="md:text-right text-center">
-            <span className="text-[10px] uppercase tracking-widest opacity-60">© 2025 Helios Robotics. All Rights Reserved.</span>
+            <span className="text-[10px] uppercase tracking-widest opacity-60">Â© 2025 Helios Robotics. All Rights Reserved.</span>
             <p className="text-xs text-gray-600">Designed by Allen Dela Cruz</p>
           </div>
         </footer>
@@ -1421,3 +1421,6 @@ const HeliosHero: React.FC = () => {
 
 export default HeliosHero;
 `;
+
+
+export { QUANTUM_HERO_CODE } from './code/QuantumHeroCode';

@@ -27,13 +27,13 @@ const Repository: React.FC = () => {
   return (
     <section id="repository" className="py-32 px-6 bg-[#0a0a0a] border-t border-white/5 relative">
       <SectionLabel number="11" text="THE REPOSITORY" />
-      
+
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-display font-bold mb-12 text-white">The Repository</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {libraryData.map((item) => (
-            <button 
+            <button
               key={item.id}
               onClick={() => copyToClipboard(item.code, item.id)}
               className="p-6 border border-white/10 bg-white/5 rounded-lg text-left hover:bg-white hover:text-black transition-all group hoverable relative overflow-hidden flex flex-col gap-2"
