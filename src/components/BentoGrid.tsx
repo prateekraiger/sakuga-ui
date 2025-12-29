@@ -43,6 +43,35 @@ const ComponentsHome = () => {
                     </div>
                 </Link>
 
+                {/* Bento 2 Card */}
+                <Link to="/components/bento-2" className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors duration-300">
+                    <div className="aspect-video w-full bg-zinc-950 object-cover overflow-hidden relative">
+                         {/* Mini preview */}
+                        <div className="absolute inset-4 grid grid-cols-3 grid-rows-2 gap-2 opacity-50 group-hover:opacity-80 transition-opacity">
+                             <div className="col-span-2 row-span-1 rounded-lg border border-zinc-700 bg-zinc-800/50"></div>
+                             <div className="col-span-1 row-span-1 rounded-lg border border-zinc-700 bg-blue-900/30"></div>
+                             <div className="col-span-1 row-span-1 rounded-lg border border-zinc-700 bg-zinc-800/50"></div>
+                             <div className="col-span-1 row-span-1 rounded-lg border border-zinc-700 bg-zinc-800/50"></div>
+                             <div className="col-span-1 row-span-1 rounded-lg border border-zinc-700 bg-zinc-800/50"></div>
+                        </div>
+                    </div>
+                    <div className="p-6">
+                        <div className="flex items-center justify-between mb-2">
+                             <div className="flex items-center gap-2 text-indigo-400">
+                                <LayoutGrid size={18} />
+                                <span className="text-sm font-medium">Dashboard</span>
+                             </div>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white mb-2">Analytics Bento</h3>
+                        <p className="text-zinc-400 text-sm mb-4">
+                            Data-heavy bento grid with charts, KPI cards, and predictive model visualizations.
+                        </p>
+                        <div className="flex items-center text-sm text-white font-medium group-hover:translate-x-1 transition-transform">
+                            View Component <ArrowRight size={16} className="ml-2" />
+                        </div>
+                    </div>
+                </Link>
+
                  {/* CTA Card */}
                  <Link to="/components/cta" className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/50 hover:bg-zinc-900 transition-colors duration-300">
                     <div className="aspect-video w-full bg-zinc-950 object-cover overflow-hidden relative flex items-center justify-center">

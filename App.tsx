@@ -7,12 +7,13 @@ import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 import CodeModal from './src/components/CodeModal';
 import ComponentsHome from './src/components/BentoGrid'; // Renamed import alias for clarity, though file is BentoGrid.tsx
 import Bento1 from './src/components/Bento1';
+import Bento2 from './src/components/Bento2';
 import CTA from './src/components/CTA';
 
 import ComponentView from './src/components/ComponentView';
 import GrowthHero from './src/sections/GrowthHero';
 import HeliosHero from './src/sections/HeliosHero';
-import { BENTO1_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE } from './src/data/component-source';
+import { BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE } from './src/data/component-source';
 import Header from './src/components/Header';
 import NebulaHero from './src/sections/NebulaHero';
 import FluxHero from './src/sections/FluxHero';
@@ -67,6 +68,11 @@ const App: React.FC = () => {
             <Route path="bento-1" element={
                 <ComponentView title="Bento Grid" sourceCode={BENTO1_CODE}>
                     <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Bento1 /></div>
+                </ComponentView>
+            } />
+            <Route path="bento-2" element={
+                <ComponentView title="Analytics Bento" sourceCode={BENTO2_CODE}>
+                    <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Bento2 /></div>
                 </ComponentView>
             } />
             <Route path="cta" element={
