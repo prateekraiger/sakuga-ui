@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Facebook, Twitter, Instagram, Youtube, Menu } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 
 const HeliosHero: React.FC = () => {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Icons
+    // Lucide icons are imported as React components, so no need for createIcons()
+
     // Fade-in animation logic
     const observerOptions = {
       root: null,
@@ -63,6 +66,9 @@ const HeliosHero: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden selection:bg-gray-900 selection:text-white text-gray-900 bg-gradient-to-b from-amber-300 via-yellow-400 to-amber-500 font-sans">
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
         .glass-panel {
           background: rgba(255, 255, 255, 0.25);
           backdrop-filter: blur(12px);
@@ -85,6 +91,7 @@ const HeliosHero: React.FC = () => {
         }
         .hero-text-mask {
           mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+          -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
         }
         @keyframes float {
           0% { transform: translateY(0px); }
@@ -116,7 +123,7 @@ const HeliosHero: React.FC = () => {
       `}</style>
 
       {/* Navigation */}
-      <nav className="fixed z-50 transition-all duration-300 md:px-12 w-full">
+      <nav className="fixed z-50 transition-all duration-300 md:px-12 w-full top-0">
         <div className="flex max-w-7xl mx-auto pt-4 px-6 items-center justify-between">
           <div className="flex items-center group cursor-pointer">
             <img
@@ -138,26 +145,34 @@ const HeliosHero: React.FC = () => {
 
       {/* Hero Section */}
       <header
-        className="overflow-hidden bg-center h-screen bg-cover relative flex items-center"
+        className="overflow-hidden bg-center min-h-screen bg-cover relative flex items-center -translate-x-2 translate-y-3 pt-48 pb-32 md:py-80"
         style={{ backgroundImage: 'url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/77f6ea12-a46c-43c8-a1fc-871074b4d483_3840w.png)' }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-20 w-full">
-          <div className="fade-in-section max-w-lg">
-            <h2 className="leading-tight text-4xl md:text-5xl font-thin text-gray-900 tracking-tighter font-montserrat mb-8">
-              The world's first bio-emotive home guardian.
-            </h2>
-            <div className="space-y-4">
-              <button className="hover:bg-gray-800 transition-all hover:shadow-2xl hover:-translate-y-1 text-sm font-medium text-white bg-gray-900 rounded-full py-3 px-10 shadow-xl">
-                Reserve
-              </button>
-              <p className="uppercase text-xs font-bold tracking-widest opacity-60">Shipping late 2026</p>
+        <div className="max-w-7xl mx-auto px-6 md:px-20 w-full relative z-10">
+          <div className="flex flex-col md:flex-row items-start justify-start">
+            <div
+                className="md:w-1/3 fade-in-section mb-0 space-y-8"
+                style={{
+                    maskImage: 'linear-gradient(170deg, transparent, black 0%, black 100%, transparent)',
+                    WebkitMaskImage: 'linear-gradient(170deg, transparent, black 0%, black 100%, transparent)'
+                }}
+            >
+                <h2 className="leading-tight text-3xl md:text-3xl font-thin text-gray-900 tracking-tighter font-montserrat text-left">
+                The world's first bio-emotive home guardian.
+                </h2>
+                <div className="space-y-3">
+                <button className="hover:bg-gray-800 transition-all hover:shadow-2xl hover:-translate-y-1 text-sm font-medium text-white bg-gray-900 rounded-full py-3 px-10 shadow-xl">
+                    Reserve
+                </button>
+                <p className="uppercase text-xs font-medium tracking-wide opacity-60 pl-5">Shipping late 2026</p>
+                </div>
             </div>
           </div>
         </div>
       </header>
 
       {/* Features Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-24">
+      <section className="max-w-7xl mx-auto px-6 py-12 md:pt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
           <div className="glass-panel flex flex-col fade-in-section hover:scale-[1.02] transition-transform duration-500 text-center rounded-[2.5rem] p-10 space-y-6 items-center">
@@ -177,7 +192,7 @@ const HeliosHero: React.FC = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="glass-panel flex flex-col fade-in-section hover:scale-[1.02] transition-transform duration-500 text-center rounded-[2.5rem] p-10 space-y-6 items-center delay-100">
+          <div className="glass-panel flex flex-col fade-in-section hover:scale-[1.02] transition-transform duration-500 text-center rounded-[2.5rem] p-10 space-y-6 items-center" style={{ transitionDelay: '100ms' }}>
             <div
               className="w-20 h-20 bg-cover rounded-2xl mb-2 shadow-sm"
               style={{ backgroundImage: 'url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6cf90f9d-ad99-4d22-9d68-277089397c2f_320w.png?w=800&q=80)' }}
@@ -194,7 +209,7 @@ const HeliosHero: React.FC = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="glass-panel flex flex-col fade-in-section hover:scale-[1.02] transition-transform duration-500 text-center rounded-[2.5rem] p-10 space-y-6 items-center delay-200">
+          <div className="glass-panel flex flex-col fade-in-section hover:scale-[1.02] transition-transform duration-500 text-center rounded-[2.5rem] p-10 space-y-6 items-center" style={{ transitionDelay: '200ms' }}>
             <div
               className="w-20 h-20 bg-cover rounded-2xl mb-2 shadow-sm"
               style={{ backgroundImage: 'url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ce1daa6a-0269-464a-851b-3789fdf298b6_320w.png)' }}
