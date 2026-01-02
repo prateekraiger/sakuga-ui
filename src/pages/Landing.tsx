@@ -83,6 +83,31 @@ const Landing: React.FC = () => {
             </div>
           </Link>
 
+          {/* MasKoko Template Card */}
+          <Link to="/templates/maskoko" className="group relative h-64 md:h-80 bg-neutral-900/50 border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 transition-all duration-500 md:col-span-2">
+            <div className="absolute inset-0 bg-gradient-to-tr from-zinc-500/5 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            <div className="absolute top-6 left-6 md:top-10 md:left-10 z-10">
+              <div className="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-4 border border-white/10 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                <LayoutTemplate className="w-6 h-6" />
+              </div>
+              <h2 className="text-2xl font-bold mb-2">MasKoko Agency</h2>
+              <p className="text-neutral-500 text-sm group-hover:text-neutral-400 transition-colors">
+                Digital agency portfolio <br/>with 3D and GSAP animations.
+              </p>
+            </div>
+
+            <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 flex items-center gap-2 text-sm font-bold opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+              <span>VIEW TEMPLATE</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
+
+             {/* Visual Abstract */}
+            <div className="absolute right-0 bottom-0 w-1/2 h-full opacity-20 grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div className="w-full h-full bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.05)_10px,rgba(255,255,255,0.05)_20px)]" />
+            </div>
+          </Link>
+
         </div>
 
         <footer className="absolute bottom-8 text-neutral-600 text-[10px] uppercase tracking-widest">

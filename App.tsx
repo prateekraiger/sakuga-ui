@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './src/pages/Landing';
 import AetherTemplate from './src/pages/AetherTemplate';
+import MasKokoTemplate from './src/pages/MasKokoTemplate';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 import CodeModal from './src/components/CodeModal';
 import ComponentsHome from './src/components/BentoGrid'; // Renamed import alias for clarity, though file is BentoGrid.tsx
@@ -55,6 +56,7 @@ const App: React.FC = () => {
 
         {/* Templates Routes */}
         <Route path="/templates/aether" element={<AetherTemplate />} />
+        <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
 
         {/* Components Showcase Routes */}
         <Route path="/components" element={

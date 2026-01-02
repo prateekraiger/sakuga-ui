@@ -1,397 +1,456 @@
-<html lang="en" class="scroll-smooth"><head><meta charset="UTF-8">
+<html lang="en" class="scroll-smooth no-scrollbar"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>House of Tania | Luxury Redefined</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<title>MasKokoIT — Digital Agency</title>
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Inter:wght@200;300;400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&amp;family=JetBrains+Mono:wght@300;400&amp;display=swap" rel="stylesheet">
+<!-- Core Libraries -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin=""></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin=""></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- Motion & 3D -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- Icons -->
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script>
 tailwind.config = {
 theme: {
 extend: {
 fontFamily: {
-serif: ['"Cormorant Garamond"', 'serif'],
-sans: ['"Inter"', 'sans-serif'],
+sans: ['Inter', 'sans-serif'],
+mono: ['JetBrains Mono', 'monospace'],
 },
 colors: {
-'luxury-black': '#0a0a0a',
-'luxury-white': '#fcfcfc',
-'luxury-grey': '#e5e5e5',
-'luxury-charcoal': '#1a1a1a',
+zinc: {
+850: '#1f1f22',
+900: '#18181b',
+925: '#101012',
+950: '#050505',
+}
 },
 letterSpacing: {
-'ultra-tight': '-0.05em',
+tighter: '-0.05em',
+tight: '-0.03em',
+widest: '0.15em',
+},
+cursor: {
+none: 'none',
+},
+backgroundImage: {
+'grid-pattern': "linear-gradient(to right, #27272a 1px, transparent 1px), linear-gradient(to bottom, #27272a 1px, transparent 1px)",
 }
 }
 }
 }
 </script>
 <style>
-/* Custom scrollbar hide for clean luxury look */
-.no-scrollbar::-webkit-scrollbar {
-display: none;
-}
-.no-scrollbar {
--ms-overflow-style: none;
-scrollbar-width: none;
-}
-/* Fade in animation */
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(10px); }
-to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-animation: fadeIn 1s ease-out forwards;
-}
-.delay-100 { animation-delay: 0.1s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-500 { animation-delay: 0.5s; }
-/* Smooth image hover zoom */
-.img-zoom-container {
-overflow: hidden;
-}
-.img-zoom {
-transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.group:hover .img-zoom {
-transform: scale(1.05);
-}
+body { cursor: none; background-color: #050505; }
+::-webkit-scrollbar { width: 0px; background: transparent; }
+.clip-text-reveal { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+.text-glow { text-shadow: 0 0 30px rgba(255,255,255,0.15); }
+.glass-panel { background: rgba(5, 5, 5, 0.6); backdrop-filter: blur(8px); }
+/* Smooth Scroll behavior fallback */
+html { scroll-behavior: smooth; }
 </style></head>
-<body class="bg-luxury-white text-luxury-black font-sans antialiased selection:bg-luxury-black selection:text-white overflow-x-hidden">
+<body class="bg-zinc-950 text-zinc-300 font-sans antialiased overflow-x-hidden selection:bg-zinc-200 selection:text-zinc-950">
+    <div id="root"></div>
 
-    <!-- Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-luxury-white/90 backdrop-blur-sm border-b border-black/5">
-        <div class="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Mobile Menu Trigger -->
-            <button class="lg:hidden p-2 -ml-2 hover:opacity-50 transition-opacity">
-                <iconify-icon icon="lucide:menu" width="24" stroke-width="1.5"></iconify-icon>
-            </button>
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useLayoutEffect } = React;
+        gsap.registerPlugin(ScrollTrigger);
 
-            <!-- Desktop Nav Left -->
-            <nav class="hidden lg:flex gap-8 text-xs uppercase tracking-widest font-medium text-black/60">
-                <a href="#" class="hover:text-black transition-colors">Collections</a>
-                <a href="#" class="hover:text-black transition-colors">Atelier</a>
-                <a href="#" class="hover:text-black transition-colors">Maison</a>
+        // --- Custom Cursor ---
+        const CustomCursor = () => {
+            const cursorRef = useRef(null);
+            const followerRef = useRef(null);
+
+            useEffect(() => {
+                const moveCursor = (e) => {
+                    gsap.to(cursorRef.current, { x: e.clientX, y: e.clientY, duration: 0.1 });
+                    gsap.to(followerRef.current, { x: e.clientX, y: e.clientY, duration: 0.5, ease: "power2.out" });
+                };
+
+                const handleHoverStart = () => {
+                    gsap.to(followerRef.current, { scale: 3, backgroundColor: "rgba(255,255,255,0.1)", mixBlendMode: "difference", duration: 0.3 });
+                    gsap.to(cursorRef.current, { scale: 0, duration: 0.3 });
+                };
+
+                const handleHoverEnd = () => {
+                    gsap.to(followerRef.current, { scale: 1, backgroundColor: "transparent", mixBlendMode: "normal", duration: 0.3 });
+                    gsap.to(cursorRef.current, { scale: 1, duration: 0.3 });
+                };
+
+                window.addEventListener('mousemove', moveCursor);
+
+                // MutationObserver to attach listeners to dynamically added elements
+                const observer = new MutationObserver(() => {
+                    const interactives = document.querySelectorAll('a, button, .interactive');
+                    interactives.forEach(el => {
+                        el.removeEventListener('mouseenter', handleHoverStart);
+                        el.removeEventListener('mouseleave', handleHoverEnd);
+                        el.addEventListener('mouseenter', handleHoverStart);
+                        el.addEventListener('mouseleave', handleHoverEnd);
+                    });
+                });
+
+                observer.observe(document.body, { childList: true, subtree: true });
+
+                return () => {
+                    window.removeEventListener('mousemove', moveCursor);
+                    observer.disconnect();
+                };
+            }, []);
+
+            return (
+                <>
+                    <div ref={cursorRef} className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[100] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"></div>
+                    <div ref={followerRef} className="fixed top-0 left-0 w-8 h-8 border border-white/30 rounded-full pointer-events-none z-[99] -translate-x-1/2 -translate-y-1/2 transition-colors"></div>
+                </>
+            );
+        };
+
+        // --- 3D Background Scene ---
+        const Scene = () => {
+            const mountRef = useRef(null);
+
+            useEffect(() => {
+                const scene = new THREE.Scene();
+                scene.fog = new THREE.FogExp2(0x050505, 0.04);
+
+                const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+                camera.position.set(0, 0, 8);
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                mountRef.current.appendChild(renderer.domElement);
+
+                // Group
+                const group = new THREE.Group();
+
+                // 1. Main Geometric Structure (Wireframe Torus for "Web" feel)
+                const geo1 = new THREE.TorusKnotGeometry(1.2, 0.4, 120, 20);
+                const mat1 = new THREE.MeshBasicMaterial({ color: 0x333333, wireframe: true, transparent: true, opacity: 0.15 });
+                const mesh1 = new THREE.Mesh(geo1, mat1);
+                group.add(mesh1);
+
+                // 2. Data Points
+                const geo2 = new THREE.IcosahedronGeometry(2.5, 2);
+                const pos = geo2.attributes.position.array;
+                const pointsGeo = new THREE.BufferGeometry();
+                pointsGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                const pointsMat = new THREE.PointsMaterial({ size: 0.02, color: 0x52525b });
+                const points = new THREE.Points(pointsGeo, pointsMat);
+                group.add(points);
+
+                scene.add(group);
+
+                // Lights
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+                scene.add(ambientLight);
+
+                // Mouse interaction vars
+                let mouseX = 0;
+                let mouseY = 0;
+
+                const handleMouseMove = (e) => {
+                    mouseX = (e.clientX - window.innerWidth / 2) * 0.0005;
+                    mouseY = (e.clientY - window.innerHeight / 2) * 0.0005;
+                };
+                window.addEventListener('mousemove', handleMouseMove);
+
+                // GSAP Scroll Animation
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "body",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1.5,
+                    }
+                });
+
+                // Scroll Sequence
+                tl.to(group.rotation, { x: 0.5, y: 3, duration: 1 })
+                  .to(group.position, { z: -2, duration: 1 }, "<")
+                  .to(mesh1.material, { opacity: 0.05, color: 0xffffff, duration: 1 }, "<")
+                  .to(points.material, { size: 0.05, color: 0xffffff, duration: 1 }, "<");
+
+                // Animation Loop
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    group.rotation.x += 0.001;
+                    group.rotation.y += 0.002;
+
+                    // Mouse Parallax
+                    group.rotation.x += (mouseY - group.rotation.x) * 0.05;
+                    group.rotation.y += (mouseX - group.rotation.y) * 0.05;
+
+                    renderer.render(scene, camera);
+                };
+                animate();
+
+                const handleResize = () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                };
+                window.addEventListener('resize', handleResize);
+
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                    window.removeEventListener('mousemove', handleMouseMove);
+                    if(mountRef.current && renderer.domElement) mountRef.current.removeChild(renderer.domElement);
+                    ScrollTrigger.getAll().forEach(t => t.kill());
+                };
+            }, []);
+
+            return <div ref={mountRef} className="fixed top-0 left-0 w-full h-screen -z-10 pointer-events-none" />;
+        };
+
+        // --- Layout Components ---
+        const GridLines = () => (
+            <div className="fixed inset-0 w-full h-full pointer-events-none z-0 max-w-screen-2xl mx-auto border-x border-zinc-800/30 flex justify-between">
+                <div className="h-full w-px bg-zinc-800/10 hidden md:block"></div>
+                <div className="h-full w-px bg-zinc-800/10"></div>
+                <div className="h-full w-px bg-zinc-800/10 hidden md:block"></div>
+            </div>
+        );
+
+        const Navbar = () => (
+            <nav className="fixed top-0 left-0 w-full z-50 py-6 px-6 md:px-12 mix-blend-difference">
+                <div className="max-w-screen-2xl mx-auto flex justify-between items-center">
+                    <div className="flex flex-col">
+                        <span className="text-white text-lg font-bold tracking-tighter interactive cursor-none">MasKokoIT</span>
+                        <span className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase">Digital Agency</span>
+                    </div>
+                    <div className="hidden md:flex gap-8">
+                        {['Work', 'Services', 'Agency', 'Contact'].map((item) => (
+                            <a key={item} href={`#${item.toLowerCase()}`} className="interactive text-xs font-mono uppercase tracking-widest text-zinc-500 hover:text-white transition-colors">
+                                {item}
+                            </a>
+                        ))}
+                    </div>
+                    <button className="md:hidden text-white interactive">
+                        <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
+                    </button>
+                </div>
             </nav>
+        );
 
-            <!-- Logo -->
-            <a href="#" class="absolute left-1/2 -translate-x-1/2 text-center group">
-                <h1 class="font-serif text-3xl md:text-4xl tracking-tighter uppercase text-luxury-black leading-none group-hover:opacity-80 transition-opacity">
-                    House of Tania
-                </h1>
-            </a>
+        // --- Sections ---
 
-            <!-- Right Actions -->
-            <div class="flex items-center gap-6">
-                <button class="hidden lg:block hover:opacity-50 transition-opacity">
-                    <span class="text-xs uppercase tracking-widest font-medium">Account</span>
-                </button>
-                <button class="hover:opacity-50 transition-opacity">
-                    <iconify-icon icon="lucide:search" width="20" stroke-width="1.5"></iconify-icon>
-                </button>
-                <button class="relative hover:opacity-50 transition-opacity">
-                    <iconify-icon icon="lucide:shopping-bag" width="20" stroke-width="1.5"></iconify-icon>
-                    <span class="absolute -top-1 -right-1 flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-black opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-luxury-black"></span>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </header>
+        const HeroWord = ({ text, baseColor, hoverColor }) => (
+            <span className={`inline-block mr-[0.25em] ${baseColor} ${hoverColor} transition-colors duration-500 ease-out cursor-default`}>
+                {text.split("").map((char, i) => (
+                    <span key={i} className="hero-char inline-block">{char}</span>
+                ))}
+            </span>
+        );
 
-    <!-- Hero Section -->
-    <section class="relative h-screen w-full overflow-hidden">
-        <!-- Background Image -->
-        <div class="absolute inset-0 w-full h-full">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Luxury Fashion Campaign" class="w-full h-full object-cover object-top opacity-90">
-            <div class="absolute inset-0 bg-black/10"></div>
-        </div>
+        const Hero = () => {
+            const containerRef = useRef(null);
 
-        <!-- Hero Content -->
-        <div class="relative h-full flex flex-col items-center justify-center text-center px-4">
-            <span class="text-white text-xs md:text-sm uppercase tracking-[0.3em] mb-4 opacity-0 animate-fade-in font-medium">Fall Winter 2024</span>
-            <h2 class="text-white font-serif text-6xl md:text-8xl lg:text-9xl tracking-tighter mb-8 opacity-0 animate-fade-in delay-300">
-                Silence &amp; Form
-            </h2>
-            <a href="#" class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white transition duration-300 ease-out border border-white/30 rounded-full hover:bg-white hover:text-black opacity-0 animate-fade-in delay-500">
-                <span class="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
-                <span class="relative flex items-center gap-2 text-xs uppercase tracking-widest">
-                    Discover Collection
-                    <iconify-icon icon="lucide:arrow-right" width="14" stroke-width="1.5"></iconify-icon>
-                </span>
-            </a>
-        </div>
+            useLayoutEffect(() => {
+                const ctx = gsap.context(() => {
+                    gsap.from(".hero-char", {
+                        y: 100,
+                        opacity: 0,
+                        rotateX: -90,
+                        stagger: 0.02,
+                        duration: 1.2,
+                        ease: "power4.out",
+                        delay: 0.5
+                    });
+                    gsap.from(".hero-fade", {
+                        opacity: 0,
+                        y: 20,
+                        duration: 1,
+                        delay: 1.5,
+                        stagger: 0.2
+                    });
+                }, containerRef);
+                return () => ctx.revert();
+            }, []);
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce duration-[2000ms]">
-            <iconify-icon icon="lucide:chevron-down" width="24" stroke-width="1.5"></iconify-icon>
-        </div>
-    </section>
-
-    <!-- The Philosophy / Statement -->
-    <section class="py-24 md:py-32 px-6 bg-luxury-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <iconify-icon icon="lucide:asterisk" width="24" stroke-width="1.5" class="mb-8 opacity-40"></iconify-icon>
-            <p class="font-serif text-3xl md:text-5xl leading-tight md:leading-snug tracking-tight text-luxury-black font-light">
-                We believe in the quiet authority of impeccable design.
-                <span class="text-black/40">House of Tania creates garments that exist beyond the trend cycle, focused on silhouette, texture, and an understated elegance.</span>
-            </p>
-            <div class="mt-12">
-                <a href="#" class="text-xs uppercase tracking-widest border-b border-black pb-1 hover:text-black/60 hover:border-black/60 transition-colors">Read the Manifesto</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories / Asymmetrical Grid -->
-    <section class="px-4 md:px-6 pb-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-auto lg:h-[800px]">
-
-            <!-- Item 1: Large Left -->
-            <div class="lg:col-span-7 relative group cursor-pointer h-[500px] lg:h-full overflow-hidden">
-                <div class="img-zoom-container h-full w-full">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="img-zoom w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Coats">
-                </div>
-                <div class="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/50 to-transparent">
-                    <h3 class="text-white font-serif text-4xl tracking-tight mb-2">Outerwear</h3>
-                    <p class="text-white/80 text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500">Shop The Edit</p>
-                </div>
-            </div>
-
-            <!-- Right Column Stack -->
-            <div class="lg:col-span-5 flex flex-col gap-4 h-full">
-                <!-- Item 2 -->
-                <div class="relative flex-1 group cursor-pointer overflow-hidden min-h-[300px]">
-                    <div class="img-zoom-container h-full w-full">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="img-zoom w-full h-full object-cover object-top" alt="Dresses">
+            return (
+                <section ref={containerRef} className="h-screen w-full flex flex-col justify-center px-6 md:px-12 max-w-screen-2xl mx-auto relative overflow-hidden">
+                    <div className="relative z-10 space-y-2 md:space-y-4 select-none">
+                        <div className="overflow-hidden">
+                            <h1 className="text-[13vw] leading-[0.8] font-semibold tracking-tighter uppercase flex flex-wrap">
+                                <HeroWord text="WE" baseColor="text-white" hoverColor="hover:text-zinc-800" />
+                                <HeroWord text="BUILD" baseColor="text-white" hoverColor="hover:text-zinc-800" />
+                            </h1>
+                        </div>
+                        <div className="overflow-hidden">
+                            <h1 className="text-[13vw] leading-[0.8] font-semibold tracking-tighter uppercase flex flex-wrap">
+                                <HeroWord text="DIGITAL" baseColor="text-zinc-600" hoverColor="hover:text-zinc-900" />
+                            </h1>
+                        </div>
+                        <div className="overflow-hidden">
+                            <h1 className="text-[13vw] leading-[0.8] font-semibold tracking-tighter uppercase text-glow flex flex-wrap">
+                                <HeroWord text="LEGACIES" baseColor="text-white" hoverColor="hover:text-zinc-800" />
+                            </h1>
+                        </div>
                     </div>
-                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
-                    <div class="absolute bottom-6 left-6">
-                        <h3 class="text-white font-serif text-3xl tracking-tight">Evening Wear</h3>
-                    </div>
-                    <div class="absolute top-6 right-6 bg-white/10 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <iconify-icon icon="lucide:arrow-up-right" class="text-white" width="20"></iconify-icon>
-                    </div>
-                </div>
 
-                <!-- Item 3 -->
-                <div class="relative flex-1 group cursor-pointer overflow-hidden min-h-[300px]">
-                    <div class="img-zoom-container h-full w-full">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" class="img-zoom w-full h-full object-cover" alt="Accessories">
+                    <div className="absolute bottom-12 w-full left-0 px-6 md:px-12 flex flex-col md:flex-row justify-between items-end gap-6 z-20">
+                        <div className="hero-fade max-w-sm">
+                            <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                                <span className="text-white font-medium">MasKokoIT</span> crafts high-performance websites and bespoke digital experiences for forward-thinking brands.
+                            </p>
+                        </div>
+                        <div className="hero-fade flex items-center gap-4">
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">Scroll to Explore</span>
+                            <iconify-icon icon="lucide:arrow-down" class="text-zinc-500"></iconify-icon>
+                        </div>
                     </div>
-                     <div class="absolute bottom-6 left-6">
-                        <h3 class="text-white font-serif text-3xl tracking-tight">Accessories</h3>
+                </section>
+            );
+        };
+
+        const ProjectItem = ({ title, category, year, index }) => (
+            <div className="group interactive relative border-t border-zinc-900 hover:bg-zinc-900/30 transition-colors duration-500">
+                <div className="py-12 md:py-16 px-4 flex flex-col md:flex-row justify-between items-baseline gap-6 relative z-10">
+                    <div className="flex items-baseline gap-8">
+                        <span className="text-xs font-mono text-zinc-600 group-hover:text-zinc-400 transition-colors">0{index + 1}</span>
+                        <h3 className="text-4xl md:text-6xl text-zinc-300 font-medium tracking-tighter group-hover:text-white group-hover:translate-x-4 transition-all duration-300">
+                            {title}
+                        </h3>
+                    </div>
+                    <div className="flex items-center gap-6 md:gap-12 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">{category}</span>
+                        <span className="text-xs border border-zinc-800 text-zinc-400 px-2 py-1 rounded">{year}</span>
+                        <iconify-icon icon="lucide:arrow-up-right" class="text-white text-xl transform group-hover:rotate-45 transition-transform duration-300"></iconify-icon>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        );
 
-    <!-- Selected Products (Catalogue) -->
-    <section class="py-12 md:py-24 bg-stone-50 overflow-hidden w-full">
-        <div class="max-w-[1920px] mx-auto">
-            <div class="px-6 mb-12 flex justify-between items-end">
-                <div>
-                    <span class="text-xs uppercase tracking-widest text-black/50 mb-2 block">New Arrivals</span>
-                    <h2 class="font-serif text-4xl md:text-5xl tracking-tight text-luxury-black">The Edit</h2>
+        const Projects = () => {
+            const ref = useRef(null);
+            const works = [
+                { title: "Aerosphere", category: "E-Commerce / 3D", year: "2024" },
+                { title: "Krypton Labs", category: "Fintech / Web3", year: "2023" },
+                { title: "Mono Architecture", category: "Portfolio / Minimal", year: "2023" },
+                { title: "Nexus Health", category: "Corporate / App", year: "2022" },
+            ];
+
+            useLayoutEffect(() => {
+                const ctx = gsap.context(() => {
+                    ScrollTrigger.create({
+                        trigger: ref.current,
+                        start: "top 80%",
+                        onEnter: () => gsap.to(ref.current, { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+                    });
+                }, ref);
+                return () => ctx.revert();
+            }, []);
+
+            return (
+                <section id="work" ref={ref} className="py-24 px-6 md:px-12 max-w-screen-2xl mx-auto opacity-0 translate-y-12">
+                    <div className="mb-16 flex items-end justify-between border-b border-zinc-900 pb-6">
+                        <div>
+                            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block mb-2">Selected Works</span>
+                            <h2 className="text-3xl text-white font-light tracking-tight">Project Showcase</h2>
+                        </div>
+                        <a href="#" className="interactive text-xs font-mono text-zinc-400 hover:text-white flex items-center gap-2">
+                            View All <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                        </a>
+                    </div>
+                    <div className="flex flex-col">
+                        {works.map((work, i) => <ProjectItem key={i} {...work} index={i} />)}
+                    </div>
+                </section>
+            );
+        };
+
+        const ServiceCard = ({ icon, title, desc }) => (
+            <div className="interactive border border-zinc-900 p-8 hover:border-zinc-700 hover:bg-zinc-900/20 transition-all duration-300 group">
+                <div className="bg-zinc-900/50 w-12 h-12 flex items-center justify-center rounded-full mb-6 group-hover:scale-110 transition-transform">
+                    <iconify-icon icon={icon} class="text-white text-xl"></iconify-icon>
                 </div>
-                <a href="#" class="hidden md:flex items-center gap-2 text-xs uppercase tracking-widest hover:opacity-60 transition-opacity">
-                    View All
-                    <iconify-icon icon="lucide:arrow-right" width="16" stroke-width="1.5"></iconify-icon>
-                </a>
-            </div>
-
-            <!-- Horizontal Scroll Container -->
-            <!-- Fixed: Added max-w-full and flex-none to children to prevent layout break -->
-            <div class="w-full overflow-x-auto no-scrollbar pb-12 px-6">
-                <div class="flex gap-4 w-max">
-
-                    <!-- Product Card 1 -->
-                    <div class="flex-none w-[280px] md:w-[400px] group cursor-pointer">
-                        <div class="relative aspect-[3/4] overflow-hidden mb-6 bg-luxury-grey/30">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="The Silk Dress" class="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105">
-                            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <button class="bg-white text-black h-10 w-10 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors">
-                                    <iconify-icon icon="lucide:plus" width="20" stroke-width="1.5"></iconify-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-serif text-xl tracking-tight mb-1 group-hover:underline decoration-1 underline-offset-4">The Silk Slip</h3>
-                                <p class="text-xs text-black/50">Midnight Blue</p>
-                            </div>
-                            <span class="text-sm font-medium">$890</span>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2 -->
-                    <div class="flex-none w-[280px] md:w-[400px] group cursor-pointer">
-                        <div class="relative aspect-[3/4] overflow-hidden mb-6 bg-luxury-grey/30">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" alt="Wool Blazer" class="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105">
-                            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <button class="bg-white text-black h-10 w-10 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors">
-                                    <iconify-icon icon="lucide:plus" width="20" stroke-width="1.5"></iconify-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-serif text-xl tracking-tight mb-1 group-hover:underline decoration-1 underline-offset-4">Structured Wool Blazer</h3>
-                                <p class="text-xs text-black/50">Charcoal</p>
-                            </div>
-                            <span class="text-sm font-medium">$1,250</span>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3 -->
-                    <div class="flex-none w-[280px] md:w-[400px] group cursor-pointer">
-                        <div class="relative aspect-[3/4] overflow-hidden mb-6 bg-luxury-grey/30">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" alt="Cashmere Knit" class="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105">
-                            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <button class="bg-white text-black h-10 w-10 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors">
-                                    <iconify-icon icon="lucide:plus" width="20" stroke-width="1.5"></iconify-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-serif text-xl tracking-tight mb-1 group-hover:underline decoration-1 underline-offset-4">Cashmere Knit</h3>
-                                <p class="text-xs text-black/50">Oatmeal</p>
-                            </div>
-                            <span class="text-sm font-medium">$650</span>
-                        </div>
-                    </div>
-
-                     <!-- Product Card 4 -->
-                     <div class="flex-none w-[280px] md:w-[400px] group cursor-pointer">
-                        <div class="relative aspect-[3/4] overflow-hidden mb-6 bg-luxury-grey/30">
-                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" alt="Trousers" class="w-full h-full object-cover transition duration-700 ease-in-out group-hover:scale-105">
-                            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <button class="bg-white text-black h-10 w-10 flex items-center justify-center rounded-full hover:bg-black hover:text-white transition-colors">
-                                    <iconify-icon icon="lucide:plus" width="20" stroke-width="1.5"></iconify-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-serif text-xl tracking-tight mb-1 group-hover:underline decoration-1 underline-offset-4">Pleated Trousers</h3>
-                                <p class="text-xs text-black/50">Black</p>
-                            </div>
-                            <span class="text-sm font-medium">$520</span>
-                        </div>
-                    </div>
-
-                    <!-- Spacer for right padding -->
-                    <div class="w-2 flex-none"></div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Feature: Video/Mood -->
-    <!-- Fixed: Grid layout overlap and overflow issues -->
-    <section class="relative w-full py-24 bg-luxury-black text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-40 pointer-events-none">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="w-full h-full object-cover grayscale" alt="Background Texture">
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1">
-                <span class="text-xs uppercase tracking-[0.2em] text-white/60 mb-6 block">The Atelier</span>
-                <h2 class="font-serif text-5xl md:text-7xl tracking-tighter mb-8 leading-none">Crafted for<br>Eternity</h2>
-                <p class="text-white/70 font-light text-lg mb-10 max-w-md">
-                    Every seam is intentional. Every fabric is sourced with an obsession for quality. We don't just make clothes; we engineer confidence.
+                <h3 className="text-xl text-white font-medium mb-4 tracking-tight">{title}</h3>
+                <p className="text-sm text-zinc-500 leading-relaxed group-hover:text-zinc-400 transition-colors">
+                    {desc}
                 </p>
-                <button class="bg-white text-black px-8 py-4 text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors">
-                    Explore Our Process
-                </button>
             </div>
+        );
 
-            <!-- Image composition - Fixed container constraints -->
-            <div class="order-1 lg:order-2 h-[400px] md:h-[500px] w-full relative">
-                 <div class="absolute top-0 right-0 w-[85%] h-[85%] bg-neutral-900 overflow-hidden">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="w-full h-full object-cover opacity-80 hover:scale-110 transition duration-[1.5s]" alt="Tailoring">
-                 </div>
-                 <div class="absolute bottom-0 left-0 w-[60%] h-[60%] bg-neutral-800 border-4 border-luxury-black overflow-hidden shadow-2xl">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full h-full object-cover opacity-90 hover:scale-110 transition duration-[1.5s]" alt="Detail">
-                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="py-24 px-6 border-b border-black/5 bg-luxury-white">
-        <div class="max-w-2xl mx-auto text-center">
-            <h3 class="font-serif text-3xl md:text-4xl tracking-tight mb-4">Join the Inner Circle</h3>
-            <p class="text-sm text-black/60 mb-8 font-light">Receive early access to collections and exclusive atelier insights.</p>
-
-            <form class="flex flex-col md:flex-row gap-4 w-full max-w-md mx-auto">
-                <div class="relative flex-grow group">
-                    <input type="email" placeholder=" " class="peer w-full bg-transparent border-b border-black/20 py-3 text-sm focus:outline-none focus:border-black transition-colors" required="">
-                    <label class="absolute left-0 top-3 text-sm text-black/40 pointer-events-none transition-all duration-300 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-black peer-valid:-top-4 peer-valid:text-xs">Email Address</label>
+        const Services = () => (
+            <section id="services" className="py-24 px-6 md:px-12 max-w-screen-2xl mx-auto relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div className="lg:col-span-4">
+                        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block mb-4">Our Expertise</span>
+                        <h2 className="text-4xl md:text-5xl text-white font-semibold tracking-tighter mb-8">
+                            Engineering <br/><span className="text-zinc-600">Perfection</span>
+                        </h2>
+                        <p className="text-zinc-400 font-light leading-relaxed mb-8">
+                            We don't just build websites; we construct digital ecosystems. From high-speed code to immersive visuals, we handle the full stack of digital presence.
+                        </p>
+                    </div>
+                    <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-900 border border-zinc-900">
+                        <ServiceCard icon="lucide:monitor" title="Web Development" desc="Responsive, high-performance websites built with React, Tailwind, and cutting-edge frameworks." />
+                        <ServiceCard icon="lucide:smartphone" title="App Development" desc="Native and cross-platform mobile applications that provide seamless user experiences." />
+                        <ServiceCard icon="lucide:box" title="3D WebGL" desc="Immersive Three.js experiences that add depth and interactivity to your brand story." />
+                        <ServiceCard icon="lucide:pen-tool" title="UI/UX Design" desc="Pixel-perfect interfaces designed for conversion, accessibility, and visual impact." />
+                    </div>
                 </div>
-                <button type="submit" class="md:w-auto w-full py-3 px-8 bg-luxury-black text-white text-xs uppercase tracking-widest hover:bg-neutral-800 transition-colors">
-                    Subscribe
-                </button>
-            </form>
-        </div>
-    </section>
+            </section>
+        );
 
-    <!-- Footer -->
-    <footer class="bg-luxury-white py-16 px-6">
-        <div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-            <div class="md:col-span-1">
-                <a href="#" class="block font-serif text-2xl tracking-tighter uppercase mb-6">House of Tania</a>
-                <p class="text-xs text-black/40 leading-relaxed max-w-xs">
-                    Redefining luxury through the lens of modern minimalism and timeless craft.
-                </p>
-                <div class="flex gap-4 mt-6">
-                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity"><iconify-icon icon="lucide:instagram" width="18"></iconify-icon></a>
-                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity"><iconify-icon icon="lucide:facebook" width="18"></iconify-icon></a>
-                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity"><iconify-icon icon="lucide:twitter" width="18"></iconify-icon></a>
+        const Contact = () => (
+            <section id="contact" className="min-h-[80vh] flex flex-col justify-between pt-24 pb-8 px-6 md:px-12 max-w-screen-2xl mx-auto relative overflow-hidden">
+                 <div className="relative z-10 flex-grow flex flex-col justify-center items-center text-center">
+                    <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-6">Start Your Journey</span>
+                    <h2 className="text-6xl md:text-9xl text-white font-semibold tracking-tighter mb-12 mix-blend-difference hover:scale-105 transition-transform duration-500 cursor-none">
+                        Let's Talk
+                    </h2>
+                    <a href="mailto:hello@maskokoit.com" className="interactive group relative px-8 py-4 bg-zinc-100 text-zinc-950 rounded-full font-medium overflow-hidden">
+                        <span className="relative z-10 group-hover:text-white transition-colors">Launch Project</span>
+                        <div className="absolute inset-0 bg-zinc-900 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
+                    </a>
                 </div>
-            </div>
 
-            <div>
-                <h4 class="text-xs uppercase tracking-widest font-medium mb-6">Shop</h4>
-                <ul class="space-y-3 text-sm font-light text-black/60">
-                    <li><a href="#" class="hover:text-black transition-colors">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Ready to Wear</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Accessories</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Gift Cards</a></li>
-                </ul>
-            </div>
+                <footer className="w-full flex flex-col md:flex-row justify-between items-end border-t border-zinc-900 pt-8 gap-4">
+                    <div>
+                        <h4 className="text-white font-bold tracking-tight">MasKokoIT</h4>
+                        <p className="text-[10px] text-zinc-600 font-mono mt-1">© 2024. All Rights Reserved.</p>
+                    </div>
+                    <div className="flex gap-6">
+                        {['Twitter', 'Instagram', 'LinkedIn', 'Github'].map(social => (
+                            <a key={social} href="#" className="interactive text-xs text-zinc-500 hover:text-white transition-colors uppercase font-mono tracking-wider">{social}</a>
+                        ))}
+                    </div>
+                </footer>
+            </section>
+        );
 
-            <div>
-                <h4 class="text-xs uppercase tracking-widest font-medium mb-6">Client Services</h4>
-                <ul class="space-y-3 text-sm font-light text-black/60">
-                    <li><a href="#" class="hover:text-black transition-colors">Contact Us</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Shipping &amp; Returns</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Size Guide</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Book an Appointment</a></li>
-                </ul>
-            </div>
+        const App = () => {
+            return (
+                <div className="relative w-full">
+                    <CustomCursor />
+                    <GridLines />
+                    <Scene />
+                    <Navbar />
+                    <main className="relative z-10">
+                        <Hero />
+                        <div className="bg-zinc-950/80 backdrop-blur-sm border-y border-zinc-900/50">
+                            <Projects />
+                            <Services />
+                            <Contact />
+                        </div>
+                    </main>
+                </div>
+            );
+        };
 
-            <div>
-                <h4 class="text-xs uppercase tracking-widest font-medium mb-6">Legal</h4>
-                <ul class="space-y-3 text-sm font-light text-black/60">
-                    <li><a href="#" class="hover:text-black transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Cookie Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="max-w-[1920px] mx-auto mt-16 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-[10px] text-black/30 uppercase tracking-widest">© 2024 House of Tania. All Rights Reserved.</p>
-            <div class="flex gap-4">
-                <iconify-icon icon="lucide:credit-card" width="16" class="opacity-20"></iconify-icon>
-                <iconify-icon icon="lucide:wallet" width="16" class="opacity-20"></iconify-icon>
-            </div>
-        </div>
-    </footer>
-
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 
 </body></html>
