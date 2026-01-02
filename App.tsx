@@ -20,7 +20,8 @@ import NebulaHero from './src/sections/NebulaHero';
 import FluxHero from './src/sections/FluxHero';
 import QuantumHero from './src/sections/QuantumHero';
 import TaniaLanding from './src/sections/TaniaLanding';
-import { BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE } from './src/data/component-source';
+import Repository from './src/sections/Repository';
+import { BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE, REPOSITORY_CODE } from './src/data/component-source';
 
 
 
@@ -120,6 +121,11 @@ const App: React.FC = () => {
             <Route path="tania-landing" element={
                 <ComponentView title="House of Tania" sourceCode={TANIA_LANDING_CODE}>
                     <div className="min-h-screen bg-[#fcfcfc] p-0 flex items-center justify-center w-full"><TaniaLanding /></div>
+                </ComponentView>
+            } />
+            <Route path="repository" element={
+                <ComponentView title="The Repository" sourceCode={REPOSITORY_CODE}>
+                    <div className="min-h-screen bg-black p-0 flex items-center justify-center w-full"><Repository /></div>
                 </ComponentView>
             } />
 

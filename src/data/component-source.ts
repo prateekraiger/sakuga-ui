@@ -1999,4 +1999,17 @@ const TaniaLanding: React.FC = () => {
 };
 
 export default TaniaLanding;
+
+`;
+
+export const REPOSITORY_CODE = `
+import React from 'react';
+import { Copy, Check } from 'lucide-react';
+
+// Repository code placeholder to fix syntax error
+const Repository = () => {
+  return <div>Repository Source</div>;
+};
+
+export default Repository;
 `;
