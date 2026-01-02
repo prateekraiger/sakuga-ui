@@ -2013,3 +2013,18 @@ const Repository = () => {
 
 export default Repository;
 `;
+
+export const ACCORDION_CODE = `// Source code coming soon for Accordion...`;
+export const CANVAS_NETWORK_CODE = `// Source code coming soon for CanvasNetwork...`;
+export const FOCUS_LENS_CODE = `// Source code coming soon for FocusLens...`;
+export const FRACTURE_GLASS_CODE = `// Source code coming soon for FractureGlass...`;
+export const HORIZONTAL_SCROLL_CODE = `// Source code coming soon for HorizontalScroll...`;
+export const LIQUID_DISTORTION_CODE = `// Source code coming soon for LiquidDistortion...`;
+export const MAGNETIC_SECTION_CODE = `// Source code coming soon for MagneticSection...`;
+export const MARQUEE_CODE = `// Source code coming soon for Marquee...`;
+export const PIXEL_WAVE_CODE = `// Source code coming soon for PixelWave...`;
+export const SPOTLIGHT_GRID_CODE = `// Source code coming soon for SpotlightGrid...`;
+export const VELOCITY_TEXT_CODE = `// Source code coming soon for VelocityText...`;
+export const VIDEO_EXPAND_CODE = `// Source code coming soon for VideoExpand...`;
+export const VISUAL_MASK_CODE = `// Source code coming soon for VisualMask...`;
+export const VOXEL_TERRAIN_CODE = `// Source code coming soon for VoxelTerrain...`;

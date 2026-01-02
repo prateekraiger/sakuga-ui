@@ -21,7 +21,25 @@ import FluxHero from './src/sections/FluxHero';
 import QuantumHero from './src/sections/QuantumHero';
 import TaniaLanding from './src/sections/TaniaLanding';
 import Repository from './src/sections/Repository';
-import { BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE, REPOSITORY_CODE } from './src/data/component-source';
+import Accordion from './src/sections/Accordion';
+import CanvasNetwork from './src/sections/CanvasNetwork';
+import FocusLens from './src/sections/FocusLens';
+import FractureGlass from './src/sections/FractureGlass';
+import HorizontalScroll from './src/sections/HorizontalScroll';
+import LiquidDistortion from './src/sections/LiquidDistortion';
+import MagneticSection from './src/sections/MagneticSection';
+import Marquee from './src/sections/Marquee';
+import PixelWave from './src/sections/PixelWave';
+import SpotlightGrid from './src/sections/SpotlightGrid';
+import VelocityText from './src/sections/VelocityText';
+import VideoExpand from './src/sections/VideoExpand';
+import VisualMask from './src/sections/VisualMask';
+import VoxelTerrain from './src/sections/VoxelTerrain';
+
+import {
+    BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE, REPOSITORY_CODE,
+    ACCORDION_CODE, CANVAS_NETWORK_CODE, FOCUS_LENS_CODE, FRACTURE_GLASS_CODE, HORIZONTAL_SCROLL_CODE, LIQUID_DISTORTION_CODE, MAGNETIC_SECTION_CODE, MARQUEE_CODE, PIXEL_WAVE_CODE, SPOTLIGHT_GRID_CODE, VELOCITY_TEXT_CODE, VIDEO_EXPAND_CODE, VISUAL_MASK_CODE, VOXEL_TERRAIN_CODE
+} from './src/data/component-source';
 
 
 
@@ -128,6 +146,20 @@ const App: React.FC = () => {
                     <div className="min-h-screen bg-black p-0 flex items-center justify-center w-full"><Repository /></div>
                 </ComponentView>
             } />
+            <Route path="accordion" element={<ComponentView title="Accordion" sourceCode={ACCORDION_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Accordion /></div></ComponentView>} />
+            <Route path="canvas-network" element={<ComponentView title="Canvas Network" sourceCode={CANVAS_NETWORK_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><CanvasNetwork /></div></ComponentView>} />
+            <Route path="focus-lens" element={<ComponentView title="Focus Lens" sourceCode={FOCUS_LENS_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><FocusLens onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="fracture-glass" element={<ComponentView title="Fracture Glass" sourceCode={FRACTURE_GLASS_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><FractureGlass onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="horizontal-scroll" element={<ComponentView title="Horizontal Scroll" sourceCode={HORIZONTAL_SCROLL_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><HorizontalScroll /></div></ComponentView>} />
+            <Route path="liquid-distortion" element={<ComponentView title="Liquid Distortion" sourceCode={LIQUID_DISTORTION_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><LiquidDistortion onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="magnetic-section" element={<ComponentView title="Magnetic Section" sourceCode={MAGNETIC_SECTION_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><MagneticSection /></div></ComponentView>} />
+            <Route path="marquee" element={<ComponentView title="Marquee" sourceCode={MARQUEE_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><Marquee /></div></ComponentView>} />
+            <Route path="pixel-wave" element={<ComponentView title="Pixel Wave" sourceCode={PIXEL_WAVE_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><PixelWave onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="spotlight-grid" element={<ComponentView title="Spotlight Grid" sourceCode={SPOTLIGHT_GRID_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><SpotlightGrid onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="velocity-text" element={<ComponentView title="Velocity Text" sourceCode={VELOCITY_TEXT_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VelocityText onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="video-expand" element={<ComponentView title="Video Expand" sourceCode={VIDEO_EXPAND_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VideoExpand /></div></ComponentView>} />
+            <Route path="visual-mask" element={<ComponentView title="Visual Mask" sourceCode={VISUAL_MASK_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VisualMask /></div></ComponentView>} />
+            <Route path="voxel-terrain" element={<ComponentView title="Voxel Terrain" sourceCode={VOXEL_TERRAIN_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VoxelTerrain onShowCode={handleShowCode} /></div></ComponentView>} />
 
         </Route>
 
