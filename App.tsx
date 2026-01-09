@@ -35,10 +35,11 @@ import VelocityText from './src/sections/VelocityText';
 import VideoExpand from './src/sections/VideoExpand';
 import VisualMask from './src/sections/VisualMask';
 import VoxelTerrain from './src/sections/VoxelTerrain';
-
+import PricingSection from './src/sections/PricingSection';
 import {
     BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE, REPOSITORY_CODE,
-    ACCORDION_CODE, CANVAS_NETWORK_CODE, FOCUS_LENS_CODE, FRACTURE_GLASS_CODE, HORIZONTAL_SCROLL_CODE, LIQUID_DISTORTION_CODE, MAGNETIC_SECTION_CODE, MARQUEE_CODE, PIXEL_WAVE_CODE, SPOTLIGHT_GRID_CODE, VELOCITY_TEXT_CODE, VIDEO_EXPAND_CODE, VISUAL_MASK_CODE, VOXEL_TERRAIN_CODE
+    ACCORDION_CODE, CANVAS_NETWORK_CODE, FOCUS_LENS_CODE, FRACTURE_GLASS_CODE, HORIZONTAL_SCROLL_CODE, LIQUID_DISTORTION_CODE, MAGNETIC_SECTION_CODE, MARQUEE_CODE, PIXEL_WAVE_CODE, SPOTLIGHT_GRID_CODE, VELOCITY_TEXT_CODE, VIDEO_EXPAND_CODE, VISUAL_MASK_CODE, VOXEL_TERRAIN_CODE,
+    PRICING_SECTION_CODE
 } from './src/data/component-source';
 
 
@@ -160,6 +161,7 @@ const App: React.FC = () => {
             <Route path="video-expand" element={<ComponentView title="Video Expand" sourceCode={VIDEO_EXPAND_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VideoExpand /></div></ComponentView>} />
             <Route path="visual-mask" element={<ComponentView title="Visual Mask" sourceCode={VISUAL_MASK_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VisualMask /></div></ComponentView>} />
             <Route path="voxel-terrain" element={<ComponentView title="Voxel Terrain" sourceCode={VOXEL_TERRAIN_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><VoxelTerrain onShowCode={handleShowCode} /></div></ComponentView>} />
+            <Route path="pricing" element={<ComponentView title="Pricing Section" sourceCode={PRICING_SECTION_CODE}><div className="min-h-screen bg-black p-8 flex items-center justify-center w-full"><PricingSection /></div></ComponentView>} />
 
         </Route>
 
