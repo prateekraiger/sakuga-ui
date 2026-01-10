@@ -112,7 +112,7 @@ const FluxHero: React.FC = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/20"></div>
             </div>
             <div className="mx-auto font-mono text-[10px] text-neutral-500">
-              scene.flux â€” Edited
+              scene.flux — Edited
             </div>
           </div>
           <div className="flex-1 overflow-hidden bg-neutral-950 relative preserve-3d">
@@ -206,7 +206,7 @@ const FluxHero: React.FC = () => {
       </div>
     </div>
 
-    <style dangerouslySetInnerHTML={{__html: `
+    <style dangerouslySetInnerHTML={{__html: \`
         .glass-panel {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
@@ -214,9 +214,10 @@ const FluxHero: React.FC = () => {
         .preserve-3d {
             transform-style: preserve-3d;
         }
-    `}} />
+    \` }} />
     </section>
   );
 };
 
 export default FluxHero;
+\`;

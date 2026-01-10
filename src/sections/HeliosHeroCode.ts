@@ -120,7 +120,7 @@ const HeliosHero: React.FC = () => {
           width: 0px;
           background: transparent;
         }
-      `}</style>
+      \`}</style>
 
       {/* Navigation */}
       <nav className="fixed z-50 transition-all duration-300 md:px-12 w-full top-0">
@@ -231,7 +231,7 @@ const HeliosHero: React.FC = () => {
             It's more than a machine, this yellow package is only for
           </p>
           <h1 className="mt-8 md:text-8xl text-6xl font-black text-gray-900 animate-float drop-shadow-[0_10px_10px_rgba(234,179,8,0.3)]">
-            $<span ref={countRef}>{count.toLocaleString()}</span>
+            $<span ref={countRef}>\${count.toLocaleString()}</span>
           </h1>
         </div>
       </section>
@@ -253,7 +253,7 @@ const HeliosHero: React.FC = () => {
           <div className="lg:w-1/2 flex flex-col justify-center">
             <h3 className="text-3xl md:text-4xl font-medium tracking-tight mb-10 text-gray-900">Product Specifications</h3>
             <div className="space-y-6 text-lg">
-              {[ 
+              {[
                 { label: 'Exterior', value: 'Hypoallergenic "Warm-Touch" Silicone' },
                 { label: 'Skeleton', value: 'Aerospace-Grade Titanium Alloy' },
                 { label: 'Processing', value: 'Neural Engine V4 (Local Processing)' },
@@ -261,16 +261,16 @@ const HeliosHero: React.FC = () => {
                 { label: 'Safety', value: 'ISO 13485 Medical Device Certified' },
                 { label: 'Privacy', value: 'Military-Grade Local Encryption' },
               ].map((spec, i) => (
-                <div key={i} className={`flex justify-between items-baseline ${i !== 5 ? 'border-b border-gray-900/10 pb-4' : 'pb-2'}`}>
-                  <span className="font-semibold w-1/3">{spec.label}</span>
-                  <span className="font-normal opacity-80 w-2/3 text-right">{spec.value}</span>
+                <div key={i} className={\`flex justify-between items-baseline \${i !== 5 ? 'border-b border-gray-900/10 pb-4' : 'pb-2'}\`}>
+                   <span className="font-semibold w-1/3">\${spec.label}</span>
+                   <span className="font-normal opacity-80 w-2/3 text-right">\${spec.value}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="lg:w-1/2 grid grid-cols-2 gap-6">
-            {[ 
+            {[
               { label: '0.02s', sub: 'Reaction Time', dark: false },
               { label: '360°', sub: 'Active Shield', dark: false },
               { label: '100%', sub: 'Data Privacy', dark: false },
@@ -278,10 +278,10 @@ const HeliosHero: React.FC = () => {
             ].map((stat, i) => (
               <div
                 key={i}
-                className={`${stat.dark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} rounded-[2rem] p-8 flex flex-col items-center justify-center text-center aspect-square shadow-inner`}
+                className={\`\${stat.dark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'} rounded-[2rem] p-8 flex flex-col items-center justify-center text-center aspect-square shadow-inner\`}
               >
-                <span className="text-4xl md:text-5xl font-medium tracking-tight mb-2">{stat.label}</span>
-                <span className={`${stat.dark ? 'text-gray-400' : 'text-gray-500'} text-lg font-medium`}>{stat.sub}</span>
+                <span className="text-4xl md:text-5xl font-medium tracking-tight mb-2">\${stat.label}</span>
+                <span className={\`\${stat.dark ? 'text-gray-400' : 'text-gray-500'} text-lg font-medium\`}>\${stat.sub}</span>
               </div>
             ))}
           </div>
@@ -334,3 +334,4 @@ const HeliosHero: React.FC = () => {
 };
 
 export default HeliosHero;
+\`;

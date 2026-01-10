@@ -1,7 +1,3 @@
-import { QUANTUM_HERO_CODE as QHC } from '../../sections/QuantumHero';
-// Actually, we want the STRING of the code, not the component itself.
-// So we should copy the string content I just read.
-
 export const QUANTUM_HERO_CODE = `import React from 'react';
 
 const QuantumHero: React.FC = () => {
