@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import SectionLabel from '../components/SectionLabel';
-import { Particle } from '../types/types';
+import SectionLabel from '../../components/ui/SectionLabel';
+import { Particle } from '../../types/types';
 
 const CanvasNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -83,7 +83,7 @@ const CanvasNetwork: React.FC = () => {
 
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', handleMouseMove);
-    
+
     resize();
     draw();
 
@@ -96,9 +96,9 @@ const CanvasNetwork: React.FC = () => {
   return (
     <section ref={containerRef} className="h-[80vh] bg-[#050505] relative border-t border-white/5 flex items-center justify-center overflow-hidden">
       <SectionLabel number="10" text="PARTICLE SYSTEM" />
-      
+
       <canvas ref={canvasRef} className="absolute inset-0 z-1 opacity-40" />
-      
+
       <div className="relative z-10 text-center pointer-events-none mix-blend-difference">
         <h2 className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 text-white">Connect</h2>
         <button className="pointer-events-auto bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-110 transition-transform duration-300 hoverable">

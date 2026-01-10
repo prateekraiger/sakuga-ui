@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 
 const HorizontalScroll: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,9 +30,9 @@ const HorizontalScroll: React.FC = () => {
     <section ref={sectionRef} className="h-[400vh] relative bg-[#050505]">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <SectionLabel number="02" text="HORIZONTAL PIPELINE" />
-        
+
         <div ref={trackRef} className="flex gap-24 px-12 md:px-32 items-center will-change-transform">
-          
+
           <div className="w-[80vw] md:w-[600px] flex-shrink-0">
             <h2 className="text-6xl md:text-8xl font-display font-bold leading-none mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white to-neutral-700">
               Design<br />Systems
@@ -40,9 +40,9 @@ const HorizontalScroll: React.FC = () => {
           </div>
 
           <div className="w-[70vw] md:w-[60vw] aspect-video flex-shrink-0 relative rounded-xl overflow-hidden border border-white/10 group hoverable">
-            <img 
-              src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop" 
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+            <img
+              src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop"
+              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               alt="Process 1"
             />
           </div>
@@ -57,13 +57,13 @@ const HorizontalScroll: React.FC = () => {
           </div>
 
           <div className="w-[70vw] md:w-[60vw] aspect-video flex-shrink-0 relative rounded-xl overflow-hidden border border-white/10 group hoverable">
-            <img 
-              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2694&auto=format&fit=crop" 
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+            <img
+              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2694&auto=format&fit=crop"
+              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               alt="Process 2"
             />
           </div>
-          
+
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import CustomCursor from '../components/CustomCursor';
+import Sidebar from '../components/layout/Sidebar';
+import CustomCursor from '../components/ui/CustomCursor';
 import { X, Copy, Check } from 'lucide-react';
 
 interface ShowcaseLayoutProps {

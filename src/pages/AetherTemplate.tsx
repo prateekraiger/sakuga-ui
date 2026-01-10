@@ -1,36 +1,35 @@
 
 import React, { useState } from 'react';
 import Header from '../components/layout/Header';
-import Preloader from '../components/Preloader';
-
-import CodeModal from '../components/CodeModal';
-import Footer from '../components/Footer';
+import Preloader from '../components/ui/Preloader';
+import CodeModal from '../components/ui/CodeModal';
+import Footer from '../components/layout/Footer';
 
 // Typography / Hero
 import Hero from '../sections/Hero';
-import VelocityText from '../sections/VelocityText';
-import Marquee from '../sections/Marquee';
+import VelocityText from '../sections/effects/VelocityText';
+import Marquee from '../sections/ui/Marquee';
 
 // Distortion / Image
-import FractureGlass from '../sections/FractureGlass';
-import LiquidDistortion from '../sections/LiquidDistortion';
-import VideoExpand from '../sections/VideoExpand';
+import FractureGlass from '../sections/effects/FractureGlass';
+import LiquidDistortion from '../sections/effects/LiquidDistortion';
+import VideoExpand from '../sections/media/VideoExpand';
 
 // Interaction / Grid
-import SpotlightGrid from '../sections/SpotlightGrid';
-import PixelWave from '../sections/PixelWave';
-import VoxelTerrain from '../sections/VoxelTerrain';
+import SpotlightGrid from '../sections/effects/SpotlightGrid';
+import PixelWave from '../sections/effects/PixelWave';
+import VoxelTerrain from '../sections/effects/VoxelTerrain';
 
 // Overlay
-import FocusLens from '../sections/FocusLens';
-import VisualMask from '../sections/VisualMask';
+import FocusLens from '../sections/effects/FocusLens';
+import VisualMask from '../sections/effects/VisualMask';
 
 // Layout
 import BentoGrid from '../sections/BentoGrid';
-import HorizontalScroll from '../sections/HorizontalScroll';
-import Accordion from '../sections/Accordion';
-import CanvasNetwork from '../sections/CanvasNetwork';
-import MagneticSection from '../sections/MagneticSection';
+import HorizontalScroll from '../sections/effects/HorizontalScroll';
+import Accordion from '../sections/content/Accordion';
+import CanvasNetwork from '../sections/effects/CanvasNetwork';
+import MagneticSection from '../sections/effects/MagneticSection';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);

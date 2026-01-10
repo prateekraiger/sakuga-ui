@@ -28,7 +28,7 @@ import FractureGlass from './src/sections/effects/FractureGlass';
 import HorizontalScroll from './src/sections/effects/HorizontalScroll';
 import LiquidDistortion from './src/sections/effects/LiquidDistortion';
 import MagneticSection from './src/sections/effects/MagneticSection';
-import Marquee from './src/sections/ui/Marquee'; // Marquee is in ui
+import Marquee from './src/sections/ui/Marquee';
 import PixelWave from './src/sections/effects/PixelWave';
 import SpotlightGrid from './src/sections/effects/SpotlightGrid';
 import VelocityText from './src/sections/effects/VelocityText';

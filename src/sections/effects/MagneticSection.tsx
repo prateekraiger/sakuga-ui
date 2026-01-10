@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 
 interface MagneticButtonProps {
   text: string;
@@ -7,13 +7,13 @@ interface MagneticButtonProps {
 
 const MagneticButton: React.FC<MagneticButtonProps> = ({ text }) => {
   const btnRef = useRef<HTMLDivElement>(null);
-  
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!btnRef.current) return;
     const rect = btnRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.5;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.5;
-    
+
     // Move the inner text/circle
     const content = btnRef.current.querySelector('.magnetic-content') as HTMLElement;
     if (content) {
@@ -30,7 +30,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({ text }) => {
   };
 
   return (
-    <div 
+    <div
       ref={btnRef}
       className="magnetic-wrap hoverable inline-block p-8"
       onMouseMove={handleMouseMove}
@@ -49,7 +49,7 @@ const MagneticSection: React.FC = () => {
   // Trail Effect Logic
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
-    
+
     // Randomly spawn trail images
     if (Math.random() < 0.1) {
       const img = document.createElement('img');
@@ -58,24 +58,24 @@ const MagneticSection: React.FC = () => {
       img.style.left = `${e.clientX}px`;
       img.style.top = `${e.clientY}px`;
       img.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 30 - 15}deg) scale(0.5)`;
-      
+
       // We append to body to ensure it floats over everything in this section context
       // But typically we'd append to a specific container. For this demo, let's append to the section container.
       containerRef.current.appendChild(img);
-      
+
       setTimeout(() => img.remove(), 800);
     }
   };
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="magnetic-section" 
+      id="magnetic-section"
       className="py-32 bg-[#050505] flex flex-col items-center justify-center border-t border-white/5 relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       <SectionLabel number="04" text="PHYSICS & TRAIL" />
-      
+
       <div className="relative z-20 text-center mb-16">
         <h2 className="text-3xl font-display font-bold text-white">Magnetic & Trail</h2>
         <p className="text-neutral-500 mt-2">Move cursor rapidly</p>
@@ -85,7 +85,7 @@ const MagneticSection: React.FC = () => {
         <MagneticButton text="DRAG ME" />
         <MagneticButton text="PULL ME" />
       </div>
-      
+
       <style>{`
         @keyframes trailAnim {
           0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.8) rotate(var(--r)); }

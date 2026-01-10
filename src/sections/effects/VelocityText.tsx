@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 
 interface VelocityTextProps {
   onShowCode: (code: string, title: string) => void;
@@ -13,7 +13,7 @@ function update() {
   targetScroll = window.scrollY;
   currentScroll += (targetScroll - currentScroll) * 0.1;
   const skew = Math.min(Math.max((targetScroll - currentScroll) * 0.15, -10), 10);
-  
+
   velocityTexts.forEach((text, i) => {
     // Alternating skew direction
     const dir = i % 2 === 0 ? 1 : -1;
@@ -54,24 +54,24 @@ const VelocityText: React.FC<VelocityTextProps> = ({ onShowCode }) => {
 
   return (
     <section id="velocity" className="h-[80vh] flex flex-col justify-center items-center relative overflow-hidden bg-[#050505] border-t border-white/5">
-      <SectionLabel 
-        number="01" 
-        text="VELOCITY SCROLL" 
-        onCode={() => onShowCode(codeSnippet, "Velocity Scroll")} 
+      <SectionLabel
+        number="01"
+        text="VELOCITY SCROLL"
+        onCode={() => onShowCode(codeSnippet, "Velocity Scroll")}
       />
-      
+
       <div className="absolute top-32 text-center">
         <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest animate-pulse">[ SCROLL TO DEFORM ]</span>
       </div>
-      
+
       <div ref={containerRef} className="text-center space-y-4">
-        <h1 
+        <h1
           ref={(el) => { textRefs.current[0] = el; }}
           className="text-[12vw] font-black leading-[0.8] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-600 will-change-transform"
         >
           KINETIC
         </h1>
-        <h1 
+        <h1
           ref={(el) => { textRefs.current[1] = el; }}
           className="text-[12vw] font-black leading-[0.8] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-neutral-600 to-neutral-900 will-change-transform"
         >

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 
 interface LiquidDistortionProps {
   onShowCode: (code: string, title: string) => void;
@@ -29,7 +29,7 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   // We'll access the global SVG filter ID defined in App.tsx or index.html
   // But for React safety, we can direct manipulation here if we assume the ID exists.
-  
+
   useEffect(() => {
     const turb = document.getElementById('turb');
     const container = containerRef.current;
@@ -51,7 +51,7 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
 
     container.addEventListener('mouseenter', onEnter);
     container.addEventListener('mouseleave', onLeave);
-    
+
     loop();
 
     return () => {
@@ -63,14 +63,14 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
 
   return (
     <section id="liquid" className="relative min-h-screen bg-[#050505] flex items-center justify-center border-t border-white/5 overflow-hidden py-20">
-      <SectionLabel 
-        number="03" 
-        text="SVG TURBULENCE" 
+      <SectionLabel
+        number="03"
+        text="SVG TURBULENCE"
         onCode={() => onShowCode(codeSnippet, "Liquid Distortion")}
       />
-      
+
       <div className="flex flex-col md:flex-row gap-20 items-center justify-center w-full px-6 max-w-7xl mx-auto">
-        
+
         <div className="text-right max-w-sm order-2 md:order-1">
           <h2 className="text-6xl font-bold mb-6 tracking-tighter text-white">LIQUID<br />REALITY</h2>
           <p className="text-neutral-400 text-sm leading-relaxed">
@@ -78,13 +78,13 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
           </p>
         </div>
 
-        <div 
+        <div
           ref={containerRef}
           className="relative w-full max-w-[500px] aspect-[5/7] overflow-hidden border border-neutral-800 order-1 md:order-2 group hoverable cursor-pointer"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=1200&auto=format&fit=crop" 
-            className="w-full h-full object-cover transform scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100" 
+          <img
+            src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=1200&auto=format&fit=crop"
+            className="w-full h-full object-cover transform scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100"
             style={{ filter: "url('#liquid-filter')" }}
             alt="Liquid"
           />

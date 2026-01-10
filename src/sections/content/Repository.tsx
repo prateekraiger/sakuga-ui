@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
-import SectionLabel from '../components/SectionLabel';
-import { RepositoryItem } from '../types/types';
+import SectionLabel from '../../components/ui/SectionLabel';
+import { RepositoryItem } from '../../types/types';
 
 const libraryData: RepositoryItem[] = [
   { id: 'velocity', name: 'Velocity Scroll', category: 'Typography', code: `// Calculate skew based on scroll speed\nconst skew = Math.min(Math.max((target - current) * 0.15, -10), 10);` },

@@ -1,17 +1,17 @@
 import React from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 
 const VisualMask: React.FC = () => {
   return (
     <section className="relative h-[80vh] w-full overflow-hidden bg-black border-t border-white/5">
       <SectionLabel number="08" text="SVG CLIPPING MASK" />
-      
+
       {/* Background Video */}
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-ink-in-water-2527-large.mp4" type="video/mp4" />
@@ -23,14 +23,14 @@ const VisualMask: React.FC = () => {
           <defs>
             <mask id="text-mask">
               <rect width="100%" height="100%" fill="white" />
-              <text 
-                x="50%" 
-                y="50%" 
-                textAnchor="middle" 
-                dominantBaseline="middle" 
-                fontFamily="'Space Grotesk', sans-serif" 
-                fontWeight="900" 
-                fontSize="15vw" 
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontFamily="'Space Grotesk', sans-serif"
+                fontWeight="900"
+                fontSize="15vw"
                 fill="black"
               >
                 IMPACT

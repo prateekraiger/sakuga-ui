@@ -1,12 +1,12 @@
-﻿export { BENTO1_CODE } from '../components/bento/Bento1Code';
-export { CTA_CODE } from '../components/ui/CtaCode';
-export { HEADER_CODE } from '../components/layout/HeaderCode';
+﻿export const BENTO1_CODE = `// Source code for Bento1 placeholder`;
+export const CTA_CODE = `// Source code for CTA placeholder`;
+export const HEADER_CODE = `// Source code for Header placeholder`;
 export { NEBULA_HERO_CODE } from '../sections/NebulaHeroCode';
 export { FLUX_HERO_CODE } from '../sections/FluxHeroCode';
 export { GROWTH_HERO_CODE } from '../sections/GrowthHeroCode';
 export { HELIOS_HERO_CODE } from '../sections/HeliosHeroCode';
 export { QUANTUM_HERO_CODE } from '../sections/QuantumHeroCode';
-export { BENTO2_CODE } from '../components/bento/Bento2Code';
+export const BENTO2_CODE = `// Source code for Bento2 placeholder`;
 export { TANIA_LANDING_CODE } from '../sections/TaniaLandingCode';
 
 
@@ -17,7 +17,8 @@ import { Copy, Check } from 'lucide-react';
 const Repository = () => {
   const [copied, setCopied] = useState(false);
 
-  const codeString = `
+  // Escaped backticks for nested code string
+  const codeString = \`
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -46,10 +47,10 @@ const Repository = () => {
 
         <div className="relative mt-16 rounded-3xl border border-zinc-700 bg-zinc-900/50 p-6 lg:p-10">
           <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-950 to-black opacity-70"></div>
-          
+
           <div className="relative overflow-hidden rounded-2xl bg-zinc-950/70 p-4 lg:p-6">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-            
+
             <pre className="overflow-x-auto text-sm text-zinc-300">
               <code>
 {\`
@@ -95,19 +96,19 @@ const Repository = () => {
 
         <div className="relative mt-16 rounded-3xl border border-zinc-700 bg-zinc-900/50 p-6 lg:p-10">
           <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-950 to-black opacity-70"></div>
-          
+
           <div className="relative overflow-hidden rounded-2xl bg-zinc-950/70 p-4 lg:p-6">
             {/* Some placeholder code for demonstration */}
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
-            
+
             <pre className="overflow-x-auto text-sm text-zinc-300">
               <code>
                 {/* Real code content would go here */}
                 {/* This is a simplified example */}
-                {`<Button variant="primary">Click Me</Button>`}
+                {\`<Button variant="primary">Click Me</Button>\`}
               </code>
             </pre>
-            
+
             <button className="absolute right-4 top-4 rounded-full bg-zinc-700/70 p-2 text-white transition-colors hover:bg-zinc-600/70">
               <Copy className="h-4 w-4" />
             </button>
@@ -140,8 +141,8 @@ export default Repository;
 \`}
               </code>
             </pre>
-            
-            <button 
+
+            <button
               onClick={() => {
                 navigator.clipboard.writeText(codeString);
                 setCopied(true);
@@ -309,7 +310,7 @@ const CanvasNetwork: React.FC = () => {
 
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', handleMouseMove);
-    
+
     resize();
     draw();
 
@@ -322,9 +323,9 @@ const CanvasNetwork: React.FC = () => {
   return (
     <section ref={containerRef} className="h-[80vh] bg-[#050505] relative border-t border-white/5 flex items-center justify-center overflow-hidden">
       <SectionLabel number="10" text="PARTICLE SYSTEM" />
-      
+
       <canvas ref={canvasRef} className="absolute inset-0 z-1 opacity-40" />
-      
+
       <div className="relative z-10 text-center pointer-events-none mix-blend-difference">
         <h2 className="text-6xl md:text-8xl font-display font-bold tracking-tighter mb-6 text-white">Connect</h2>
         <button className="pointer-events-auto bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-110 transition-transform duration-300 hoverable">
@@ -343,7 +344,7 @@ interface FocusLensProps {
   onShowCode: (code: string, title: string) => void;
 }
 
-const codeSnippet = `// Focus Lens / Spyglass Effect
+const codeSnippet = \`// Focus Lens / Spyglass Effect
 // Layer 1: Blurred Background
 .blur {
   filter: grayscale(1) blur(8px) brightness(0.4);
@@ -362,7 +363,7 @@ const codeSnippet = `// Focus Lens / Spyglass Effect
 document.body.onmousemove = e => {
   el.style.setProperty('--x', e.clientX + 'px');
   el.style.setProperty('--y', e.clientY + 'px');
-}`;
+}\`;
 
 const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -374,40 +375,40 @@ const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    sectionRef.current.style.setProperty('--lens-x', `${x}px`);
-    sectionRef.current.style.setProperty('--lens-y', `${y}px`);
-    
+    sectionRef.current.style.setProperty('--lens-x', \`\${x}px\`);
+    sectionRef.current.style.setProperty('--lens-y', \`\${y}px\`);
+
     if (hudRef.current) {
-      hudRef.current.style.left = `${x - 125}px`;
-      hudRef.current.style.top = `${y - 125}px`;
+      hudRef.current.style.left = \`\${x - 125}px\`;
+      hudRef.current.style.top = \`\${y - 125}px\`;
     }
   };
 
   return (
-    <section 
-      id="lens" 
+    <section
+      id="lens"
       ref={sectionRef}
       className="relative h-[100vh] bg-black overflow-hidden border-t border-white/5 cursor-none group"
       onMouseMove={handleMouseMove}
       style={{ '--lens-x': '50%', '--lens-y': '50%' } as React.CSSProperties}
     >
-      <SectionLabel 
-        number="07" 
-        text="FOCUS LENS" 
+      <SectionLabel
+        number="07"
+        text="FOCUS LENS"
         onCode={() => onShowCode(codeSnippet, "Focus Lens")}
         textColor="text-white"
         borderColor="border-white"
       />
-      
+
       {/* Layer 1: Blurred */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672')",
           filter: 'grayscale(100%) blur(8px) brightness(0.4)'
         }}
       />
-      
+
       {/* UI Layer: Dimmed */}
       <div className="absolute inset-0 grid grid-cols-[1fr_2fr_1fr] gap-16 p-16 items-center pointer-events-none text-[#333]">
         <div className="flex flex-col justify-between h-full py-20 border-r border-white/5 pr-10">
@@ -423,9 +424,9 @@ const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
       </div>
 
       {/* Layer 2: Focused (Masked) */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672')",
           maskImage: 'radial-gradient(250px circle at var(--lens-x) var(--lens-y), black 0%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(250px circle at var(--lens-x) var(--lens-y), black 0%, transparent 100%)'
@@ -433,9 +434,9 @@ const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
       />
 
       {/* UI Layer: Bright (Masked) */}
-      <div 
+      <div
         className="absolute inset-0 grid grid-cols-[1fr_2fr_1fr] gap-16 p-16 items-center pointer-events-none text-white"
-        style={{ 
+        style={{
           maskImage: 'radial-gradient(250px circle at var(--lens-x) var(--lens-y), black 0%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(250px circle at var(--lens-x) var(--lens-y), black 0%, transparent 100%)'
         }}
@@ -453,7 +454,7 @@ const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
       </div>
 
       {/* HUD Ring */}
-      <div 
+      <div
         ref={hudRef}
         className="absolute w-[250px] h-[250px] border border-white/50 rounded-full z-50 pointer-events-none animate-[spin_10s_linear_infinite]"
         style={{ top: 0, left: 0 }}
@@ -462,7 +463,7 @@ const FocusLens: React.FC<FocusLensProps> = ({ onShowCode }) => {
   );
 };
 
-export default FocusLens;
+export default FocusLens;`;
 export const FRACTURE_GLASS_CODE = `import React, { useRef } from 'react';
 import SectionLabel from '../components/SectionLabel';
 
@@ -470,19 +471,19 @@ interface FractureGlassProps {
   onShowCode: (code: string, title: string) => void;
 }
 
-const codeSnippet = `// Fracture Glass Effect
+const codeSnippet = \`// Fracture Glass Effect
 const container = document.getElementById('fracture');
 const slices = document.querySelectorAll('.slice');
 
 container.addEventListener('mousemove', (e) => {
   const rect = container.getBoundingClientRect();
   const yVal = (e.clientY - rect.top - (rect.height / 2)) / (rect.height / 2);
-  
+
   slices.forEach(slice => {
     const dir = parseFloat(slice.getAttribute('data-dir'));
-    slice.style.transform = \`translateY(\${yVal * 40 * dir}px)\`;
+    slice.style.transform = \\\`translateY(\\\${yVal * 40 * dir}px)\\\`;
   });
-});`;
+});\`;
 
 const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -496,15 +497,15 @@ const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
     slicesRef.current.forEach((slice, i) => {
       if (slice) {
         // Different movement multipliers for each slice
-        const multipliers = [1.5, -1.2, 2.0, -1.5, 1.0]; 
-        slice.style.transform = `translateY(${yVal * 40 * multipliers[i]}px)`;
+        const multipliers = [1.5, -1.2, 2.0, -1.5, 1.0];
+        slice.style.transform = \`translateY(\${yVal * 40 * multipliers[i]}px)\`;
       }
     });
   };
 
   const handleMouseLeave = () => {
     slicesRef.current.forEach(slice => {
-      if (slice) slice.style.transform = `translateY(0)`;
+      if (slice) slice.style.transform = \`translateY(0)\`;
     });
   };
 
@@ -512,36 +513,36 @@ const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
   const bgPositions = ['5% 50%', '27% 50%', '50% 50%', '73% 50%', '95% 50%'];
 
   return (
-    <section 
-      id="fracture" 
+    <section
+      id="fracture"
       className="relative h-[100vh] w-full bg-[#050505] flex items-center justify-center border-t border-white/5 overflow-hidden"
     >
-      <SectionLabel 
-        number="02" 
-        text="MOUSE FRACTURE" 
+      <SectionLabel
+        number="02"
+        text="MOUSE FRACTURE"
         onCode={() => onShowCode(codeSnippet, "Fracture Glass")}
       />
-      
-      <div 
+
+      <div
         ref={containerRef}
         className="flex w-[80%] h-[70vh] gap-1 group hoverable cursor-crosshair"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
         {[0, 1, 2, 3, 4].map((i) => (
-          <div 
+          <div
             key={i}
             ref={(el) => { slicesRef.current[i] = el; }}
             className="flex-1 relative overflow-hidden h-full bg-[#111] transition-transform duration-100 ease-linear"
           >
-            <div 
+            <div
               className="absolute top-[-20%] left-0 w-[100vw] h-[140%] bg-cover bg-center transition-all duration-500 grayscale group-hover:grayscale-0"
-              style={{ 
+              style={{
                 backgroundImage: "url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2600')",
                 backgroundPosition: bgPositions[i],
                 // We need to counteract the flex layout to make the image look continuous
                 // But simplified here for the "sliced" aesthetic
-                left: `-${i * 20}vw` 
+                left: \`-\${i * 20}vw\`
               }}
             />
           </div>
@@ -551,7 +552,7 @@ const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
   );
 };
 
-export default FractureGlass;
+export default FractureGlass;`;
 export const HORIZONTAL_SCROLL_CODE = `import React, { useEffect, useRef } from 'react';
 import SectionLabel from '../components/SectionLabel';
 
@@ -572,7 +573,7 @@ const HorizontalScroll: React.FC = () => {
       if (scrollTop >= offset && scrollTop <= offset + height - winH) {
         const percent = (scrollTop - offset) / (height - winH);
         const move = (trackRef.current.scrollWidth - window.innerWidth) * percent;
-        trackRef.current.style.transform = `translateX(-${move}px)`;
+        trackRef.current.style.transform = \`translateX(-\${move}px)\`;
       }
     };
 
@@ -584,9 +585,9 @@ const HorizontalScroll: React.FC = () => {
     <section ref={sectionRef} className="h-[400vh] relative bg-[#050505]">
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <SectionLabel number="02" text="HORIZONTAL PIPELINE" />
-        
+
         <div ref={trackRef} className="flex gap-24 px-12 md:px-32 items-center will-change-transform">
-          
+
           <div className="w-[80vw] md:w-[600px] flex-shrink-0">
             <h2 className="text-6xl md:text-8xl font-display font-bold leading-none mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white to-neutral-700">
               Design<br />Systems
@@ -594,9 +595,9 @@ const HorizontalScroll: React.FC = () => {
           </div>
 
           <div className="w-[70vw] md:w-[60vw] aspect-video flex-shrink-0 relative rounded-xl overflow-hidden border border-white/10 group hoverable">
-            <img 
-              src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop" 
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+            <img
+              src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2670&auto=format&fit=crop"
+              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               alt="Process 1"
             />
           </div>
@@ -611,20 +612,20 @@ const HorizontalScroll: React.FC = () => {
           </div>
 
           <div className="w-[70vw] md:w-[60vw] aspect-video flex-shrink-0 relative rounded-xl overflow-hidden border border-white/10 group hoverable">
-            <img 
-              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2694&auto=format&fit=crop" 
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" 
+            <img
+              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2694&auto=format&fit=crop"
+              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
               alt="Process 2"
             />
           </div>
-          
+
         </div>
       </div>
     </section>
   );
 };
 
-export default HorizontalScroll;
+export default HorizontalScroll;`;
 export const LIQUID_DISTORTION_CODE = `import React, { useEffect, useRef } from 'react';
 import SectionLabel from '../components/SectionLabel';
 
@@ -632,7 +633,7 @@ interface LiquidDistortionProps {
   onShowCode: (code: string, title: string) => void;
 }
 
-const codeSnippet = `<!-- SVG Filter in HTML -->
+const codeSnippet = \`<!-- SVG Filter in HTML -->
 <filter id="liquid-filter">
   <feTurbulence id="turb" type="fractalNoise" baseFrequency="0" numOctaves="2" />
   <feDisplacementMap in="SourceGraphic" in2="noise" scale="60" />
@@ -647,16 +648,16 @@ img.onmouseleave = () => target = 0.00;
 
 function loop() {
   val += (target - val) * 0.05;
-  turb.setAttribute('baseFrequency', \`\${val} \${val}\`);
+  turb.setAttribute('baseFrequency', \\\`\\\${val} \\\${val}\\\`);
   requestAnimationFrame(loop);
 }
-loop();`;
+loop();\`;
 
 const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   // We'll access the global SVG filter ID defined in App.tsx or index.html
   // But for React safety, we can direct manipulation here if we assume the ID exists.
-  
+
   useEffect(() => {
     const turb = document.getElementById('turb');
     const container = containerRef.current;
@@ -669,7 +670,7 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
     const loop = () => {
       val += (target - val) * 0.05;
       // Accessing DOM directly for performance in animation loop
-      turb.setAttribute('baseFrequency', `${val} ${val}`);
+      turb.setAttribute('baseFrequency', \`\${val} \${val}\`);
       rafId = requestAnimationFrame(loop);
     };
 
@@ -678,7 +679,7 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
 
     container.addEventListener('mouseenter', onEnter);
     container.addEventListener('mouseleave', onLeave);
-    
+
     loop();
 
     return () => {
@@ -690,14 +691,14 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
 
   return (
     <section id="liquid" className="relative min-h-screen bg-[#050505] flex items-center justify-center border-t border-white/5 overflow-hidden py-20">
-      <SectionLabel 
-        number="03" 
-        text="SVG TURBULENCE" 
+      <SectionLabel
+        number="03"
+        text="SVG TURBULENCE"
         onCode={() => onShowCode(codeSnippet, "Liquid Distortion")}
       />
-      
+
       <div className="flex flex-col md:flex-row gap-20 items-center justify-center w-full px-6 max-w-7xl mx-auto">
-        
+
         <div className="text-right max-w-sm order-2 md:order-1">
           <h2 className="text-6xl font-bold mb-6 tracking-tighter text-white">LIQUID<br />REALITY</h2>
           <p className="text-neutral-400 text-sm leading-relaxed">
@@ -705,13 +706,13 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
           </p>
         </div>
 
-        <div 
+        <div
           ref={containerRef}
           className="relative w-full max-w-[500px] aspect-[5/7] overflow-hidden border border-neutral-800 order-1 md:order-2 group hoverable cursor-pointer"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=1200&auto=format&fit=crop" 
-            className="w-full h-full object-cover transform scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100" 
+          <img
+            src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=1200&auto=format&fit=crop"
+            className="w-full h-full object-cover transform scale-110 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-100"
             style={{ filter: "url('#liquid-filter')" }}
             alt="Liquid"
           />
@@ -725,7 +726,7 @@ const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
   );
 };
 
-export default LiquidDistortion;
+export default LiquidDistortion;`;
 export const MAGNETIC_SECTION_CODE = `import React, { useRef, useState } from 'react';
 import SectionLabel from '../components/SectionLabel';
 
@@ -735,17 +736,17 @@ interface MagneticButtonProps {
 
 const MagneticButton: React.FC<MagneticButtonProps> = ({ text }) => {
   const btnRef = useRef<HTMLDivElement>(null);
-  
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!btnRef.current) return;
     const rect = btnRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.5;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.5;
-    
+
     // Move the inner text/circle
     const content = btnRef.current.querySelector('.magnetic-content') as HTMLElement;
     if (content) {
-      content.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+      content.style.transform = \`translate(\${x}px, \${y}px) scale(1.1)\`;
     }
   };
 
@@ -753,12 +754,12 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({ text }) => {
     if (!btnRef.current) return;
     const content = btnRef.current.querySelector('.magnetic-content') as HTMLElement;
     if (content) {
-      content.style.transform = `translate(0px, 0px) scale(1)`;
+      content.style.transform = \`translate(0px, 0px) scale(1)\`;
     }
   };
 
   return (
-    <div 
+    <div
       ref={btnRef}
       className="magnetic-wrap hoverable inline-block p-8"
       onMouseMove={handleMouseMove}
@@ -777,33 +778,33 @@ const MagneticSection: React.FC = () => {
   // Trail Effect Logic
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
-    
+
     // Randomly spawn trail images
     if (Math.random() < 0.1) {
       const img = document.createElement('img');
-      img.src = `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 100)}`;
+      img.src = \`https://picsum.photos/200/300?random=\${Math.floor(Math.random() * 100)}\`;
       img.className = 'fixed w-[140px] h-[180px] object-cover rounded-md pointer-events-none z-10 opacity-0 animate-[trailAnim_0.8s_forwards]';
-      img.style.left = `${e.clientX}px`;
-      img.style.top = `${e.clientY}px`;
-      img.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 30 - 15}deg) scale(0.5)`;
-      
+      img.style.left = \`\${e.clientX}px\`;
+      img.style.top = \`\${e.clientY}px\`;
+      img.style.transform = \`translate(-50%, -50%) rotate(\${Math.random() * 30 - 15}deg) scale(0.5)\`;
+
       // We append to body to ensure it floats over everything in this section context
       // But typically we'd append to a specific container. For this demo, let's append to the section container.
       containerRef.current.appendChild(img);
-      
+
       setTimeout(() => img.remove(), 800);
     }
   };
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      id="magnetic-section" 
+      id="magnetic-section"
       className="py-32 bg-[#050505] flex flex-col items-center justify-center border-t border-white/5 relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       <SectionLabel number="04" text="PHYSICS & TRAIL" />
-      
+
       <div className="relative z-20 text-center mb-16">
         <h2 className="text-3xl font-display font-bold text-white">Magnetic & Trail</h2>
         <p className="text-neutral-500 mt-2">Move cursor rapidly</p>
@@ -813,18 +814,18 @@ const MagneticSection: React.FC = () => {
         <MagneticButton text="DRAG ME" />
         <MagneticButton text="PULL ME" />
       </div>
-      
-      <style>{`
+
+      <style>{\`
         @keyframes trailAnim {
           0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.8) rotate(var(--r)); }
           100% { opacity: 0; transform: translate(-50%, -50%) scale(0.2) rotate(var(--r)); }
         }
-      `}</style>
+      \`}</style>
     </section>
   );
 };
 
-export default MagneticSection;
+export default MagneticSection;`;
 export const MARQUEE_CODE = `// Source code coming soon for Marquee...`;
 export const PIXEL_WAVE_CODE = `// Source code coming soon for PixelWave...`;
 export const SPOTLIGHT_GRID_CODE = `// Source code coming soon for SpotlightGrid...`;

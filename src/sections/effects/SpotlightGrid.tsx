@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionLabel from '../components/SectionLabel';
+import SectionLabel from '../../components/ui/SectionLabel';
 import { ScanLine, Layers, Zap } from 'lucide-react';
 
 interface SpotlightGridProps {
@@ -16,8 +16,8 @@ const codeSnippet = `.spotlight-card {
 // Inner Glow (White)
 .spotlight-card::before {
   background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y), 
-    rgba(255, 255, 255, 0.06), 
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
     transparent 40%
   );
 }
@@ -25,8 +25,8 @@ const codeSnippet = `.spotlight-card {
 // Border Glow (Masked)
 .spotlight-card::after {
   background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y), 
-    rgba(255, 255, 255, 0.4), 
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.4),
     transparent 40%
   );
   // Mask logic to only show on border
@@ -55,7 +55,7 @@ const SpotlightGrid: React.FC<SpotlightGridProps> = ({ onShowCode }) => {
             <div className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-4">[ 04. INTELLIGENT LIGHTING ]</div>
             <h2 className="text-5xl font-bold tracking-tighter text-white">GRID<br/>SYSTEM</h2>
           </div>
-          <button 
+          <button
             onClick={() => onShowCode(codeSnippet, "Spotlight Effect")}
             className="text-xs font-bold bg-white text-black px-4 py-2 rounded hover:scale-105 transition-transform"
           >
@@ -69,7 +69,7 @@ const SpotlightGrid: React.FC<SpotlightGridProps> = ({ onShowCode }) => {
             { icon: Layers, title: "Depth Map", desc: "Gradient masking for borders." },
             { icon: Zap, title: "Zero Latency", desc: "GPU accelerated composition." }
           ].map((item, idx) => (
-            <div 
+            <div
               key={idx}
               className="spotlight-card h-[400px] group cursor-default relative rounded-2xl bg-white/[0.02] border border-white/[0.05] overflow-hidden"
               onMouseMove={handleMouseMove}
@@ -79,15 +79,15 @@ const SpotlightGrid: React.FC<SpotlightGridProps> = ({ onShowCode }) => {
               } as React.CSSProperties}
             >
               {/* Inner Glow */}
-              <div 
+              <div
                 className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                 style={{
                   background: 'radial-gradient(800px circle at var(--mouse-x, -100px) var(--mouse-y, -100px), rgba(255, 255, 255, 0.06), transparent 40%)'
                 }}
               />
-              
+
               {/* Border Glow */}
-              <div 
+              <div
                 className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                 style={{
                   background: 'radial-gradient(600px circle at var(--mouse-x, -100px) var(--mouse-y, -100px), rgba(255, 255, 255, 0.4), transparent 40%)',
