@@ -21,7 +21,7 @@ const TaniaLanding: React.FC = () => {
   return (
     <div className="bg-[#fcfcfc] text-[#0a0a0a] min-h-screen font-sans antialiased selection:bg-[#0a0a0a] selection:text-white overflow-x-hidden w-full">
       <style>{
-        `
+        \`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400&display=swap');
 
         .font-serif { font-family: 'Cormorant Garamond', serif; }
@@ -56,7 +56,7 @@ const TaniaLanding: React.FC = () => {
         .img-zoom-container { overflow: hidden; }
         .img-zoom { transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .group:hover .img-zoom { transform: scale(1.05); }
-      `}</style>
+      \`}</style>
 
       {/* Navigation */}      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#fcfcfc]/90 backdrop-blur-sm border-b border-black/5">
         <div className="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
@@ -374,3 +374,6 @@ const TaniaLanding: React.FC = () => {
     </div>
   );
 };
+
+export default TaniaLanding;
+`;

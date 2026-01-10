@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import Header from '../components/Header';
+import Header from '../components/layout/Header';
 import Preloader from '../components/Preloader';
 
 import CodeModal from '../components/CodeModal';

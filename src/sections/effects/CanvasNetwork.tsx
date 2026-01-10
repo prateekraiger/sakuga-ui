@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import SectionLabel from '../components/SectionLabel';
-import { Particle } from '../types';
+import { Particle } from '../types/types';
 
 const CanvasNetwork: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

@@ -5,37 +5,37 @@ import Landing from './src/pages/Landing';
 import AetherTemplate from './src/pages/AetherTemplate';
 import MasKokoTemplate from './src/pages/MasKokoTemplate';
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
-import CodeModal from './src/components/CodeModal';
-import ComponentsHome from './src/components/BentoGrid'; // Renamed import alias for clarity, though file is BentoGrid.tsx
-import Bento1 from './src/components/Bento1';
-import Bento2 from './src/components/Bento2';
-import CTA from './src/components/CTA';
+import CodeModal from './src/components/ui/CodeModal';
+import ComponentsHome from './src/components/bento/BentoGrid'; // Renamed import alias for clarity, though file is BentoGrid.tsx
+import Bento1 from './src/components/bento/Bento1';
+import Bento2 from './src/components/bento/Bento2';
+import CTA from './src/components/ui/CTA';
 
-import ComponentView from './src/components/ComponentView';
+import ComponentView from './src/components/ui/ComponentView';
 import GrowthHero from './src/sections/GrowthHero';
 import HeliosHero from './src/sections/HeliosHero';
 
-import Header from './src/components/Header';
+import Header from './src/components/layout/Header';
 import NebulaHero from './src/sections/NebulaHero';
 import FluxHero from './src/sections/FluxHero';
 import QuantumHero from './src/sections/QuantumHero';
 import TaniaLanding from './src/sections/TaniaLanding';
-import Repository from './src/sections/Repository';
-import Accordion from './src/sections/Accordion';
-import CanvasNetwork from './src/sections/CanvasNetwork';
-import FocusLens from './src/sections/FocusLens';
-import FractureGlass from './src/sections/FractureGlass';
-import HorizontalScroll from './src/sections/HorizontalScroll';
-import LiquidDistortion from './src/sections/LiquidDistortion';
-import MagneticSection from './src/sections/MagneticSection';
-import Marquee from './src/sections/Marquee';
-import PixelWave from './src/sections/PixelWave';
-import SpotlightGrid from './src/sections/SpotlightGrid';
-import VelocityText from './src/sections/VelocityText';
-import VideoExpand from './src/sections/VideoExpand';
-import VisualMask from './src/sections/VisualMask';
-import VoxelTerrain from './src/sections/VoxelTerrain';
-import PricingSection from './src/sections/PricingSection';
+import Repository from './src/sections/content/Repository';
+import Accordion from './src/sections/content/Accordion';
+import CanvasNetwork from './src/sections/effects/CanvasNetwork';
+import FocusLens from './src/sections/effects/FocusLens';
+import FractureGlass from './src/sections/effects/FractureGlass';
+import HorizontalScroll from './src/sections/effects/HorizontalScroll';
+import LiquidDistortion from './src/sections/effects/LiquidDistortion';
+import MagneticSection from './src/sections/effects/MagneticSection';
+import Marquee from './src/sections/ui/Marquee'; // Marquee is in ui
+import PixelWave from './src/sections/effects/PixelWave';
+import SpotlightGrid from './src/sections/effects/SpotlightGrid';
+import VelocityText from './src/sections/effects/VelocityText';
+import VideoExpand from './src/sections/media/VideoExpand'; // VideoExpand is in media
+import VisualMask from './src/sections/effects/VisualMask';
+import VoxelTerrain from './src/sections/effects/VoxelTerrain';
+import PricingSection from './src/sections/content/PricingSection';
 import {
     BENTO1_CODE, BENTO2_CODE, CTA_CODE, HEADER_CODE, NEBULA_HERO_CODE, FLUX_HERO_CODE, GROWTH_HERO_CODE, HELIOS_HERO_CODE, QUANTUM_HERO_CODE, TANIA_LANDING_CODE, REPOSITORY_CODE,
     ACCORDION_CODE, CANVAS_NETWORK_CODE, FOCUS_LENS_CODE, FRACTURE_GLASS_CODE, HORIZONTAL_SCROLL_CODE, LIQUID_DISTORTION_CODE, MAGNETIC_SECTION_CODE, MARQUEE_CODE, PIXEL_WAVE_CODE, SPOTLIGHT_GRID_CODE, VELOCITY_TEXT_CODE, VIDEO_EXPAND_CODE, VISUAL_MASK_CODE, VOXEL_TERRAIN_CODE,
