@@ -1,5 +1,5 @@
 import React from 'react';
-import MasKokoLanding from '../sections/MasKokoLanding';
+import { MasKokoLanding } from '../components/templates';
 
 const MasKokoTemplate: React.FC = () => {
   return (
