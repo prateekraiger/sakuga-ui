@@ -483,7 +483,7 @@ container.addEventListener('mousemove', (e) => {
     const dir = parseFloat(slice.getAttribute('data-dir'));
     slice.style.transform = \\\`translateY(\\\${yVal * 40 * dir}px)\\\`;
   });
-});\`;
+});`;
 
 const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -651,7 +651,7 @@ function loop() {
   turb.setAttribute('baseFrequency', \\\`\\\${val} \\\${val}\\\`);
   requestAnimationFrame(loop);
 }
-loop();\`;
+loop();`;
 
 const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);

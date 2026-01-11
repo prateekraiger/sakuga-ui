@@ -1,4 +1,4 @@
-# Sakuga UI ⚡
+# Sakuga UI
 
 <div align="center">
 
@@ -11,13 +11,13 @@
 
 "Sakuga" (作画) refers to sequences in anime where the quality of animation improves drastically — we bring that same energy to your UI.
 
-[Browse Components](https://your-demo-url.com/components) • [View Templates](https://your-demo-url.com/templates) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Browse Components](https://your-demo-url.com/components) • [View Templates](https://your-demo-url.com/templates) • [Documentation](#documentation) • [Contributing](#contributing)
 
 </div>
 
 ---
 
-## 🌟 Features
+## Features
 
 - **30+ Premium Components** - Heroes, effects, layouts, and interactive elements
 - **Copy & Paste Ready** - No npm package needed, just copy the code
@@ -28,9 +28,9 @@
 - **TypeScript Support** - Full type safety included
 - **Zero Dependencies*** - Most components work standalone (*minimal peer dependencies)
 
-## 📦 Component Categories
+## Component Categories
 
-### 🎯 Hero Sections
+### Hero Sections
 Beautiful landing page heroes with stunning animations:
 - **Nebula Hero** - Cosmic-themed with floating particles
 - **Flux Hero** - 3D-style with floating glass panels
@@ -39,13 +39,13 @@ Beautiful landing page heroes with stunning animations:
 - **Quantum Hero** - Physics-based particle effects
 - **House of Tania** - Luxury fashion landing page
 
-### 📐 Layout Components
+### Layout Components
 Modern layout patterns for any project:
 - **Bento Grid 1** - Responsive grid for dashboards
 - **Analytics Bento** - Data-heavy layout with charts
 - **Glass Header** - Frosted glass navigation bar
 
-### ✨ Visual Effects
+### Visual Effects
 Eye-catching effects to elevate your design:
 - **Canvas Network** - Animated particle connections
 - **Focus Lens** - Magnifying glass cursor effect
@@ -61,14 +61,14 @@ Eye-catching effects to elevate your design:
 - **Visual Mask** - Image masking effects
 - **Voxel Terrain** - 3D voxel-based terrain
 
-### 📝 Content Components
+### Content Components
 Essential UI elements for any website:
 - **CTA Section** - High-conversion call-to-actions
 - **Repository** - GitHub-style repository display
 - **Accordion** - Smooth expanding accordions
 - **Pricing Section** - Beautiful pricing cards
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -123,7 +123,7 @@ function App() {
 }
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology | Version | Purpose |
 |-----------|---------|---------|
@@ -134,7 +134,7 @@ function App() {
 | [Lucide React](https://lucide.dev/) | 0.556.0 | Icons |
 | [React Router](https://reactrouter.com/) | 7.10.1 | Routing |
 
-## 📚 Documentation
+## Documentation
 
 ### Project Structure
 
@@ -172,19 +172,19 @@ All components use Tailwind CSS, making customization easy:
 
 ```tsx
 // Change colors
-<Hero className="bg-purple-900" /> 
+<Hero className="bg-purple-900" />
 
 // Adjust spacing
 <BentoGrid className="gap-8 p-12" />
 
 // Modify text
-<CTA 
+<CTA
   title="Your Custom Title"
   description="Your custom description"
 />
 ```
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 Sakuga UI components are designed with these principles:
 
@@ -194,15 +194,11 @@ Sakuga UI components are designed with these principles:
 4. **Developer Experience** - Easy to understand and modify
 5. **Accessibility** - Semantic HTML and keyboard navigation
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Whether it's:
 
-- 🐛 Bug reports
-- 💡 Feature suggestions
-- 📝 Documentation improvements
-- 🎨 New component designs
-- ⚡ Performance optimizations
+- Performance optimizations
 
 Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a PR.
 
@@ -214,7 +210,7 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a P
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
@@ -224,19 +220,19 @@ This means you can:
 - ✅ Distribute
 - ✅ Private use
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Inspired by the art of "sakuga" animation
 - Built with amazing open-source technologies
 - Community contributions and feedback
 
-## 📧 Contact & Support
+## Contact & Support
 
 - **Author:** Prateek Raiger
 - **GitHub:** [@prateekraiger](https://github.com/prateekraiger)
 - **Issues:** [GitHub Issues](https://github.com/prateekraiger/sakuga-ui/issues)
 
-## ⭐ Star History
+## Star History
 
 If you find this project useful, please consider giving it a star on GitHub!
 
@@ -244,7 +240,7 @@ If you find this project useful, please consider giving it a star on GitHub!
 
 <div align="center">
 
-**Built with 🖤 by Prateek Raiger**
+**Built with love by Prateek Raiger**
 
 [Website](https://your-website.com) • [Twitter](https://twitter.com/your-handle) • [LinkedIn](https://linkedin.com/in/your-profile)
 
