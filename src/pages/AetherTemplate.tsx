@@ -1,35 +1,23 @@
 
 import React, { useState } from 'react';
-import Header from '../components/layout/Header';
-import Preloader from '../components/ui/Preloader';
-import CodeModal from '../components/ui/CodeModal';
-import Footer from '../components/layout/Footer';
-
-// Typography / Hero
-import Hero from '../sections/Hero';
-import VelocityText from '../sections/effects/VelocityText';
-import Marquee from '../sections/ui/Marquee';
-
-// Distortion / Image
-import FractureGlass from '../sections/effects/FractureGlass';
-import LiquidDistortion from '../sections/effects/LiquidDistortion';
-import VideoExpand from '../sections/media/VideoExpand';
-
-// Interaction / Grid
-import SpotlightGrid from '../sections/effects/SpotlightGrid';
-import PixelWave from '../sections/effects/PixelWave';
-import VoxelTerrain from '../sections/effects/VoxelTerrain';
-
-// Overlay
-import FocusLens from '../sections/effects/FocusLens';
-import VisualMask from '../sections/effects/VisualMask';
-
-// Layout
-import BentoGrid from '../sections/BentoGrid';
-import HorizontalScroll from '../sections/effects/HorizontalScroll';
-import Accordion from '../sections/content/Accordion';
-import CanvasNetwork from '../sections/effects/CanvasNetwork';
-import MagneticSection from '../sections/effects/MagneticSection';
+import { Header, Footer, BentoGrid } from '../components/layouts';
+import { Preloader, CodeModal, Marquee } from '../components/ui';
+import { Hero } from '../components/heroes';
+import { Accordion } from '../components/content';
+import { 
+  VelocityText, 
+  FractureGlass, 
+  LiquidDistortion, 
+  SpotlightGrid, 
+  PixelWave, 
+  VoxelTerrain, 
+  FocusLens, 
+  VisualMask, 
+  HorizontalScroll, 
+  CanvasNetwork, 
+  MagneticSection 
+} from '../components/effects';
+import { VideoExpand } from '../components/media';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);

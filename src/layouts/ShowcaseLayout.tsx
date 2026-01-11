@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Sidebar from '../components/layout/Sidebar';
+import { Sidebar } from '../components/layouts';
 import { Copy, X, Code2 } from 'lucide-react';
 
 interface ShowcaseLayoutProps {
