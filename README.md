@@ -215,10 +215,10 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a P
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 This means you can:
-- ✅ Use commercially
-- ✅ Modify
-- ✅ Distribute
-- ✅ Private use
+- Use commercially
+- Modify
+- Distribute
+- Private use
 
 ## Acknowledgments
 
