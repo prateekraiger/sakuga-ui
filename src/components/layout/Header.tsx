@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
         <div className="flex pt-5 pb-5 items-center justify-between animate-[fadeSlideIn_0.5s_ease-out_0.1s_both]">
           <a
             href="/"
-            className="bg-center text-2xl font-semibold tracking-tighter w-[140px] h-[36px] bg-[url(https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/8cc3fd60-0bf0-41ad-a08b-be684f266e22_1600w.png)] bg-cover"
+            className="bg-center text-2xl font-semibold tracking-tighter w-[140px] h-[36px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8cc3fd60-0bf0-41ad-a08b-be684f266e22_1600w.png)] bg-cover"
           ></a>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-slate-400">
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
 
           <div className="flex items-center gap-3">
             <button className="hidden sm:inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-white/5 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                 <path d="m10 17 5-5-5-5"></path>
                 <path d="M15 12H3"></path>
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
               onClick={() => setIsMenuOpen(true)}
               className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition backdrop-blur-sm"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
               onClick={() => setIsMenuOpen(false)}
               className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="w-5 h-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
             <a href="#pricing" onClick={() => setIsMenuOpen(false)} className="block px-4 py-3 text-base text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition">Pricing</a>
             <div className="pt-4 border-t border-white/10 mt-4">
               <a href="#" className="flex items-center justify-center gap-2 w-full px-4 py-3 text-base font-medium text-white bg-lime-600 hover:bg-lime-500 rounded-lg transition">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" className="h-4 w-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                   <path d="m10 17 5-5-5-5"></path>
                   <path d="M15 12H3"></path>
                   <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
