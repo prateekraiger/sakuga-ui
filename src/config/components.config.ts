@@ -238,6 +238,22 @@ export const COMPONENT_REGISTRY: ComponentMeta[] = [
     icon: Type,
     description: 'Infinite scrolling text',
   },
+  {
+    id: 'hero',
+    name: 'Hero Parallax',
+    path: '/components/hero',
+    category: 'heroes',
+    icon: Sparkles,
+    description: 'Parallax hero with slide-up text',
+  },
+  {
+    id: 'maskoko-landing',
+    name: 'MasKoko Landing',
+    path: '/components/maskoko-landing',
+    category: 'heroes',
+    icon: Sparkles,
+    description: 'Digital agency landing page',
+  },
 ];
 
 // Helper functions to get components by category

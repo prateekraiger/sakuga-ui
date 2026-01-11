@@ -23,7 +23,7 @@ const NebulaHero: React.FC = () => {
             Ship websites at lightspeed
           </h1>
           <p className="mt-5 text-base md:text-lg text-slate-300">
-            Nebula is a visual builder that lets you design, collaborate, and publish in one place. No code requiredâ€”unless
+            Nebula is a visual builder that lets you design, collaborate, and publish in one place. No code required—unless
             you want it.
           </p>
 
@@ -85,7 +85,7 @@ const NebulaHero: React.FC = () => {
                   <rect width="7" height="7" x="14" y="3" rx="1" className=""></rect>
                   <rect width="7" height="7" x="14" y="14" rx="1" className=""></rect>
                 </svg>
-                Nebula Studio â€” Project: Aurora
+                Nebula Studio — Project: Aurora
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ const NebulaHero: React.FC = () => {
                           className=""></path>
                         <path d="M20.054 15.987H3.946" className=""></path>
                       </svg>
-                      <span className="text-xs font-medium">Desktop â€” 1200</span>
+                      <span className="text-xs font-medium">Desktop — 1200</span>
                     </div>
                     <span className="rounded-md bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-400">Primary</span>
                   </div>
@@ -206,13 +206,13 @@ const NebulaHero: React.FC = () => {
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/0950426a-fd01-4dc5-a916-33b7c3a94646_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0950426a-fd01-4dc5-a916-33b7c3a94646_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/859fc099-059b-4ec4-b0f1-06e736a8bdf4_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/859fc099-059b-4ec4-b0f1-06e736a8bdf4_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                     <div className="aspect-video overflow-hidden rounded-md bg-white/5">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/f17ac654-630a-4fb6-ae2e-e2c4a8fe9274_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f17ac654-630a-4fb6-ae2e-e2c4a8fe9274_320w.jpg" className="h-full w-full object-cover opacity-90" alt="" />
                     </div>
                   </div>
                 </div>
@@ -242,13 +242,13 @@ const NebulaHero: React.FC = () => {
 
               <div className="sm:p-6 pt-4 pr-4 pb-4 pl-4">
                 <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 ring-1 ring-white/10">
-                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/9fb3eba2-d3b1-4a3c-9feb-29a0b47b70c6_1600w.jpg" className="h-[360px] w-full object-cover sm:h-[460px]" alt="" />
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9fb3eba2-d3b1-4a3c-9feb-29a0b47b70c6_1600w.jpg" className="h-[360px] w-full object-cover sm:h-[460px]" alt="" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6">
                     <div className="max-w-xl rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur">
                       <h3 className="text-3xl sm:text-4xl font-semibold tracking-tight">Orion Canvas</h3>
                       <p className="mt-1 text-sm text-slate-300">A limitless canvas with modern layout, motion, and type
-                        featuresâ€”ready for production.</p>
+                        features—ready for production.</p>
                       <div className="mt-3 flex items-center gap-2">
                         <button className="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-xs font-medium text-black hover:bg-white/90">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="wand-2" className="lucide lucide-wand-2 h-4 w-4"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72" className=""></path><path d="m14 7 3 3" className=""></path><path d="M5 6v4" className=""></path><path d="M19 14v4" className=""></path><path d="M10 2v2" className=""></path><path d="M7 8H3" className=""></path><path d="M21 16h-4" className=""></path><path d="M11 3H9" className=""></path></svg>
@@ -268,7 +268,7 @@ const NebulaHero: React.FC = () => {
                   className="pointer-events-none absolute -bottom-6 right-4 hidden w-64 rounded-xl border border-white/10 bg-white/5 p-2 backdrop-blur lg:block">
                   <div className="rounded-lg border border-white/10 bg-black/50 p-2">
                     <div className="aspect-[9/16] overflow-hidden rounded-md">
-                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/e080ec8d-304b-41cc-a8e7-c2b6efc8ab07_800w.jpg" className="h-full w-full object-cover" alt="" />
+                      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e080ec8d-304b-41cc-a8e7-c2b6efc8ab07_800w.jpg" className="h-full w-full object-cover" alt="" />
                     </div>
                     <div className="mt-2 flex items-center justify-between text-[10px] text-slate-400">
                       <span className="inline-flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" data-lucide="smartphone" className="lucide lucide-smartphone h-3 w-3"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" className=""></rect><path d="M12 18h.01" className=""></path></svg> Mobile 390</span>
