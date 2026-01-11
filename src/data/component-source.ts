@@ -483,7 +483,7 @@ container.addEventListener('mousemove', (e) => {
     const dir = parseFloat(slice.getAttribute('data-dir'));
     slice.style.transform = \\\`translateY(\\\${yVal * 40 * dir}px)\\\`;
   });
-});`;
+});\`;
 
 const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -498,14 +498,14 @@ const FractureGlass: React.FC<FractureGlassProps> = ({ onShowCode }) => {
       if (slice) {
         // Different movement multipliers for each slice
         const multipliers = [1.5, -1.2, 2.0, -1.5, 1.0];
-        slice.style.transform = \\\`translateY(\\\${yVal * 40 * multipliers[i]}px)\\\`;
+        slice.style.transform = \`translateY(\${yVal * 40 * multipliers[i]}px)\`;
       }
     });
   };
 
   const handleMouseLeave = () => {
     slicesRef.current.forEach(slice => {
-      if (slice) slice.style.transform = \\\`translateY(0)\\\`;
+      if (slice) slice.style.transform = \`translateY(0)\`;
     });
   };
 
@@ -651,7 +651,7 @@ function loop() {
   turb.setAttribute('baseFrequency', \\\`\\\${val} \\\${val}\\\`);
   requestAnimationFrame(loop);
 }
-loop();`;
+loop();\`;
 
 const LiquidDistortion: React.FC<LiquidDistortionProps> = ({ onShowCode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
