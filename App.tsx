@@ -5,23 +5,24 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './src/pages/Landing';
 import AetherTemplate from './src/pages/AetherTemplate';
 import MasKokoTemplate from './src/pages/MasKokoTemplate';
+import StartAgencyTemplate from './src/pages/StartAgencyTemplate';
 
 // Layouts
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
 
 // Components - organized imports
-import { 
-  ComponentsHome, 
-  Bento1, 
-  Bento2, 
+import {
+  ComponentsHome,
+  Bento1,
+  Bento2,
   Header,
-  BENTO1_CODE, 
-  BENTO2_CODE, 
-  HEADER_CODE 
+  BENTO1_CODE,
+  BENTO2_CODE,
+  HEADER_CODE
 } from './src/components/layouts';
 
-import { 
-  CTA, 
+import {
+  CTA,
   ComponentView,
   Marquee,
   CTA_CODE,
@@ -110,10 +111,11 @@ const App: React.FC = () => {
         {/* Templates Routes */}
         <Route path="/templates/aether" element={<AetherTemplate />} />
         <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
+        <Route path="/templates/start-agency" element={<StartAgencyTemplate />} />
 
         {/* Components Showcase Routes */}
-        <Route 
-          path="/components" 
+        <Route
+          path="/components"
           element={
             <ShowcaseLayout
               codeString={modalCode}
@@ -125,285 +127,285 @@ const App: React.FC = () => {
           }
         >
           {/* Components Home */}
-          <Route 
-            index 
+          <Route
+            index
             element={
               <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                 <ComponentsHome />
               </div>
-            } 
+            }
           />
 
           {/* Layout Components */}
-          <Route 
-            path="bento-1" 
+          <Route
+            path="bento-1"
             element={
               <ComponentView title="Bento Grid" sourceCode={BENTO1_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <Bento1 />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="bento-2" 
+          <Route
+            path="bento-2"
             element={
               <ComponentView title="Analytics Bento" sourceCode={BENTO2_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <Bento2 />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="header" 
+          <Route
+            path="header"
             element={
               <ComponentView title="Glass Header" sourceCode={HEADER_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full relative overflow-hidden">
                   <Header className="absolute top-0 left-0 w-full z-10" />
                 </div>
               </ComponentView>
-            } 
+            }
           />
 
           {/* Hero Components */}
-          <Route 
-            path="hero-1" 
+          <Route
+            path="hero-1"
             element={
               <ComponentView title="Nebula Hero" sourceCode={NEBULA_HERO_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <NebulaHero />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="flux-hero" 
+          <Route
+            path="flux-hero"
             element={
               <ComponentView title="Flux Hero" sourceCode={FLUX_HERO_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <FluxHero />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="growth-hero" 
+          <Route
+            path="growth-hero"
             element={
               <ComponentView title="Growth Hero" sourceCode={GROWTH_HERO_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <GrowthHero />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="helios-hero" 
+          <Route
+            path="helios-hero"
             element={
               <ComponentView title="Helios Hero" sourceCode={HELIOS_HERO_CODE}>
                 <div className="min-h-screen p-0 flex items-center justify-center w-full">
                   <HeliosHero />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="quantum-hero" 
+          <Route
+            path="quantum-hero"
             element={
               <ComponentView title="Quantum Hero" sourceCode={QUANTUM_HERO_CODE}>
                 <div className="min-h-screen bg-black p-0 flex items-center justify-center w-full">
                   <QuantumHero />
                 </div>
               </ComponentView>
-            } 
+            }
           />
 
           {/* Template Components */}
-          <Route 
-            path="tania-landing" 
+          <Route
+            path="tania-landing"
             element={
               <ComponentView title="House of Tania" sourceCode={TANIA_LANDING_CODE}>
                 <div className="min-h-screen bg-[#fcfcfc] p-0 flex items-center justify-center w-full">
                   <TaniaLanding />
                 </div>
               </ComponentView>
-            } 
+            }
           />
 
           {/* Content Components */}
-          <Route 
-            path="repository" 
+          <Route
+            path="repository"
             element={
               <ComponentView title="The Repository" sourceCode={REPOSITORY_CODE}>
                 <div className="min-h-screen bg-black p-0 flex items-center justify-center w-full">
                   <Repository />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="accordion" 
+          <Route
+            path="accordion"
             element={
               <ComponentView title="Accordion" sourceCode={ACCORDION_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <Accordion />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="cta" 
+          <Route
+            path="cta"
             element={
               <ComponentView title="CTA Section" sourceCode={CTA_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <CTA />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="pricing" 
+          <Route
+            path="pricing"
             element={
               <ComponentView title="Pricing Section" sourceCode={PRICING_SECTION_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <PricingSection />
                 </div>
               </ComponentView>
-            } 
+            }
           />
 
           {/* Effect Components */}
-          <Route 
-            path="canvas-network" 
+          <Route
+            path="canvas-network"
             element={
               <ComponentView title="Canvas Network" sourceCode={CANVAS_NETWORK_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <CanvasNetwork />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="focus-lens" 
+          <Route
+            path="focus-lens"
             element={
               <ComponentView title="Focus Lens" sourceCode={FOCUS_LENS_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <FocusLens onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="fracture-glass" 
+          <Route
+            path="fracture-glass"
             element={
               <ComponentView title="Fracture Glass" sourceCode={FRACTURE_GLASS_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <FractureGlass onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="horizontal-scroll" 
+          <Route
+            path="horizontal-scroll"
             element={
               <ComponentView title="Horizontal Scroll" sourceCode={HORIZONTAL_SCROLL_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <HorizontalScroll />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="liquid-distortion" 
+          <Route
+            path="liquid-distortion"
             element={
               <ComponentView title="Liquid Distortion" sourceCode={LIQUID_DISTORTION_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <LiquidDistortion onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="magnetic-section" 
+          <Route
+            path="magnetic-section"
             element={
               <ComponentView title="Magnetic Section" sourceCode={MAGNETIC_SECTION_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <MagneticSection />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="marquee" 
+          <Route
+            path="marquee"
             element={
               <ComponentView title="Marquee" sourceCode={MARQUEE_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <Marquee />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="pixel-wave" 
+          <Route
+            path="pixel-wave"
             element={
               <ComponentView title="Pixel Wave" sourceCode={PIXEL_WAVE_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <PixelWave onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="spotlight-grid" 
+          <Route
+            path="spotlight-grid"
             element={
               <ComponentView title="Spotlight Grid" sourceCode={SPOTLIGHT_GRID_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <SpotlightGrid onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="velocity-text" 
+          <Route
+            path="velocity-text"
             element={
               <ComponentView title="Velocity Text" sourceCode={VELOCITY_TEXT_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <VelocityText onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="visual-mask" 
+          <Route
+            path="visual-mask"
             element={
               <ComponentView title="Visual Mask" sourceCode={VISUAL_MASK_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <VisualMask />
                 </div>
               </ComponentView>
-            } 
+            }
           />
-          <Route 
-            path="voxel-terrain" 
+          <Route
+            path="voxel-terrain"
             element={
               <ComponentView title="Voxel Terrain" sourceCode={VOXEL_TERRAIN_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <VoxelTerrain onShowCode={handleShowCode} />
                 </div>
               </ComponentView>
-            } 
+            }
           />
 
           {/* Media Components */}
-          <Route 
-            path="video-expand" 
+          <Route
+            path="video-expand"
             element={
               <ComponentView title="Video Expand" sourceCode={VIDEO_EXPAND_CODE}>
                 <div className="min-h-screen bg-black p-8 flex items-center justify-center w-full">
                   <VideoExpand />
                 </div>
               </ComponentView>
-            } 
+            }
           />
         </Route>
 
