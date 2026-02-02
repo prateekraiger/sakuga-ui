@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Pages
 import Landing from './src/pages/Landing';
+import Templates from './src/pages/Templates';
 import AetherTemplate from './src/pages/AetherTemplate';
 import MasKokoTemplate from './src/pages/MasKokoTemplate';
 import StartAgencyTemplate from './src/pages/StartAgencyTemplate';
@@ -109,6 +110,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Landing />} />
 
         {/* Templates Routes */}
+        <Route path="/templates" element={<Templates />} />
         <Route path="/templates/aether" element={<AetherTemplate />} />
         <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
         <Route path="/templates/start-agency" element={<StartAgencyTemplate />} />
