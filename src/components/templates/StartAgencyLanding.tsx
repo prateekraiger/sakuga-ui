@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 // Icons
 const Logos = {
@@ -35,8 +35,22 @@ const Logos = {
 };
 
 const StartAgencyLanding: React.FC = () => {
-    // Carousel State
+    // Carousels & Interactive State
     const [activeIndex, setActiveIndex] = useState(0);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+    const testimonialRailRef = useRef<HTMLDivElement>(null);
+
+    // Testimonial Scroll Logic
+    const scrollTestimonial = (direction: 'left' | 'right') => {
+        if (testimonialRailRef.current) {
+            const scrollAmount = 540; // Card width + gap
+            testimonialRailRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     const totalCards = 3;
 
     const rotateCarousel = (direction: number) => {
@@ -124,53 +138,24 @@ const StartAgencyLanding: React.FC = () => {
                                 <p className="text-base text-neutral-500 font-geist">Trusted by startups that raised millions and globally recognized brands</p>
 
                                 <div className="overflow-hidden mask-image-gradient w-full relative gap-x-4 gap-y-4">
-                                    {/* Gradient masks for fade effect */}
                                     <div className="z-10 bg-gradient-to-r from-neutral-100 to-transparent w-32 h-full absolute top-0 left-0"></div>
                                     <div className="bg-gradient-to-l from-neutral-100 to-transparent w-32 h-full z-10 absolute top-0 right-0"></div>
 
                                     <div className="flex w-max animate-marquee hover:pause-animation">
-                                        {/* Logos Batch 1 */}
                                         <div className="flex pr-4 pl-4 items-center gap-x-2 lg:gap-2">
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Logitech />
-                                            </div>
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Samsung />
-                                            </div>
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Lenovo />
-                                            </div>
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Vercel />
-                                            </div>
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Stripe />
-                                            </div>
-                                            <div className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Notion />
-                                            </div>
+                                            {[Logos.Logitech, Logos.Samsung, Logos.Lenovo, Logos.Vercel, Logos.Stripe, Logos.Notion].map((Logo, i) => (
+                                                <div key={i} className="glass-panel flex hover:grayscale-0 transition-all duration-500 spotlight-card bg-neutral-50 w-48 h-24 rounded-2xl grayscale items-center justify-center p-4" onMouseMove={handleSpotlight}>
+                                                    <Logo />
+                                                </div>
+                                            ))}
                                         </div>
-
-                                        {/* Logos Batch 2 (Duplicate for loop) */}
+                                        {/* Duplicated for marquee loop */}
                                         <div className="flex items-center gap-4 lg:gap-8 px-4">
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Logitech />
-                                            </div>
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Samsung />
-                                            </div>
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Lenovo />
-                                            </div>
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Vercel />
-                                            </div>
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Stripe />
-                                            </div>
-                                            <div className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
-                                                <Logos.Notion />
-                                            </div>
+                                            {[Logos.Logitech, Logos.Samsung, Logos.Lenovo, Logos.Vercel, Logos.Stripe, Logos.Notion].map((Logo, i) => (
+                                                <div key={`dup-${i}`} className="glass-panel rounded-2xl w-48 h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500 spotlight-card p-4" onMouseMove={handleSpotlight}>
+                                                    <Logo />
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +185,6 @@ const StartAgencyLanding: React.FC = () => {
                         </div>
 
                         <div className="carousel-container flex w-full h-[500px] relative items-center justify-center">
-
                             {/* Card 1 */}
                             <div className={`carousel-card ${getCardClass(0)} lg:w-3/4 glass-panel spotlight-card cursor-pointer w-full h-full rounded-3xl pt-2 pr-2 pb-2 pl-2`} onMouseMove={handleSpotlight}>
                                 <div className="w-full h-full bg-neutral-50 rounded-2xl overflow-hidden relative group">
@@ -208,8 +192,7 @@ const StartAgencyLanding: React.FC = () => {
                                         <span className="bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-medium border border-black/5 font-geist">Fintech Dashboard</span>
                                     </div>
                                     <div className="flex bg-gradient-to-br from-neutral-100 to-neutral-200 w-full h-full gap-x-4 gap-y-4 items-center justify-center">
-                                        <div className="flex flex-col gap-4 transform group-hover:scale-[1.02] transition-transform duration-500 bg-center bg-white w-[80%] h-[70%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1c053fe9-7127-4df7-ae87-36ae206fe067_1600w.jpg)] bg-cover border-neutral-100 border rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl gap-x-4 gap-y-4">
-                                        </div>
+                                        <div className="flex flex-col gap-4 transform group-hover:scale-[1.02] transition-transform duration-500 bg-center bg-white w-[80%] h-[70%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1c053fe9-7127-4df7-ae87-36ae206fe067_1600w.jpg)] bg-cover border-neutral-100 border rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl gap-x-4 gap-y-4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -221,10 +204,7 @@ const StartAgencyLanding: React.FC = () => {
                                         <span className="bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-medium border border-black/5 font-geist">Mobile Health App</span>
                                     </div>
                                     <div className="flex bg-gradient-to-bl from-blue-50 to-neutral-100 w-full h-full items-center justify-center">
-                                        <div className="flex flex-col transform group-hover:scale-[1.02] transition-transform duration-500 bg-center bg-white w-[40%] h-[80%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0851aedf-fdcc-48be-8ea0-cd63cc04fcda_800w.jpg)] bg-cover border-neutral-100 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-2xl">
-                                            <div className="mt-auto flex justify-between">
-                                            </div>
-                                        </div>
+                                        <div className="flex flex-col transform group-hover:scale-[1.02] transition-transform duration-500 bg-center bg-white w-[40%] h-[80%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0851aedf-fdcc-48be-8ea0-cd63cc04fcda_800w.jpg)] bg-cover border-neutral-100 border rounded-xl pt-4 pr-4 pb-4 pl-4 shadow-2xl"></div>
                                     </div>
                                 </div>
                             </div>
@@ -236,14 +216,266 @@ const StartAgencyLanding: React.FC = () => {
                                         <span className="bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs font-medium border border-black/5 font-geist">SaaS Analytics</span>
                                     </div>
                                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-tr from-orange-50 to-neutral-100">
-                                        <div className="transform group-hover:scale-[1.02] transition-transform duration-500 flex bg-white w-[80%] h-[70%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51dd450a-0485-4587-89d8-c6078fb01266_1600w.jpg)] bg-cover bg-center border-neutral-100 border rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl gap-x-2 gap-y-2 items-end">
-                                        </div>
+                                        <div className="transform group-hover:scale-[1.02] transition-transform duration-500 flex bg-white w-[80%] h-[70%] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51dd450a-0485-4587-89d8-c6078fb01266_1600w.jpg)] bg-cover bg-center border-neutral-100 border rounded-xl pt-6 pr-6 pb-6 pl-6 shadow-2xl gap-x-2 gap-y-2 items-end"></div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </section>
+
+                    {/* Stats Grid */}
+                    <section className="animate-fade-up w-full pt-12 pb-12" style={{ animationDelay: '0.1s' }}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-stone-50 border-stone-200 border rounded-3xl pt-2 pr-2 pb-2 pl-2 gap-x-2 gap-y-4">
+                            {[
+                                { val: "10 years", text: "Designing inside real startups, not from the outside." },
+                                { val: "300+ websites", text: "SaaS, fintech, AI, consumer, B2B." },
+                                { val: "$10 mil value", text: "Across companies we’ve helped design and launch." },
+                                { val: "80% return", text: "Because good collaboration beats good decks." }
+                            ].map((stat, i) => (
+                                <div key={i} className="bg-white p-6 rounded-2xl border border-neutral-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-shadow duration-300">
+                                    <h3 className="text-2xl font-medium text-neutral-900 tracking-tight mb-2 font-geist">{stat.val}</h3>
+                                    <p className="text-[15px] leading-relaxed text-neutral-500 font-geist">{stat.text}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* How We Work */}
+                     <section className="animate-scaleIn animation-delay-300 sm:pl-2 sm:pr-2 sm:pt-2 sm:pb-2 bg-stone-50 w-full max-w-none z-10 border-stone-200 border rounded-3xl pt-6 pr-6 pb-6 pl-6 relative shadow-2xl">
+                        <div className="flex animate-fadeInUp sm:pt-6 sm:pr-6 sm:pb-6 sm:pl-6 pt-6 pr-1 pb-6 pl-1 gap-x-6 gap-y-6 items-center">
+                          <h2 className="text-[44px] leading-[0.9] sm:text-6xl lg:text-7xl xl:text-5xl text-zinc-950 tracking-tighter font-geist">How we work</h2>
+                          <span aria-hidden="true" role="separator" aria-orientation="vertical" className="w-px bg-neutral-200 h-10"></span>
+                          <p className="sm:text-base text-sm text-zinc-950 tracking-tight font-geist mt-1">Three simple steps to automate your content</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 z-10 mt-6 relative items-stretch gap-x-2 lg:grid-cols-12 sm:gap-2 sm:mt-8">
+                            {/* Step 1 */}
+                            <div className="lg:col-span-4 sm:p-8 hover-lift flex flex-col bg-white h-full border-neutral-200 border rounded-2xl pt-6 pr-6 pb-6 pl-6 relative">
+                                <span className="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 tracking-tight font-geist">STEP 1</span>
+                                <div className="relative h-48 sm:h-56 rounded-2xl bg-neutral-100 border border-neutral-200 overflow-hidden">
+                                     <div className="absolute inset-0 p-4 sm:p-6">
+                                        <div className="bg-white/90 border border-neutral-200 rounded-xl p-4 w-full shadow-2xl">
+                                             <div className="flex items-center gap-2 mb-3">
+                                                 <div className="w-4 h-4 rounded-full bg-emerald-600/20"></div>
+                                                  <div className="h-2 w-24 bg-neutral-900 rounded"></div>
+                                             </div>
+                                             <div className="h-2 w-full bg-neutral-100 rounded mb-2"></div>
+                                             <div className="h-2 w-4/5 bg-neutral-100 rounded mb-2"></div>
+                                        </div>
+                                     </div>
+                                </div>
+                                <h3 className="sm:text-4xl text-3xl text-neutral-900 tracking-tighter mt-6 font-geist">Kickoff & alignment</h3>
+                                <p className="sm:text-base text-sm text-neutral-600 tracking-tight max-w-[52ch] mt-2 font-geist">Goals, constraints, timelines. No guessing.</p>
+                            </div>
+
+                             {/* Step 2 */}
+                             <div className="lg:col-span-4 sm:p-8 hover-lift flex flex-col bg-white h-full border-neutral-200 border rounded-2xl pt-6 pr-6 pb-6 pl-6 relative">
+                                <span className="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 tracking-tight font-geist">STEP 2</span>
+                                <div className="relative h-48 sm:h-56 rounded-2xl border border-neutral-200 overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 p-4">
+                                     {/* Mock visuals */}
+                                </div>
+                                <h3 className="sm:text-4xl text-3xl text-neutral-900 tracking-tighter mt-6 font-geist">Design & iteration</h3>
+                                <p className="sm:text-base text-sm text-neutral-600 tracking-tight max-w-[52ch] mt-2 font-geist">Fast cycles, constant feedback, real collaboration.</p>
+                             </div>
+
+                             {/* Step 3 */}
+                             <div className="lg:col-span-4 sm:p-8 hover-lift flex flex-col bg-white h-full border-neutral-200 border rounded-2xl pt-6 pr-6 pb-6 pl-6 relative">
+                                <span className="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 tracking-tight font-geist">STEP 3</span>
+                                <div className="relative h-48 sm:h-56 rounded-2xl bg-neutral-100 border border-neutral-200 overflow-hidden p-4">
+                                     {/* Mock visuals */}
+                                </div>
+                                <h3 className="sm:text-4xl text-3xl text-neutral-900 tracking-tighter mt-6 font-geist">Delivery & handoff</h3>
+                                <p className="sm:text-base text-sm text-neutral-600 tracking-tight max-w-[52ch] mt-2 font-geist">Clean files, clear logic, dev-ready output.</p>
+                             </div>
+                        </div>
+                     </section>
+
+                     {/* Features & Case Study */}
+                     <div className="flex flex-col z-10 w-full mt-20 mr-auto mb-20 ml-auto relative">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12 mb-4 gap-x-4 gap-y-4">
+                             {[
+                                 "Your learning path adapts based on progress and skill assessments.",
+                                 "The system knows when to push or hold back — based on mastery zones.",
+                                 "No more switching platforms. Theory, practice, and labs unified.",
+                                 "Portfolio, skills, and credentials tracked. Always know your value."
+                             ].map((text, i) => (
+                                 <div key={i} className="flex flex-col gap-4">
+                                     <div className="text-zinc-100">
+                                         <svg viewBox="0 0 24 24" className="w-[28px] h-[28px]" fill="none" stroke="currentColor" strokeWidth="2" style={{color: '#999'}}>
+                                           <circle cx="12" cy="12" r="10" strokeOpacity="0.5" />
+                                           <path d="M12 6v6l4 4" />
+                                         </svg>
+                                     </div>
+                                     <p className="leading-relaxed text-base text-zinc-900 font-geist">{text}</p>
+                                 </div>
+                             ))}
+                        </div>
+
+                         {/* Main CTA Card */}
+                        <div className="overflow-hidden min-h-[500px] lg:min-h-[600px] shadow-zinc-900/30 bg-zinc-900 rounded-[2rem] relative shadow-2xl">
+                             <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)', backgroundSize: '40px 40px'}}></div>
+                             <div className="grid grid-cols-1 min-h-[500px] h-full relative gap-y-3 lg:grid-cols-1 lg:min-h-[600px]">
+                                 <div className="flex flex-col md:p-12 lg:p-16 bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a5387a0b-52c6-40c2-b3be-ef86329b19cc_1600w.webp)] bg-cover pt-8 pr-8 pb-8 pl-8 saturate-50 justify-center">
+                                     <p className="leading-relaxed text-base font-medium text-zinc-50 mb-2 font-geist">Case study - Workly</p>
+                                     <h2 className="leading-tight md:text-4xl lg:text-5xl text-2xl font-normal text-white tracking-tight mb-8 font-geist">Redesigned product UX and brand positioning after poor early adoption. Result: clearer value proposition, higher retention.</h2>
+                                     <button className="group flex items-center gap-3 bg-white hover:bg-zinc-100 transition-all text-zinc-900 text-sm font-medium rounded-full px-6 py-3 w-fit shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer">
+                                         <span className="font-geist">Read more</span>
+                                     </button>
+                                 </div>
+                             </div>
+                        </div>
+                     </div>
+
+                     {/* Services */}
+                     <section className="animate-fade-up w-full my-24 pt-20 pb-0 gap-x-0 gap-y-20">
+                        <div className="grid lg:grid-cols-12 lg:gap-4 gap-x-12 gap-y-12">
+                             <div className="lg:col-span-4 space-y-6">
+                                 <h2 className="lg:text-4xl text-3xl font-medium text-neutral-900 tracking-tight font-geist">What we do</h2>
+                                 <p className="text-[17px] leading-relaxed font-normal text-neutral-500 font-geist">Different industries, different team, space obsession for perfect user experience and quick ROI.</p>
+                             </div>
+                             <div className="lg:col-span-8">
+                                 <div className="grid sm:grid-cols-3 gap-4">
+                                     {['Product Design', 'Web Design', 'Brand Identity'].map((service, i) => (
+                                         <div key={i} className="space-y-2">
+                                             <div className="bg-white border border-neutral-200/60 p-4 rounded-2xl flex items-center gap-3">
+                                                 <div className="w-5 h-5 bg-neutral-900 rounded"></div>
+                                                 <span className="text-base font-medium text-neutral-900 font-geist">{service}</span>
+                                             </div>
+                                             <div className="bg-white border border-neutral-200/60 p-6 rounded-2xl h-full">
+                                                  <ul className="space-y-3 text-[15px] text-neutral-500">
+                                                      <li className="font-geist">Item 1</li>
+                                                      <li className="font-geist">Item 2</li>
+                                                      <li className="font-geist">Item 3</li>
+                                                  </ul>
+                                             </div>
+                                         </div>
+                                     ))}
+                                 </div>
+                             </div>
+                        </div>
+                     </section>
+
+                     {/* Pricing */}
+                     <section className="animate-fade-up w-full pb-0 gap-x-20 gap-y-20">
+                         <div className="grid lg:grid-cols-12 lg:gap-4">
+                             <div className="lg:col-span-4 space-y-6">
+                                 <h2 className="lg:text-4xl text-3xl font-medium text-neutral-900 tracking-tight font-geist">Growth for startups shipping fast.</h2>
+                                 <p className="text-[17px] leading-relaxed font-normal text-neutral-500 font-geist">Dedicated design lead. Unlimited requests. Strategic input.</p>
+                             </div>
+                             <div className="lg:col-span-8">
+                                 <div className="flex flex-col gap-2 bg-stone-50 border-stone-200 border rounded-[32px] pt-2 pr-2 pb-2 pl-2 gap-x-2 gap-y-2">
+                                     <div className="bg-white border-neutral-200/60 border rounded-3xl pt-4 pr-4 pb-4 pl-4">
+                                         <div className="flex items-center gap-3 mb-4">
+                                             <h3 className="text-base font-semibold text-neutral-900 tracking-tight font-geist">Monthly Retainer</h3>
+                                             <span className="bg-neutral-100 text-neutral-600 px-2.5 py-1 rounded-full text-xs font-medium border border-neutral-200/50 font-geist">Most Popular</span>
+                                         </div>
+                                         <p className="text-[15px] text-neutral-500 mb-8 font-geist">Perfect for early teams getting off the ground</p>
+                                         <div className="text-2xl font-semibold text-neutral-900 tracking-tight mb-4 font-geist">$6,990/month</div>
+                                         <div className="flex flex-col sm:flex-row gap-3">
+                                             <button className="flex-1 bg-neutral-900 text-white font-medium px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 text-[15px] font-geist cursor-pointer">Start Today</button>
+                                             <button className="flex-1 bg-white text-neutral-900 border border-neutral-200 font-medium px-6 py-3 rounded-full hover:bg-neutral-50 transition-colors flex items-center justify-center gap-2 text-[15px] font-geist cursor-pointer">Book a Call</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+
+                     {/* Testimonials */}
+                     <section className="animate-scaleIn animation-delay-400 sm:p-8 bg-[#ffffff] w-full max-w-7xl z-10 border-neutral-200/70 border rounded-3xl mt-24 mr-auto mb-24 ml-auto pt-6 pr-6 pb-6 pl-6 relative shadow-2xl gap-x-20 gap-y-20">
+                         <div className="flex flex-col sm:px-0 animate-fadeInUp pr-0 pl-0 gap-x-6 gap-y-2">
+                             <h2 className="text-[44px] leading-[0.9] sm:text-6xl lg:text-7xl xl:text-5xl text-[#000000] tracking-tighter text-left font-geist">Testimonials.</h2>
+                             <p className="sm:text-base text-sm text-zinc-400 tracking-tight mt-1 font-geist">Real stories, real success.</p>
+                         </div>
+
+                         <div className="lg:col-span-12 relative mt-6">
+                             <div className="relative overflow-hidden h-[420px] rounded-3xl mt-6">
+                                 <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+                                 <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+                                 <div className="flex gap-6 overflow-x-auto scroll-smooth pr-6 pl-6 absolute top-0 right-0 bottom-0 left-0 items-center no-scrollbar" ref={testimonialRailRef}>
+                                     {[1, 2, 3, 4, 5].map((item, i) => (
+                                         <article key={i} className={`min-w-[420px] sm:min-w-[520px] max-w-[640px] bg-white border border-neutral-200/70 rounded-[24px] p-8 text-neutral-900 hover-lift backdrop-blur-sm snap-center shadow-2xl ${i % 2 === 0 ? '-rotate-2' : 'rotate-1'}`}>
+                                             <p className="text-lg sm:text-xl md:text-2xl text-neutral-900 tracking-tighter font-geist">"FlowAI transformed our content strategy. We now generate 10x more content while maintaining quality."</p>
+                                             <div className="mt-8 flex items-center gap-3">
+                                                 <img src="https://ui-avatars.com/api/?name=User&background=random" alt="" className="w-10 h-10 rounded-xl object-cover" />
+                                                 <div>
+                                                     <div className="text-sm tracking-tight font-geist">Sarah Chen {item}</div>
+                                                     <div className="text-xs text-neutral-500 tracking-tight font-geist">Director</div>
+                                                 </div>
+                                             </div>
+                                         </article>
+                                     ))}
+                                 </div>
+
+                                 <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3">
+                                     <button onClick={() => scrollTestimonial('left')} className="hover:bg-neutral-200 transition-colors inline-flex text-neutral-900 bg-neutral-100 w-10 h-10 border-neutral-200 border rounded-full items-center justify-center cursor-pointer">←</button>
+                                     <button onClick={() => scrollTestimonial('right')} className="w-10 h-10 rounded-full text-white bg-neutral-900 hover:bg-neutral-800 transition-colors inline-flex items-center justify-center cursor-pointer">→</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+
+                     {/* FAQ */}
+                     <section className="animate-fade-up lg:pr-8 lg:pt-0 w-full mb-24 gap-x-20 gap-y-20">
+                         <div className="grid lg:grid-cols-12 lg:gap-4">
+                             <div className="lg:col-span-4 space-y-6">
+                                 <h2 className="text-3xl lg:text-4xl font-medium tracking-tight text-neutral-900 font-geist">Frequency Asked Questions</h2>
+                                  <p className="text-[17px] text-neutral-500 leading-relaxed font-normal font-geist">Everything you need to know.</p>
+                             </div>
+                             <div className="lg:col-span-8">
+                                 <div className="bg-stone-50 border border-stone-200 rounded-3xl p-2 gap-2 flex flex-col">
+                                     {["How does the 'pause' feature work?", "What is the typical turnaround time?", "Do you offer development services?", "How do we communicate?"].map((q, i) => (
+                                         <div key={i} className="bg-white border border-neutral-200/60 rounded-2xl p-6 cursor-pointer group hover:border-neutral-300 transition-colors" onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}>
+                                             <div className="flex justify-between items-center">
+                                                 <h3 className="text-base font-medium text-neutral-900 font-geist">{q}</h3>
+                                                  <span className={`text-neutral-400 transition-transform duration-300 ${openFaqIndex === i ? 'rotate-180' : ''}`}>↓</span>
+                                             </div>
+                                             {openFaqIndex === i && <div className="mt-4 text-neutral-500 text-[15px] leading-relaxed font-geist">Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is a placeholder answer.</div>}
+                                         </div>
+                                     ))}
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+
+                     {/* Footer */}
+                     <footer className="pt-0 pb-0">
+                         <div className="container lg:pl-0 lg:pr-0 mx-auto pr-0 pl-0">
+                             <div className="lg:px-10 lg:py-12 bg-white border-neutral-200 border rounded-3xl pt-10 pr-6 pb-10 pl-6 shadow-[0_24px_60px_-32px_rgba(15,23,42,0.35)]">
+                                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+                                     <div className="lg:w-1/3 space-y-5">
+                                         <div className="flex items-center gap-3">
+                                             <div className="w-9 h-9 rounded-xl bg-neutral-900 flex items-center justify-center text-white">S</div>
+                                             <div className="flex flex-col">
+                                                 <span className="text-sm font-semibold text-neutral-900 tracking-tight font-geist">start.agency</span>
+                                                 <span className="text-[11px] uppercase text-neutral-400 tracking-[0.16em] font-geist">Start with design</span>
+                                             </div>
+                                         </div>
+                                         <p className="text-sm text-neutral-500 max-w-sm font-geist">We partner with startups.</p>
+                                     </div>
+
+                                     <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
+                                         {['Service', 'Case studies', 'Company'].map((col, i) => (
+                                             <div key={i} className="space-y-3">
+                                                 <h3 className="uppercase text-xs font-medium text-neutral-400 tracking-[0.16em] font-geist">{col}</h3>
+                                                 <ul className="space-y-2 text-neutral-600">
+                                                     <li><a href="#" className="hover:text-neutral-900 transition-colors font-geist">Link 1</a></li>
+                                                     <li><a href="#" className="hover:text-neutral-900 transition-colors font-geist">Link 2</a></li>
+                                                 </ul>
+                                             </div>
+                                         ))}
+                                     </div>
+                                 </div>
+                                 <div className="mt-10 border-t border-neutral-100 pt-6 flex flex-col gap-4">
+                                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-neutral-400">
+                                         <p className="font-geist">© 2025 start.agency</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </footer>
+
                 </main>
             </div>
         </div>
