@@ -31,15 +31,24 @@ const Templates: React.FC = () => {
       path: '/templates/start-agency',
       features: ['Corporate', 'Clean Design', 'Trustworthy'],
       color: 'emerald'
+    },
+    {
+      id: 'horizon',
+      title: 'Horizon',
+      description: 'A procedurally generated 3D coastal sunset experience. Features real-time water physics and dynamic lighting.',
+      price: 59,
+      path: '/templates/horizon',
+      features: ['3D WebGL', 'Interactive', 'Procedural Generation'],
+      color: 'amber'
     }
   ];
 
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-blue-500 selection:text-white">
       <Header />
-      
+
       <div className="relative pt-32 pb-20 px-6 container mx-auto max-w-7xl">
-        
+
         {/* Background Gradients */}
         <div className="fixed inset-0 pointer-events-none z-0">
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px]" />
@@ -53,7 +62,7 @@ const Templates: React.FC = () => {
                     <LayoutTemplate className="w-4 h-4 text-purple-400" />
                     <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">Premium Templates</span>
                 </div>
-                
+
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
                     <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-neutral-500">
                         Production Ready
@@ -63,9 +72,9 @@ const Templates: React.FC = () => {
                         Templates
                     </span>
                 </h1>
-                
+
                 <p className="text-xl text-neutral-400 leading-relaxed">
-                    Complete, multi-page website templates built with React 19 and Tailwind CSS v4. 
+                    Complete, multi-page website templates built with React 19 and Tailwind CSS v4.
                     Save hundreds of hours of development time.
                 </p>
             </div>
@@ -73,14 +82,14 @@ const Templates: React.FC = () => {
             {/* Templates Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {templates.map((template) => (
-                    <div 
+                    <div
                         key={template.id}
                         className="group relative flex flex-col bg-zinc-900/40 border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10"
                     >
                         {/* Preview Placeholder */}
                         <Link to={template.path} className="aspect-[4/3] bg-zinc-800/50 relative overflow-hidden group-hover:opacity-90 transition-opacity">
                             <div className={`absolute inset-0 bg-gradient-to-br from-${template.color}-500/20 to-transparent opacity-50`} />
-                            
+
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className={`w-32 h-32 rounded-full bg-${template.color}-500/20 blur-3xl`} />
                                 <div className="relative z-10 px-6 py-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-sm font-medium tracking-wide uppercase">
@@ -97,7 +106,7 @@ const Templates: React.FC = () => {
                                     <span className="text-sm font-bold text-white">${template.price}</span>
                                 </div>
                             </div>
-                            
+
                             <p className="text-neutral-400 text-sm leading-relaxed mb-6 flex-grow">
                                 {template.description}
                             </p>
@@ -114,7 +123,7 @@ const Templates: React.FC = () => {
 
                             {/* Actions */}
                             <div className="grid grid-cols-2 gap-3 mt-auto">
-                                <Link 
+                                <Link
                                     to={template.path}
                                     className="flex items-center justify-center gap-2 px-4 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors text-sm font-semibold"
                                 >
