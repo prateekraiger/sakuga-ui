@@ -12,14 +12,14 @@ const Landing: React.FC = () => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
@@ -79,24 +79,24 @@ const Landing: React.FC = () => {
       {/* Enhanced Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Animated gradient orbs with parallax */}
-        <div 
+        <div
           className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] animate-pulse"
           style={{ transform: `translateY(${scrollY * 0.3}px)` }}
         />
-        <div 
-          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[100px] animate-pulse" 
-          style={{ animationDelay: '1s', transform: `translateY(${-scrollY * 0.2}px)` }} 
+        <div
+          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-[100px] animate-pulse"
+          style={{ animationDelay: '1s', transform: `translateY(${-scrollY * 0.2}px)` }}
         />
-        <div 
+        <div
           className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[100px] animate-pulse"
           style={{ animationDelay: '2s', transform: `translate(-50%, -50%) translateY(${scrollY * 0.15}px)` }}
         />
-        
+
         {/* Enhanced grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black_0%,transparent_100%)]" />
-        
+
         {/* Mouse follower gradient - enhanced */}
-        <div 
+        <div
           className="absolute w-[800px] h-[800px] rounded-full opacity-10 blur-[120px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-transform duration-500 ease-out"
           style={{
             transform: `translate(${mousePosition.x - 400}px, ${mousePosition.y - 400}px)`,
@@ -130,7 +130,7 @@ const Landing: React.FC = () => {
 
           {/* Enhanced Subtitle */}
           <p className="max-w-3xl mx-auto text-neutral-400 text-lg md:text-xl leading-relaxed px-4">
-            A curated collection of <span className="text-white font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">30+ high-performance</span> animations, 
+            A curated collection of <span className="text-white font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">30+ high-performance</span> animations,
             interaction patterns, and visual effects for modern web interfaces.
             <br />
             <span className="text-neutral-500 text-base mt-2 block">Built with React 19 & Tailwind CSS v4 • Copy, Paste, Ship 🚀</span>
@@ -138,8 +138,8 @@ const Landing: React.FC = () => {
 
           {/* Enhanced CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-6">
-            <Link 
-              to="/components" 
+            <Link
+              to="/components"
               className="group relative px-8 py-4 bg-white text-black rounded-full font-semibold overflow-hidden hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -150,8 +150,8 @@ const Landing: React.FC = () => {
               </div>
             </Link>
 
-            <a 
-              href="https://github.com/prateekraiger/sakuga-ui" 
+            <a
+              href="https://github.com/prateekraiger/sakuga-ui"
               target="_blank"
               rel="noopener noreferrer"
               className="group px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/10 hover:border-white/40 transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
@@ -195,7 +195,7 @@ const Landing: React.FC = () => {
             {componentCategories.map((category, index) => {
               const Icon = category.icon;
               return (
-                <div 
+                <div
                   key={index}
                   className="group px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-default"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -215,13 +215,13 @@ const Landing: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl mb-24 px-4">
 
           {/* Components Card */}
-          <Link 
-            to="/components" 
+          <Link
+            to="/components"
             className="group relative p-8 h-80 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 border border-white/10 rounded-3xl overflow-hidden hover:border-blue-500/50 hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] transition-all duration-500 backdrop-blur-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(59,130,246,0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
             <div className="relative h-full flex flex-col">
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
                 <Layers className="w-7 h-7 text-white" />
@@ -238,13 +238,13 @@ const Landing: React.FC = () => {
           </Link>
 
           {/* Templates Card */}
-          <Link 
-            to="/templates/aether" 
+          <Link
+            to="/templates"
             className="group relative p-8 h-80 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 hover:shadow-[0_0_50px_rgba(168,85,247,0.3)] transition-all duration-500 backdrop-blur-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-bl from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(168,85,247,0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
             <div className="relative h-full flex flex-col">
               <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
                 <LayoutTemplate className="w-7 h-7 text-white" />
@@ -261,15 +261,15 @@ const Landing: React.FC = () => {
           </Link>
 
           {/* Open Source Card */}
-          <a 
-            href="https://github.com/prateekraiger/sakuga-ui" 
+          <a
+            href="https://github.com/prateekraiger/sakuga-ui"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative p-8 h-80 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 border border-white/10 rounded-3xl overflow-hidden hover:border-green-500/50 hover:shadow-[0_0_50px_rgba(34,197,94,0.3)] transition-all duration-500 backdrop-blur-xl"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-green-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
             <div className="relative h-full flex flex-col">
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
                 <Github className="w-7 h-7 text-white" />
@@ -296,7 +296,7 @@ const Landing: React.FC = () => {
               Everything you need to build stunning, high-performance interfaces. No compromises.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -316,9 +316,9 @@ const Landing: React.FC = () => {
                 pink: 'text-pink-400',
                 cyan: 'text-cyan-400',
               };
-              
+
               return (
-                <div 
+                <div
                   key={index}
                   className="group p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm hover:border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -339,7 +339,7 @@ const Landing: React.FC = () => {
           <div className="relative p-12 rounded-3xl border border-white/10 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 backdrop-blur-xl overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(168,85,247,0.1),transparent)]" />
-            
+
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                 <span className="bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent">
@@ -349,7 +349,7 @@ const Landing: React.FC = () => {
               <p className="text-neutral-400 text-center mb-10 text-lg">
                 No installation required. Just copy, paste, and start building.
               </p>
-              
+
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
@@ -385,9 +385,9 @@ const Landing: React.FC = () => {
               <p className="text-xs text-neutral-600">Crafted with passion by Prateek Raiger</p>
             </div>
             <div className="flex items-center gap-6">
-              <a 
-                href="https://github.com/prateekraiger/sakuga-ui" 
-                target="_blank" 
+              <a
+                href="https://github.com/prateekraiger/sakuga-ui"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-neutral-400 hover:text-white transition-colors"
               >
@@ -396,7 +396,7 @@ const Landing: React.FC = () => {
               <Link to="/components" className="text-sm text-neutral-400 hover:text-white transition-colors">
                 Components
               </Link>
-              <Link to="/templates/aether" className="text-sm text-neutral-400 hover:text-white transition-colors">
+              <Link to="/templates" className="text-sm text-neutral-400 hover:text-white transition-colors">
                 Templates
               </Link>
             </div>
