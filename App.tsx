@@ -8,6 +8,7 @@ import AetherTemplate from './src/pages/AetherTemplate';
 import MasKokoTemplate from './src/pages/MasKokoTemplate';
 import StartAgencyTemplate from './src/pages/StartAgencyTemplate';
 import HorizonTemplate from './src/pages/HorizonTemplate';
+import EsteticoTemplate from './src/pages/EsteticoTemplate';
 
 // Layouts
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
@@ -116,6 +117,7 @@ const App: React.FC = () => {
         <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
         <Route path="/templates/start-agency" element={<StartAgencyTemplate />} />
         <Route path="/templates/horizon" element={<HorizonTemplate />} />
+        <Route path="/templates/estetico" element={<EsteticoTemplate />} />
 
         {/* Components Showcase Routes */}
         <Route
