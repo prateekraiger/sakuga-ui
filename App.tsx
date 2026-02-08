@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-// Pages
-import Landing from './src/pages/Landing';
-import Templates from './src/pages/Templates';
-import AetherTemplate from './src/pages/AetherTemplate';
-import MasKokoTemplate from './src/pages/MasKokoTemplate';
-import StartAgencyTemplate from './src/pages/StartAgencyTemplate';
-import HorizonTemplate from './src/pages/HorizonTemplate';
-import EsteticoTemplate from './src/pages/EsteticoTemplate';
+// Lazy load pages for better performance
+const Landing = lazy(() => import('./src/pages/Landing'));
+const Templates = lazy(() => import('./src/pages/Templates'));
+const AetherTemplate = lazy(() => import('./src/pages/AetherTemplate'));
+const MasKokoTemplate = lazy(() => import('./src/pages/MasKokoTemplate'));
+const StartAgencyTemplate = lazy(() => import('./src/pages/StartAgencyTemplate'));
+const HorizonTemplate = lazy(() => import('./src/pages/HorizonTemplate'));
+const EsteticoTemplate = lazy(() => import('./src/pages/EsteticoTemplate'));
 
 // Layouts
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
@@ -89,6 +89,16 @@ import {
   VIDEO_EXPAND_CODE
 } from './src/components/media';
 
+// Loading component for Suspense fallback
+const PageLoader: React.FC = () => (
+  <div className="min-h-screen bg-[#050505] flex items-center justify-center">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
+      <p className="text-neutral-400 text-sm">Loading...</p>
+    </div>
+  </div>
+);
+
 const App: React.FC = () => {
   // Shared Modal State for the showcase
   const [modalOpen, setModalOpen] = useState(false);
@@ -107,17 +117,18 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        {/* Landing Page */}
-        <Route path="/" element={<Landing />} />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Landing Page */}
+          <Route path="/" element={<Landing />} />
 
-        {/* Templates Routes */}
-        <Route path="/templates" element={<Templates />} />
-        <Route path="/templates/aether" element={<AetherTemplate />} />
-        <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
-        <Route path="/templates/start-agency" element={<StartAgencyTemplate />} />
-        <Route path="/templates/horizon" element={<HorizonTemplate />} />
-        <Route path="/templates/estetico" element={<EsteticoTemplate />} />
+          {/* Templates Routes */}
+          <Route path="/templates" element={<Templates />} />
+          <Route path="/templates/aether" element={<AetherTemplate />} />
+          <Route path="/templates/maskoko" element={<MasKokoTemplate />} />
+          <Route path="/templates/start-agency" element={<StartAgencyTemplate />} />
+          <Route path="/templates/horizon" element={<HorizonTemplate />} />
+          <Route path="/templates/estetico" element={<EsteticoTemplate />} />
 
         {/* Components Showcase Routes */}
         <Route
@@ -418,6 +429,7 @@ const App: React.FC = () => {
         {/* Redirect unknown routes to home */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
