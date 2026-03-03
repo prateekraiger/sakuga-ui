@@ -40,6 +40,24 @@ const Templates: React.FC = () => {
       path: '/templates/horizon',
       features: ['3D WebGL', 'Interactive', 'Procedural Generation'],
       color: 'amber'
+    },
+    {
+      id: 'estetico',
+      title: 'Estetico Estate',
+      description: 'A luxurious real estate and property showcase template. Features immersive imagery and a lifestyle-first approach.',
+      price: 49,
+      path: '/templates/estetico',
+      features: ['Real Estate', 'Luxury', 'Immersive'],
+      color: 'emerald'
+    },
+    {
+      id: 'gisel-rosso',
+      title: 'Gisel Rosso',
+      description: 'An elegant artist portfolio and gallery template. Perfect for exhibiting artworks and commissions.',
+      price: 39,
+      path: '/templates/gisel-rosso',
+      features: ['Artist Portfolio', 'Gallery', 'E-commerce'],
+      color: 'pink'
     }
   ];
 
