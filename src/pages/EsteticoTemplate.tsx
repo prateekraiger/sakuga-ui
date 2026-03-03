@@ -222,7 +222,7 @@ See why the modern nomad is switching.</p>
                         <div className="text-xs font-semibold bg-white/90 rounded-full pt-1 pr-3 pb-1 pl-3 absolute top-4 right-4 backdrop-blur">Energy P2P Marketplace</div>
                     </div>
                     <div className="px-4 pb-6">
-                        <h3 class="text-xl font-semibold text-stone-900 mb-2">Sovereign Living</h3>
+                        <h3 className="text-xl font-semibold text-stone-900 mb-2">Sovereign Living</h3>
                         <p className="text-sm text-stone-500 mb-4">Filter for energy independence. Find homes that offer water purification, solar sovereignty, and food gardens.</p>
                         <button className="w-full py-3 rounded-xl border border-stone-200 text-stone-900 font-medium hover:bg-stone-900 hover:text-white transition-colors flex items-center justify-center gap-2">
                             Check Details <ArrowUpRight className="w-4 h-4" />
