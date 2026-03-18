@@ -15,6 +15,15 @@ const Templates: React.FC = () => {
       color: 'blue'
     },
     {
+      id: "bila-studio",
+      title: "Bila Studio",
+      description: "A minimalist, elegant portfolio template for creative studios and independent designers, focusing on typography and fluid motion.",
+      price: 39,
+      path: "/templates/bila-studio",
+      features: ["Instrument Serif Typography", "Fluid Motion", "Cookie Consent System", "Responsive Design"],
+      color: "from-amber-800 to-amber-950"
+    },
+    {
       id: 'maskoko',
       title: 'MasKoko Agency',
       description: 'A vibrant, bold portfolio template for creative agencies and digital studios. High energy and smooth transitions.',

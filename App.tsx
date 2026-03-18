@@ -10,6 +10,7 @@ const StartAgencyTemplate = lazy(() => import('./src/pages/StartAgencyTemplate')
 const HorizonTemplate = lazy(() => import('./src/pages/HorizonTemplate'));
 const EsteticoTemplate = lazy(() => import('./src/pages/EsteticoTemplate'));
 const GiselRossoTemplate = lazy(() => import('./src/pages/GiselRossoTemplate'));
+const BilaStudioTemplate = lazy(() => import('./src/pages/BilaStudioTemplate'));
 
 // Layouts
 import ShowcaseLayout from './src/layouts/ShowcaseLayout';
@@ -131,6 +132,7 @@ const App: React.FC = () => {
           <Route path="/templates/horizon" element={<HorizonTemplate />} />
           <Route path="/templates/estetico" element={<EsteticoTemplate />} />
           <Route path="/templates/gisel-rosso" element={<GiselRossoTemplate />} />
+          <Route path="/templates/bila-studio" element={<BilaStudioTemplate />} />
 
         {/* Components Showcase Routes */}
         <Route
