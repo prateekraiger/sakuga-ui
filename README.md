@@ -73,7 +73,3 @@ export default function Page() {
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for conventions. Licensed under the **MIT License**—see [LICENSE](LICENSE) for details.
 
 ---
-
-<div align="center">
-Built with ❤️ by [Prateek Raiger](https://github.com/prateekraiger)
-</div>
