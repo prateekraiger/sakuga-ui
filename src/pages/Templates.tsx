@@ -3,6 +3,15 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, LayoutTemplate, ShoppingCart, Star, Check } from 'lucide-react';
 import { Header } from '../components/layouts';
 
+const colorMap: Record<string, { from: string; glow: string }> = {
+  blue: { from: 'from-blue-500/20', glow: 'bg-blue-500/20' },
+  purple: { from: 'from-purple-500/20', glow: 'bg-purple-500/20' },
+  emerald: { from: 'from-emerald-500/20', glow: 'bg-emerald-500/20' },
+  amber: { from: 'from-amber-500/20', glow: 'bg-amber-500/20' },
+  pink: { from: 'from-pink-500/20', glow: 'bg-pink-500/20' },
+  'from-amber-800 to-amber-950': { from: 'from-amber-800/20', glow: 'bg-amber-800/20' },
+};
+
 const Templates: React.FC = () => {
   const templates = [
     {
@@ -115,10 +124,10 @@ const Templates: React.FC = () => {
                     >
                         {/* Preview Placeholder */}
                         <Link to={template.path} className="aspect-[4/3] bg-zinc-800/50 relative overflow-hidden group-hover:opacity-90 transition-opacity">
-                            <div className={`absolute inset-0 bg-gradient-to-br from-${template.color}-500/20 to-transparent opacity-50`} />
+                            <div className={`absolute inset-0 bg-gradient-to-br ${(colorMap[template.color] || colorMap.blue).from} to-transparent opacity-50`} />
 
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className={`w-32 h-32 rounded-full bg-${template.color}-500/20 blur-3xl`} />
+                                <div className={`w-32 h-32 rounded-full ${(colorMap[template.color] || colorMap.blue).glow} blur-3xl`} />
                                 <div className="relative z-10 px-6 py-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-sm font-medium tracking-wide uppercase">
                                     View Demo
                                 </div>
