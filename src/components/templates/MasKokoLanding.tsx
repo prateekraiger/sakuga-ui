@@ -377,7 +377,7 @@ const Hero = () => {
     );
 };
 
-const ProjectItem = ({ title, category, year, index }: { title: string, category: string, year: string, index: number }) => (
+const ProjectItem: React.FC<{ title: string, category: string, year: string, index: number }> = ({ title, category, year, index }) => (
     <div className="group interactive relative border-t border-zinc-900 hover:bg-zinc-900/30 transition-colors duration-500">
         <div className="py-12 md:py-16 px-4 flex flex-col md:flex-row justify-between items-baseline gap-6 relative z-10">
             <div className="flex items-baseline gap-8">
