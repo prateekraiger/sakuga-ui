@@ -164,6 +164,471 @@ const HeroCanvas: React.FC = () => {
 };
 
 // ---------------------------------------------------------
+// Sub-component: PhysicsSandbox
+// Live, interactive physics engine mockup for the Hero section
+// ---------------------------------------------------------
+const PhysicsSandbox: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [gravity, setGravity] = useState<number>(0.25);
+  const [forceMode, setForceMode] = useState<'attract' | 'repel'>('attract');
+  const [particleCount, setParticleCount] = useState<number>(0);
+  const [activeNodes, setActiveNodes] = useState<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = container.clientWidth;
+    let height = canvas.height = container.clientHeight;
+    let animationFrameId: number;
+
+    const balls: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      color: string;
+    }> = [];
+
+    const sparks: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      color: string;
+      life: number;
+      size: number;
+    }> = [];
+
+    const colors = [
+      '#06b6d4',  // Cyan
+      '#a855f7',  // Purple
+      '#ec4899',  // Pink
+      '#3b82f6',  // Blue
+      '#e11d48',  // Rose
+    ];
+
+    const colorDarkMap: Record<string, string> = {
+      '#06b6d4': '#083344',
+      '#a855f7': '#3b0764',
+      '#ec4899': '#500724',
+      '#3b82f6': '#172554',
+      '#e11d48': '#4c0519',
+    };
+
+    // Initial particles
+    const initialCount = 16;
+    for (let i = 0; i < initialCount; i++) {
+      const radius = Math.random() * 8 + 12;
+      balls.push({
+        x: Math.random() * (width - radius * 2) + radius,
+        y: Math.random() * (height / 2 - radius * 2) + radius,
+        vx: (Math.random() - 0.5) * 3.5,
+        vy: (Math.random() - 0.5) * 3.5,
+        radius,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      });
+    }
+    setParticleCount(balls.length);
+    setActiveNodes(balls.length);
+
+    const createSparks = (x: number, y: number, color: string) => {
+      const count = Math.floor(Math.random() * 3) + 4;
+      for (let k = 0; k < count; k++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 2.5 + 1.2;
+        sparks.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color,
+          life: 1.0,
+          size: Math.random() * 2 + 1,
+        });
+      }
+    };
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    };
+
+    const handleMouseLeave = () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    };
+
+    const handleClick = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Spawn 3 balls
+      for (let i = 0; i < 3; i++) {
+        const radius = Math.random() * 6 + 10;
+        balls.push({
+          x,
+          y: y - 5,
+          vx: (Math.random() - 0.5) * 5,
+          vy: (Math.random() - 0.5) * 5 - 2.5,
+          radius,
+          color: colors[Math.floor(Math.random() * colors.length)],
+        });
+        createSparks(x, y, colors[Math.floor(Math.random() * colors.length)]);
+      }
+      setParticleCount(balls.length);
+      setActiveNodes(balls.length);
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+    canvas.addEventListener('click', handleClick);
+
+    const resize = () => {
+      if (!canvas || !container) return;
+      width = canvas.width = container.clientWidth;
+      height = canvas.height = container.clientHeight;
+    };
+    window.addEventListener('resize', resize);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw Grid Background with Crossing "+" Intersections
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.012)';
+      ctx.lineWidth = 1;
+      const gridSize = 45;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+      ctx.lineWidth = 0.75;
+      const crossSize = 3;
+      for (let x = gridSize; x < width; x += gridSize) {
+        for (let y = gridSize; y < height; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x - crossSize, y);
+          ctx.lineTo(x + crossSize, y);
+          ctx.moveTo(x, y - crossSize);
+          ctx.lineTo(x, y + crossSize);
+          ctx.stroke();
+        }
+      }
+
+      // Draw Gravity Force Field Zone
+      if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, 130, 0, Math.PI * 2);
+        ctx.strokeStyle = forceMode === 'attract' ? 'rgba(168, 85, 247, 0.08)' : 'rgba(225, 29, 72, 0.08)';
+        
+        const forceGlow = ctx.createRadialGradient(mouseX, mouseY, 10, mouseX, mouseY, 130);
+        forceGlow.addColorStop(0, forceMode === 'attract' ? 'rgba(168, 85, 247, 0.03)' : 'rgba(225, 29, 72, 0.03)');
+        forceGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = forceGlow;
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      // Update and draw elastic/spring connective mesh lines between close nodes
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < balls.length; i++) {
+        const b1 = balls[i];
+        for (let j = i + 1; j < balls.length; j++) {
+          const b2 = balls[j];
+          const dx = b2.x - b1.x;
+          const dy = b2.y - b1.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(b1.x, b1.y);
+            ctx.lineTo(b2.x, b2.y);
+            const alpha = (1 - dist / 110) * 0.14;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Update & Draw sparks
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.08; // Spark gravity
+        s.life -= 0.035; // Spark fade rate
+        
+        if (s.life <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = s.life * 0.8;
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+      }
+
+      // Draw Node Bodies with specular glossy glass shading
+      balls.forEach((b) => {
+        // Gravity
+        b.vy += gravity;
+
+        // Mouse force field influence
+        if (mouseX > -500 && mouseY > -500) {
+          const dx = mouseX - b.x;
+          const dy = mouseY - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140 && dist > 5) {
+            const force = (140 - dist) * 0.0055;
+            const dirX = dx / dist;
+            const dirY = dy / dist;
+
+            if (forceMode === 'attract') {
+              b.vx += dirX * force;
+              b.vy += dirY * force;
+            } else {
+              b.vx -= dirX * force;
+              b.vy -= dirY * force;
+            }
+          }
+        }
+
+        // Friction
+        b.vx *= 0.99;
+        b.vy *= 0.99;
+
+        // Position update
+        b.x += b.vx;
+        b.y += b.vy;
+
+        // Wall collisions & Spark trigger
+        const bounce = -0.72;
+        if (b.x - b.radius < 0) {
+          b.x = b.radius;
+          b.vx *= bounce;
+          createSparks(0, b.y, b.color);
+        } else if (b.x + b.radius > width) {
+          b.x = width - b.radius;
+          b.vx *= bounce;
+          createSparks(width, b.y, b.color);
+        }
+
+        if (b.y - b.radius < 0) {
+          b.y = b.radius;
+          b.vy *= bounce;
+          createSparks(b.x, 0, b.color);
+        } else if (b.y + b.radius > height) {
+          b.y = height - b.radius;
+          b.vy *= bounce;
+          b.vx *= 0.95; // floor friction
+          if (Math.abs(b.vy) > 0.4 || Math.abs(b.vx) > 0.4) {
+            createSparks(b.x, height, b.color);
+          }
+        }
+
+        // Particle collisions
+        for (let j = 0; j < balls.length; j++) {
+          const b2 = balls[j];
+          if (b === b2) continue;
+
+          const dx = b2.x - b.x;
+          const dy = b2.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minDist = b.radius + b2.radius;
+
+          if (dist < minDist) {
+            const overlap = minDist - dist;
+            const nx = dx / (dist || 1);
+            const ny = dy / (dist || 1);
+
+            // Separate
+            b.x -= nx * overlap * 0.5;
+            b.y -= ny * overlap * 0.5;
+            b2.x += nx * overlap * 0.5;
+            b2.y += ny * overlap * 0.5;
+
+            // Elastic bounce
+            const kx = b.vx - b2.vx;
+            const ky = b.vy - b2.vy;
+            const p = (nx * kx + ny * ky);
+
+            b.vx -= p * nx * 0.8;
+            b.vy -= p * ny * 0.8;
+            b2.vx += p * nx * 0.8;
+            b2.vy += p * ny * 0.8;
+
+            // Spark on high energy node collisions
+            if (Math.abs(p) > 1.2) {
+              createSparks((b.x + b2.x) / 2, (b.y + b2.y) / 2, Math.random() > 0.5 ? b.color : b2.color);
+            }
+          }
+        }
+
+        // 1. Draw outer glowing radial halo (neon bloom)
+        ctx.beginPath();
+        const distToMouse = Math.sqrt(Math.pow(mouseX - b.x, 2) + Math.pow(mouseY - b.y, 2));
+        const isHovered = mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height && distToMouse < b.radius + 12;
+        const glowRadius = isHovered ? b.radius * 3.6 : b.radius * 2.4;
+        const radGradGlow = ctx.createRadialGradient(b.x, b.y, b.radius * 0.4, b.x, b.y, glowRadius);
+        radGradGlow.addColorStop(0, b.color);
+        radGradGlow.addColorStop(0.2, b.color);
+        radGradGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = radGradGlow;
+        ctx.arc(b.x, b.y, glowRadius, 0, Math.PI * 2);
+        ctx.globalAlpha = isHovered ? 0.45 : 0.22;
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+
+        // 2. Draw 3D-shaded node body (glass volume)
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        const bodyGrad = ctx.createRadialGradient(
+          b.x - b.radius * 0.2,
+          b.y - b.radius * 0.2,
+          b.radius * 0.05,
+          b.x,
+          b.y,
+          b.radius
+        );
+        bodyGrad.addColorStop(0, '#ffffff');
+        bodyGrad.addColorStop(0.25, b.color);
+        bodyGrad.addColorStop(1, colorDarkMap[b.color] || '#111827');
+        ctx.fillStyle = bodyGrad;
+        ctx.fill();
+
+        // 3. Highlight boundary ring
+        ctx.strokeStyle = isHovered ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // 4. Draw glossy specular white light reflection dot
+        ctx.beginPath();
+        const specularGrad = ctx.createRadialGradient(
+          b.x - b.radius * 0.35,
+          b.y - b.radius * 0.35,
+          0,
+          b.x - b.radius * 0.35,
+          b.y - b.radius * 0.35,
+          b.radius * 0.35
+        );
+        specularGrad.addColorStop(0, 'rgba(255, 255, 255, 0.65)');
+        specularGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = specularGrad;
+        ctx.arc(b.x - b.radius * 0.35, b.y - b.radius * 0.35, b.radius * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', resize);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      canvas.removeEventListener('click', handleClick);
+    };
+  }, [gravity, forceMode]);
+
+  return (
+    <div className="w-full max-w-[500px] aspect-square rounded-3xl border border-white/10 bg-zinc-950/80 backdrop-blur-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-purple-500/20 transition-colors duration-500 flex flex-col relative group/sandbox">
+      {/* Chrome header */}
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/5 bg-zinc-900/40 select-none">
+        <div className="flex items-center gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+        </div>
+        <div className="text-[9px] font-mono text-neutral-400 flex items-center gap-1.5 bg-neutral-900/80 border border-white/5 px-2.5 py-0.5 rounded-md">
+          <span className="w-1 h-1 bg-green-400 rounded-full animate-ping" />
+          <span>physics_sandbox.tsx</span>
+        </div>
+        <span className="text-[9px] font-mono text-neutral-500 tracking-wider">60 FPS</span>
+      </div>
+
+      {/* Main Canvas Area */}
+      <div ref={containerRef} className="flex-grow w-full relative overflow-hidden bg-black/10 cursor-crosshair">
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+        
+        {/* Floating instructions */}
+        <div className="absolute top-3 left-3 pointer-events-none z-10 flex flex-col gap-1 select-none opacity-80 group-hover/sandbox:opacity-100 transition-opacity">
+          <p className="text-[9px] text-neutral-400 font-mono bg-zinc-900/90 border border-white/5 px-2 py-0.5 rounded">
+            Click inside to spawn balls
+          </p>
+          <p className="text-[9px] text-neutral-400 font-mono bg-zinc-900/90 border border-white/5 px-2 py-0.5 rounded">
+            Hover to attract gravity
+          </p>
+        </div>
+
+        {/* Counter */}
+        <div className="absolute top-3 right-3 pointer-events-none z-10 select-none">
+          <span className="text-[9px] text-neutral-400 font-mono bg-zinc-900/90 border border-white/5 px-2 py-0.5 rounded">
+            Nodes: {particleCount}
+          </span>
+        </div>
+      </div>
+
+      {/* Control panel footer */}
+      <div className="px-5 py-3.5 border-t border-white/5 bg-zinc-900/25 flex items-center justify-between select-none">
+        <div className="flex items-center gap-2">
+          <span className="text-[9px] text-neutral-400 font-mono uppercase tracking-wider">Force Field:</span>
+          <button
+            onClick={() => setForceMode(forceMode === 'attract' ? 'repel' : 'attract')}
+            className={`px-2 py-0.5 rounded border text-[8px] font-mono uppercase tracking-wider transition ${
+              forceMode === 'attract'
+                ? 'bg-purple-500/10 border-purple-500/30 text-purple-400 hover:bg-purple-500/20'
+                : 'bg-rose-500/10 border-rose-500/30 text-rose-400 hover:bg-rose-500/20'
+            }`}
+          >
+            {forceMode}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="text-[9px] text-neutral-400 font-mono uppercase tracking-wider">Gravity:</span>
+          <input
+            type="range"
+            min="0"
+            max="0.6"
+            step="0.05"
+            value={gravity}
+            onChange={(e) => setGravity(parseFloat(e.target.value))}
+            className="w-14 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-purple-500"
+          />
+          <span className="text-[8px] font-mono text-neutral-400 w-4">{gravity}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ---------------------------------------------------------
 // Sub-components: Playground Interactive Elements
 // ---------------------------------------------------------
 const PlaygroundSpotlight: React.FC = () => {
@@ -667,99 +1132,118 @@ if (dist < 150) {
       <div className="relative z-10 container mx-auto px-6 flex flex-col items-center">
 
         {/* Hero Section */}
-        <div ref={heroRef} className="relative min-h-[90vh] flex flex-col justify-center items-center text-center w-full max-w-6xl py-32 overflow-hidden">
+        <div ref={heroRef} className="relative min-h-[90vh] flex flex-col justify-center items-center w-full max-w-7xl py-20 lg:py-32 overflow-hidden">
           {/* Render High Performance Interactive Background Canvas */}
           <HeroCanvas />
 
-          <div className="relative z-10 flex flex-col items-center space-y-8">
-            {/* Animated Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2 border border-white/10 rounded-full bg-neutral-900/60 backdrop-blur-md hover:border-blue-500/30 hover:bg-neutral-800/80 transition-all duration-300 cursor-default group">
-              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-widest text-neutral-300">Open Source Component Kit</span>
-              <div className="flex items-center gap-1">
-                <Star className="w-3.5 h-3.5 text-yellow-400 group-hover:rotate-[72deg] transition-transform duration-500" />
-                <span className="text-xs text-yellow-400 font-semibold">MIT</span>
-              </div>
-            </div>
-
-            {/* Main Heading with Gradient Animation */}
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none font-display">
-              <span className="block bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-neutral-500">
-                SAKUGA
-              </span>
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                _UI
-              </span>
-            </h1>
-
-            {/* Enhanced Subtitle */}
-            <p className="max-w-2xl mx-auto text-neutral-400 text-base md:text-lg leading-relaxed px-4">
-              A curated catalog of <span className="text-white font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">30+ high-performance</span> interactive components,
-              dynamic templates, and visual physics animations built to copy and paste.
-              <span className="text-neutral-500 text-xs mt-3 block font-mono">React 19 & Tailwind CSS v4 Compatible</span>
-            </p>
-
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-              <Link
-                to="/components"
-                className="group relative px-8 py-3.5 bg-white text-black rounded-full font-bold overflow-hidden hover:scale-105 transition-all duration-300 shadow-xl shadow-blue-500/10"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex items-center gap-2 z-10 text-sm group-hover:text-white transition-colors duration-300">
-                  <Code2 className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                  <span>Browse Components</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full px-2 lg:px-4">
+            {/* Left Column (Content) */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 lg:space-y-8">
+              {/* Animated Badge */}
+              <div className="inline-flex items-center gap-2 px-5 py-2 border border-white/10 rounded-full bg-neutral-900/60 backdrop-blur-md hover:border-blue-500/30 hover:bg-neutral-800/80 transition-all duration-300 cursor-default group">
+                <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
+                <span className="text-xs font-mono uppercase tracking-widest text-neutral-300">Open Source Component Kit</span>
+                <div className="flex items-center gap-1">
+                  <Star className="w-3.5 h-3.5 text-yellow-400 group-hover:rotate-[72deg] transition-transform duration-500" />
+                  <span className="text-xs text-yellow-400 font-semibold">MIT</span>
                 </div>
-              </Link>
-
-              <a
-                href="https://github.com/prateekraiger/sakuga-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group px-8 py-3.5 border border-white/10 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/30 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 backdrop-blur-sm"
-              >
-                <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span>Star on GitHub</span>
-                <span className="ml-2 px-1.5 py-0.5 bg-neutral-800 text-[10px] text-neutral-400 border border-white/5 rounded">Free</span>
-              </a>
-            </div>
-
-            {/* Enhanced Stats */}
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-xs text-neutral-400 border-t border-white/5 w-full max-w-lg">
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping" />
-                <span>30+ Micro-Interactions</span>
               </div>
-              <div className="h-4 w-px bg-white/10" />
-              <div className="flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 text-yellow-400" />
-                <span>Zero Package Bloat</span>
-              </div>
-              <div className="h-4 w-px bg-white/10" />
-              <div className="flex items-center gap-1.5">
-                <Package className="w-3.5 h-3.5 text-purple-400" />
-                <span>TypeScript Native</span>
-              </div>
-            </div>
 
-            {/* Component Categories Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 pt-4">
-              {componentCategories.map((category, index) => {
-                const Icon = category.icon;
-                return (
-                  <div
-                    key={index}
-                    className="group px-4 py-1.5 rounded-full bg-neutral-950/80 border border-white/5 hover:border-white/20 transition-all duration-300 cursor-default"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Icon className="w-3.5 h-3.5 text-neutral-400 group-hover:scale-115 transition-transform" />
-                      <span className="text-xs text-neutral-300 font-medium">{category.name}</span>
-                      <span className="text-[10px] text-neutral-500 font-mono">({category.count})</span>
-                    </div>
+              {/* Main Heading with Gradient Animation */}
+              <h1 className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-bold tracking-tighter leading-none font-display select-none group/title flex flex-wrap items-center justify-center lg:justify-start gap-x-3 sm:gap-x-4">
+                <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-100 to-zinc-400 group-hover/title:from-white group-hover/title:to-zinc-300 transition-all duration-700 cursor-default">
+                  SAKUGA
+                </span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-[size:200%_200%] animate-gradient group-hover/title:scale-[1.02] transition-transform duration-500 cursor-default filter drop-shadow-[0_0_30px_rgba(168,85,247,0.35)]">
+                  _UI
+                </span>
+              </h1>
+
+              {/* Enhanced Subtitle */}
+              <p className="max-w-xl text-neutral-400 text-sm md:text-base lg:text-lg leading-relaxed">
+                A curated catalog of <span className="text-white font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-sans">30+ high-performance</span> interactive components,
+                dynamic templates, and visual physics animations built to copy and paste.
+                <span className="text-neutral-500 text-xs mt-3 block font-mono">React 19 & Tailwind CSS v4 Compatible</span>
+              </p>
+
+              {/* Enhanced CTA Buttons */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <Link
+                  to="/components"
+                  className="group relative flex overflow-hidden transition-all duration-500 hover:scale-[1.04] hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] focus:outline-none text-sm font-semibold tracking-wide rounded-full py-4 px-8 items-center justify-center"
+                >
+                  {/* Full Border Beam */}
+                  <div className="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+                    <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#3b82f6_320deg,#a855f7_340deg,#ec4899_360deg)]" style={{ animation: 'beam-spin 3s linear infinite' }}></div>
+                    <div className="absolute inset-[1px] rounded-full bg-black"></div>
                   </div>
-                );
-              })}
+
+                  {/* Inner Background & Effects */}
+                  <div className="-z-10 overflow-hidden bg-zinc-950 rounded-full absolute top-[1px] right-[1px] bottom-[1px] left-[1px]">
+                    <div className="absolute inset-0 bg-gradient-to-b from-zinc-800/40 to-transparent"></div>
+                    <div className="opacity-20 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px)', backgroundSize: '10px 10px', animation: 'dots-move 8s linear infinite' }}></div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-blue-500/10 blur-xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-purple-500/25"></div>
+                  </div>
+
+                  <span className="relative z-10 flex items-center gap-2 text-white/90 group-hover:text-white transition-colors duration-300">
+                    <Code2 className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                    <span>Browse Components</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </Link>
+
+                <a
+                  href="https://github.com/prateekraiger/sakuga-ui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative px-8 py-4 border border-white/10 bg-white/[0.02] hover:border-blue-500/20 hover:bg-neutral-900/60 rounded-full text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-md overflow-hidden hover:scale-105"
+                >
+                  {/* Subtle inner radial gradient shadow */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <Github className="w-4 h-4 group-hover:scale-110 transition-transform text-neutral-300 group-hover:text-white relative z-10" />
+                  <span className="text-neutral-300 group-hover:text-white transition-colors relative z-10">Star on GitHub</span>
+                  <span className="ml-2 px-1.5 py-0.5 bg-neutral-800 text-[10px] text-neutral-400 border border-white/5 rounded relative z-10">Free</span>
+                </a>
+              </div>
+
+              {/* Sleek Premium Badges Grid */}
+              <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/5 w-full max-w-xl">
+                {[
+                  { icon: Sparkles, label: "30+ Animations", color: "text-blue-400", border: "hover:border-blue-500/30" },
+                  { icon: Zap, label: "Zero Package Bloat", color: "text-yellow-400", border: "hover:border-yellow-500/30" },
+                  { icon: Package, label: "TypeScript Native", color: "text-purple-400", border: "hover:border-purple-500/30" }
+                ].map((stat, i) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div key={i} className={`flex flex-col items-center lg:items-start p-3 rounded-2xl bg-neutral-900/40 border border-white/5 hover:bg-neutral-800/35 transition-all duration-300 group/stat ${stat.border}`}>
+                      <Icon className={`w-4 h-4 ${stat.color} mb-1.5 group-hover/stat:scale-110 transition-transform duration-300`} />
+                      <span className="text-[11px] font-medium text-neutral-300 font-mono tracking-tight">{stat.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Component Categories Pills */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2 w-full max-w-xl">
+                {componentCategories.map((category, index) => {
+                  const Icon = category.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="group px-3 py-1.5 rounded-xl bg-neutral-950/60 border border-white/5 hover:border-purple-500/30 hover:bg-neutral-900/80 transition-all duration-300 cursor-default flex items-center gap-2 hover:shadow-[0_0_15px_rgba(168,85,247,0.05)]"
+                    >
+                      <Icon className="w-3.5 h-3.5 text-neutral-400 group-hover:text-purple-400 transition-colors duration-300" />
+                      <span className="text-[11px] text-neutral-300 font-medium font-sans">{category.name}</span>
+                      <span className="text-[9px] text-neutral-500 font-mono group-hover:text-purple-300 transition-colors">({category.count})</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Column (Interactive Physics Sandbox) */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
+              <PhysicsSandbox />
             </div>
           </div>
         </div>
